@@ -34,5 +34,6 @@ data/processed/*.jsonl
 *.toc
 
 # Local scratch
+tmp/
 .DS_Store
 Thumbs.db
