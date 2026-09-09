@@ -25,7 +25,7 @@ The project uses the WiC portion of the official SuperGLUE v2 archive:
 - Validation: 638 pairs; 319 false and 319 true
 - Test: 1,400 pairs; no labels in the SuperGLUE release
 
-Each JSONL row contains the lemma, two sentences, a unique split-local ID, two half-open character spans (`start1:end1`, `start2:end2`), and—outside test—the boolean same-sense label. The marked surface often differs morphologically from the lemma: 1,852 training and 251 validation pairs contain at least one such difference. The initial audit found 93 training contexts and one validation context in which the marked surface string occurs more than once. Those observations rule out string search as an alignment strategy.
+Each JSONL row contains the lemma, two sentences, a unique split-local ID, two half-open character spans (`start1:end1`, `start2:end2`), and—outside test—the boolean same-sense label. The marked surface often differs morphologically from the lemma: 1,852 training and 251 validation pairs contain at least one such difference. The initial audit found 93 training contexts and one validation context in which the marked surface string occurs more than once. It also found four training pairs duplicated with sentence order reversed; they are retained as part of the official split and reported in the audit. Those observations rule out string search as an alignment strategy and make duplicate handling explicit.
 
 The unlabeled SuperGLUE test split will be downloaded and validated structurally but not evaluated. The poster will call the 638 labeled examples “validation” or “held-out validation,” never “test.” The original WiC site separately offers a v1.0 package with test gold labels, but mixing that release with SuperGLUE v1.1 offsets would muddy provenance. This study uses one release consistently.
 
@@ -41,7 +41,7 @@ The final validation labels are untouched until every primary-condition choice i
 6. Evaluate the three frozen systems once on the 638 validation pairs.
 7. For the prespecified layer analysis, fit a separate threshold for every BERT layer on all official training pairs and evaluate every layer on validation. This analysis does not redefine the primary BERT result.
 
-Before splitting, the loader checks unique IDs, exact duplicate sentence pairs, class balance, valid spans, and missing fields. It also checks duplicate sentence pairs across train and validation and emits a hard error if it finds leakage.
+Before splitting, the loader checks unique IDs, exact duplicate task rows, reversed-order task pairs, class balance, valid spans, and missing fields. Reversed pairs inside official train are counted rather than silently removed. A task-equivalent pair crossing train and validation emits a hard leakage error.
 
 ## Conditions
 

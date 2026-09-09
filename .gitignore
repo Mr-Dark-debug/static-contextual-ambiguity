@@ -12,6 +12,7 @@ data/raw/*
 !data/raw/.gitkeep
 data/cache/*
 !data/cache/.gitkeep
+data/processed/*.jsonl
 *.npy
 *.npz
 *.pt

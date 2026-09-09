@@ -1,0 +1,51 @@
+{
+  "archive_sha256": "ee7e67f4ae9eafbf533780faa198e62167f3cda54256cdf261877be3c0e90900",
+  "source_url": "https://dl.fbaipublicfiles.com/glue/superglue/data/v2/WiC.zip",
+  "splits": {
+    "train": {
+      "split": "train",
+      "examples": 5428,
+      "labeled": 5428,
+      "positive": 2714,
+      "negative": 2714,
+      "unlabeled": 0,
+      "unique_words": 1265,
+      "surface_lemma_mismatch": 1852,
+      "repeated_surface_contexts": 93,
+      "symmetric_duplicate_pairs": 4,
+      "surface_contains_space": 0,
+      "empty_spans": 0,
+      "max_sentence_characters": 187
+    },
+    "val": {
+      "split": "val",
+      "examples": 638,
+      "labeled": 638,
+      "positive": 319,
+      "negative": 319,
+      "unlabeled": 0,
+      "unique_words": 599,
+      "surface_lemma_mismatch": 251,
+      "repeated_surface_contexts": 1,
+      "symmetric_duplicate_pairs": 0,
+      "surface_contains_space": 0,
+      "empty_spans": 0,
+      "max_sentence_characters": 147
+    },
+    "test": {
+      "split": "test",
+      "examples": 1400,
+      "labeled": 0,
+      "positive": 0,
+      "negative": 0,
+      "unlabeled": 1400,
+      "unique_words": 1184,
+      "surface_lemma_mismatch": 521,
+      "repeated_surface_contexts": 20,
+      "symmetric_duplicate_pairs": 0,
+      "surface_contains_space": 0,
+      "empty_spans": 0,
+      "max_sentence_characters": 146
+    }
+  }
+}

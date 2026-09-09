@@ -12,6 +12,8 @@ This file records choices before the final validation results are opened. Later 
 
 **Evidence:** Original WiC site, SuperGLUE archive inspection, and archive SHA-256 recorded in `docs/experiment_design.md`.
 
+The validation audit also found four training examples repeated with the two sentence sides swapped. They remain in the official training split, are counted in `dataset_audit.json`, and are not present in validation. Removing them post hoc would change the named benchmark split for negligible benefit.
+
 ## D002 — Internal selection split
 
 **Decision:** Use a deterministic stratified 80/20 split of official training data for candidate selection, then refit thresholds on all training data after choices are frozen.
