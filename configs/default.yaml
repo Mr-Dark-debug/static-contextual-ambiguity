@@ -1,0 +1,46 @@
+seed: 2026
+
+data:
+  url: "https://dl.fbaipublicfiles.com/glue/superglue/data/v2/WiC.zip"
+  sha256: "ee7e67f4ae9eafbf533780faa198e62167f3cda54256cdf261877be3c0e90900"
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  train_split: "train"
+  validation_split: "val"
+  test_split: "test"
+
+glove:
+  url: "https://nlp.stanford.edu/data/glove.6B.zip"
+  sha256: null
+  member: "glove.6B.300d.txt"
+  dimensions: 300
+  context_windows: [2, 5, 10, "sentence"]
+
+bert:
+  model: "google-bert/bert-base-uncased"
+  revision: "f584a14f45f850d60d0036d54f3e4dfdb3d52075"
+  max_length: 256
+  batch_size: 16
+  primary_candidates: ["layer_12", "mean_last_four"]
+
+evaluation:
+  tune_holdout_fraction: 0.20
+  threshold_objective: "macro_f1"
+  bootstrap_resamples: 1000
+  confidence_level: 0.95
+
+runtime:
+  device: "auto"
+  deterministic: true
+  num_workers: 0
+
+output:
+  cache_dir: "data/cache"
+  raw_results_dir: "results/raw"
+  final_results_dir: "results/final"
+  examples_dir: "results/examples"
+  figures_dir: "figures"
+
+limits:
+  train: null
+  validation: null
