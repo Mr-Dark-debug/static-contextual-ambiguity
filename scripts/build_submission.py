@@ -1,0 +1,205 @@
+"""Generate LaTeX inputs from results and stage the two final PDFs."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import shutil
+import subprocess
+from pathlib import Path
+
+import pandas as pd
+
+from lexical_ambiguity.utils import atomic_write_text
+
+DISPLAY_NAMES = {
+    "glove_target": "GloVe target",
+    "glove_context_2": "GloVe context ($\\pm 2$)",
+    "bert_mean_last_four": "BERT mean last four",
+}
+
+
+def _percent(value: float, digits: int = 1) -> str:
+    return f"{value * 100:.{digits}f}"
+
+
+def _macro(name: str, value: str) -> str:
+    return f"\\newcommand{{\\{name}}}{{{value}}}\n"
+
+
+def _tex_escape(value: object) -> str:
+    return str(value).replace("_", "\\_")
+
+
+def generate_inputs(root: Path) -> None:
+    results = root / "results/final"
+    metrics = pd.read_csv(results / "metrics.csv").set_index("system")
+    intervals = pd.read_csv(results / "bootstrap_ci.csv")
+    layers = pd.read_csv(results / "layer_metrics.csv")
+    paired = pd.read_csv(results / "paired_differences.csv")
+    summary = json.loads((results / "analysis_summary.json").read_text(encoding="utf-8"))
+    ledger = json.loads(
+        (root / "results/raw/selection_ledger.json").read_text(encoding="utf-8")
+    )
+    target = metrics.loc["glove_target"]
+    context = metrics.loc["glove_context_2"]
+    bert = metrics.loc["bert_mean_last_four"]
+    difference = paired.loc[
+        (paired["contrast"] == "glove_context_2 - bert_mean_last_four")
+        & (paired["metric"] == "accuracy")
+    ].iloc[0]
+    macros = "".join(
+        (
+            _macro("TargetAccuracy", f"{_percent(target['accuracy'])}\\%"),
+            _macro("ContextAccuracy", f"{_percent(context['accuracy'])}\\%"),
+            _macro("BertAccuracy", f"{_percent(bert['accuracy'])}\\%"),
+            _macro(
+                "AccuracyGain",
+                f"{_percent(bert['accuracy'] - context['accuracy'])}",
+            ),
+            _macro("BertMacroF", f"{_percent(bert['macro_f1'])}\\%"),
+            _macro("ContextMacroF", f"{_percent(context['macro_f1'])}\\%"),
+            _macro("DifferenceLower", _percent(float(difference["lower"]))),
+            _macro("DifferenceUpper", _percent(float(difference["upper"]))),
+            _macro("ValidationCount", str(int(bert["count"]))),
+            _macro("SelectionHash", ledger["selection_hash"]),
+            _macro(
+                "BertOnlyCount", str(summary["partition_counts"]["bert_only_correct"])
+            ),
+            _macro(
+                "StaticOnlyCount",
+                str(summary["partition_counts"]["static_only_correct"]),
+            ),
+            _macro("BertErrorCount", str(int(bert["fp"] + bert["fn"]))),
+        )
+    )
+    atomic_write_text(root / "poster/generated_results.tex", macros)
+
+    primary_rows = []
+    for system, row in metrics.iterrows():
+        ci = intervals.loc[
+            (intervals["system"] == system) & (intervals["metric"] == "accuracy")
+        ].iloc[0]
+        primary_rows.append(
+            f"{DISPLAY_NAMES[system]} & {row['threshold']:.4f} & "
+            f"{row['accuracy']:.4f} & [{ci['lower']:.4f}, {ci['upper']:.4f}] & "
+            f"{row['macro_f1']:.4f} & {row['precision']:.4f} & "
+            f"{row['recall']:.4f} & {row['roc_auc']:.4f} \\\\"
+        )
+    layer_rows = [
+        f"{int(row.system.removeprefix('layer_'))} & {row.threshold:.4f} & "
+        f"{row.accuracy:.4f} & {row.macro_f1:.4f} & {row.roc_auc:.4f} \\\\"
+        for row in layers.itertuples(index=False)
+    ]
+    selection_rows = []
+    for family, key in (
+        ("Static context", "static_context_candidates"),
+        ("BERT", "bert_candidates"),
+    ):
+        for record in ledger[key]:
+            selected = record["name"] in {
+                ledger["selected_static_context"],
+                ledger["selected_bert_representation"],
+            }
+            selection_rows.append(
+                f"{family} & {_tex_escape(record['name'])} & "
+                f"{record['tune_macro_f1']:.4f} & "
+                f"{record['holdout_macro_f1']:.4f} & "
+                f"{'yes' if selected else 'no'} \\\\"
+            )
+    paired_rows = [
+        f"{_tex_escape(row.contrast)} & {row.metric.replace('_', ' ')} & "
+        f"{row.estimate:.4f} & [{row.lower:.4f}, {row.upper:.4f}] \\\\"
+        for row in paired.itertuples(index=False)
+    ]
+    tables = (
+        "\\newcommand{\\PrimaryMetricRows}{%\n"
+        + "\n".join(primary_rows)
+        + "}\n"
+        + "\\newcommand{\\LayerMetricRows}{%\n"
+        + "\n".join(layer_rows)
+        + "}\n"
+        + "\\newcommand{\\SelectionRows}{%\n"
+        + "\n".join(selection_rows)
+        + "}\n"
+        + "\\newcommand{\\PairedRows}{%\n"
+        + "\n".join(paired_rows)
+        + "}\n"
+    )
+    atomic_write_text(root / "appendix/generated_tables.tex", tables)
+
+
+def stage_submission(root: Path) -> None:
+    submission = root / "submission"
+    submission.mkdir(parents=True, exist_ok=True)
+    allowed = {"poster.pdf", "appendix.pdf"}
+    unexpected = {path.name for path in submission.iterdir()} - allowed
+    if unexpected:
+        raise RuntimeError(f"submission contains unexpected files: {sorted(unexpected)}")
+    sources = {
+        "poster.pdf": root / "poster/poster.pdf",
+        "appendix.pdf": root / "appendix/appendix.pdf",
+    }
+    missing = [str(path) for path in sources.values() if not path.exists()]
+    if missing:
+        raise RuntimeError(f"cannot stage missing PDFs: {missing}")
+    for name, source in sources.items():
+        shutil.copy2(source, submission / name)
+    actual = {path.name for path in submission.iterdir() if path.is_file()}
+    if actual != allowed:
+        raise RuntimeError(f"submission file gate failed: {sorted(actual)}")
+
+
+def compile_documents(root: Path, tectonic: Path) -> None:
+    """Compile the declaration first, then the two deliverables."""
+    if not tectonic.is_file():
+        raise RuntimeError(f"Tectonic executable not found: {tectonic}")
+    sources = (
+        root / "appendix/integrity_declaration_PLACEHOLDER.tex",
+        root / "poster/poster.tex",
+        root / "appendix/appendix.tex",
+    )
+    for source in sources:
+        subprocess.run(
+            [
+                str(tectonic),
+                "-X",
+                "compile",
+                "--outdir",
+                str(source.parent),
+                "--outfmt",
+                "pdf",
+                "--print",
+                "--untrusted",
+                source.name,
+            ],
+            cwd=source.parent,
+            check=True,
+        )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--compile", action="store_true", help="compile all PDFs with Tectonic")
+    parser.add_argument("--stage", action="store_true", help="also copy built PDFs")
+    parser.add_argument(
+        "--tectonic",
+        type=Path,
+        help="path to the Tectonic executable (required with --compile)",
+    )
+    arguments = parser.parse_args()
+    root = Path(__file__).resolve().parents[1]
+    generate_inputs(root)
+    if arguments.compile:
+        if arguments.tectonic is None:
+            parser.error("--compile requires --tectonic PATH")
+        compile_documents(root, arguments.tectonic.resolve())
+    if arguments.stage:
+        stage_submission(root)
+        print("Staged exactly poster.pdf and appendix.pdf")
+    else:
+        print("Generated LaTeX result inputs")
+
+
+if __name__ == "__main__":
+    main()
