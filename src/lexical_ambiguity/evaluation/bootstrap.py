@@ -7,6 +7,7 @@ from dataclasses import dataclass
 
 import numpy as np
 from numpy.typing import ArrayLike, NDArray
+from scipy.stats import rankdata
 
 from lexical_ambiguity.evaluation.metrics import MetricSet, checked_arrays, evaluate_scores
 
@@ -38,6 +39,44 @@ _METRICS: dict[str, Callable[[MetricSet], float]] = {
     "macro_f1": lambda metrics: metrics.macro_f1,
     "roc_auc": lambda metrics: metrics.roc_auc,
 }
+
+
+def _fast_metric_values(
+    scores: NDArray[np.float64], labels: NDArray[np.bool_], threshold: float
+) -> dict[str, float]:
+    """Compute bootstrap metrics without repeated sklearn estimator setup."""
+
+    predictions = scores >= threshold
+    positives = labels
+    negatives = ~labels
+    true_positive = int(np.count_nonzero(predictions & positives))
+    false_positive = int(np.count_nonzero(predictions & negatives))
+    false_negative = int(np.count_nonzero(~predictions & positives))
+    true_negative = int(np.count_nonzero(~predictions & negatives))
+    count = len(labels)
+    positive_denominator = 2 * true_positive + false_positive + false_negative
+    negative_denominator = 2 * true_negative + false_positive + false_negative
+    positive_f1 = (
+        2.0 * true_positive / positive_denominator if positive_denominator else 0.0
+    )
+    negative_f1 = (
+        2.0 * true_negative / negative_denominator if negative_denominator else 0.0
+    )
+    positive_count = true_positive + false_negative
+    negative_count = true_negative + false_positive
+    if positive_count and negative_count:
+        ranks = rankdata(scores, method="average")
+        positive_rank_sum = float(ranks[positives].sum())
+        roc_auc = (
+            positive_rank_sum - positive_count * (positive_count + 1) / 2.0
+        ) / (positive_count * negative_count)
+    else:
+        roc_auc = float("nan")
+    return {
+        "accuracy": (true_positive + true_negative) / count,
+        "macro_f1": (positive_f1 + negative_f1) / 2.0,
+        "roc_auc": float(roc_auc),
+    }
 
 
 def _bounds(values: list[float], confidence_level: float) -> tuple[float, float]:
@@ -86,11 +125,11 @@ def bootstrap_intervals(
         point = evaluate_scores(checked[name], label_array, thresholds[name])
         bootstrap_values = {metric: [] for metric in _METRICS}
         for indices in samples:
-            sampled = evaluate_scores(
+            sampled = _fast_metric_values(
                 checked[name][indices], label_array[indices], thresholds[name]
             )
-            for metric, getter in _METRICS.items():
-                bootstrap_values[metric].append(getter(sampled))
+            for metric in _METRICS:
+                bootstrap_values[metric].append(sampled[metric])
         for metric, getter in _METRICS.items():
             lower, upper = _bounds(bootstrap_values[metric], confidence_level)
             output.append(
@@ -128,10 +167,10 @@ def paired_differences(
     point_b = evaluate_scores(second, label_array, threshold_b)
     differences = {metric: [] for metric in _METRICS}
     for indices in _sample_indices(len(label_array), resamples, seed):
-        sampled_a = evaluate_scores(first[indices], label_array[indices], threshold_a)
-        sampled_b = evaluate_scores(second[indices], label_array[indices], threshold_b)
-        for metric, getter in _METRICS.items():
-            differences[metric].append(getter(sampled_a) - getter(sampled_b))
+        sampled_a = _fast_metric_values(first[indices], label_array[indices], threshold_a)
+        sampled_b = _fast_metric_values(second[indices], label_array[indices], threshold_b)
+        for metric in _METRICS:
+            differences[metric].append(sampled_a[metric] - sampled_b[metric])
 
     output: list[PairedDifference] = []
     for metric, getter in _METRICS.items():
