@@ -3,8 +3,8 @@
   "cuda_runtime": "13.0",
   "git": {
     "branch": "main",
-    "commit": "314a182dcf6b82adbca7d2f4c79be9430606b278",
-    "dirty": true
+    "commit": "7c6c956a173920b8aa685e206b9e4cdade1afdb6",
+    "dirty": false
   },
   "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
   "numpy": "2.4.6",
