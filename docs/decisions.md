@@ -32,7 +32,7 @@ The validation audit also found four training examples repeated with the two sen
 
 **Alternatives considered:** GloVe 840B has broader coverage but a much larger download and memory footprint. Word2Vec or FastText would change the requested comparison; FastText subwords would also blur the intended OOV behavior.
 
-**Evidence:** Pennington, Socher, and Manning (2014); Stanford GloVe release documentation.
+**Evidence:** Pennington, Socher, and Manning (2014); Stanford GloVe release documentation. The downloaded 862,182,613-byte archive has SHA-256 `617afb2fe6cbd085c235baf7a465b96f4112bd7f7ccb2b2cbd649fed9cbcf2fb`.
 
 ## D004 — Static context candidates
 

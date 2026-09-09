@@ -11,7 +11,7 @@ data:
 
 glove:
   url: "https://nlp.stanford.edu/data/glove.6B.zip"
-  sha256: null
+  sha256: "617afb2fe6cbd085c235baf7a465b96f4112bd7f7ccb2b2cbd649fed9cbcf2fb"
   member: "glove.6B.300d.txt"
   dimensions: 300
   context_windows: [2, 5]
