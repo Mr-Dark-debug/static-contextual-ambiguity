@@ -103,3 +103,20 @@ The validation audit also found four training examples repeated with the two sen
 **Alternatives considered:** Unpaired intervals waste pairing; a single point estimate hides sampling variability.
 
 **Evidence:** Prespecified project requirement.
+
+## D011 — Frozen winners and final evaluation
+
+**Decision:** Freeze the ±2-token GloVe context average and BERT mean-last-four
+target representation after the internal 4,342/1,086 training split. Refit each
+system's threshold on all 5,428 training pairs, then evaluate the 638 validation
+pairs once.
+
+**Reason:** The ±2 context candidate had the best internal-holdout macro F1
+(0.5961), while mean-last-four had the best BERT macro F1 (0.7247). These choices
+were recorded in `results/raw/selection_ledger.json` before validation scoring.
+
+**Validation evidence:** Accuracy was 0.5000 for the deliberately context-free
+GloVe target diagnostic, 0.5549 for GloVe ±2 context, and 0.6708 for BERT
+mean-last-four. The paired bootstrap accuracy difference for GloVe context minus
+BERT was -0.1160 with a 95% interval of [-0.1693, -0.0658]. These are empirical
+results for this protocol, not general model rankings.

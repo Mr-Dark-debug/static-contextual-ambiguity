@@ -8,7 +8,7 @@ import numpy as np
 from numpy.typing import ArrayLike, NDArray
 from sklearn.model_selection import train_test_split
 
-from lexical_ambiguity.evaluation.metrics import checked_arrays, evaluate_scores
+from lexical_ambiguity.evaluation.metrics import checked_arrays
 
 
 @dataclass(frozen=True, slots=True)
@@ -33,13 +33,51 @@ def threshold_candidates(scores: ArrayLike) -> NDArray[np.float64]:
 
 def select_threshold(scores: ArrayLike, labels: ArrayLike) -> ThresholdSelection:
     score_array, label_array = checked_arrays(scores, labels)
+    order = np.argsort(score_array, kind="stable")
+    sorted_scores = score_array[order]
+    sorted_labels = label_array[order]
+    values, starts, counts = np.unique(
+        sorted_scores, return_index=True, return_counts=True
+    )
+    positive_count = int(np.count_nonzero(label_array))
+    negative_count = len(label_array) - positive_count
+
+    # AUC does not depend on the threshold. Average ranks preserve the exact
+    # Mann-Whitney definition while handling tied scores deterministically.
+    ranks = np.empty(len(score_array), dtype=np.float64)
+    for start, count in zip(starts, counts, strict=True):
+        ranks[order[start : start + count]] = start + (count + 1) / 2.0
+    roc_auc = (
+        float(
+            (ranks[label_array].sum() - positive_count * (positive_count + 1) / 2.0)
+            / (positive_count * negative_count)
+        )
+        if positive_count and negative_count
+        else float("nan")
+    )
+
     best_key: tuple[float, float, float, float] | None = None
     best: ThresholdSelection | None = None
-    for threshold in threshold_candidates(score_array):
-        metrics = evaluate_scores(score_array, label_array, float(threshold))
+    true_positive = positive_count
+    false_positive = negative_count
+    false_negative = 0
+    true_negative = 0
+
+    def consider(threshold: float) -> None:
+        nonlocal best_key, best
+        accuracy = (true_positive + true_negative) / len(label_array)
+        positive_denominator = 2 * true_positive + false_positive + false_negative
+        negative_denominator = 2 * true_negative + false_positive + false_negative
+        positive_f1 = (
+            2.0 * true_positive / positive_denominator if positive_denominator else 0.0
+        )
+        negative_f1 = (
+            2.0 * true_negative / negative_denominator if negative_denominator else 0.0
+        )
+        macro_f1 = (positive_f1 + negative_f1) / 2.0
         key = (
-            metrics.macro_f1,
-            metrics.accuracy,
+            macro_f1,
+            accuracy,
             -abs(float(threshold) - 0.5),
             -float(threshold),
         )
@@ -47,10 +85,26 @@ def select_threshold(scores: ArrayLike, labels: ArrayLike) -> ThresholdSelection
             best_key = key
             best = ThresholdSelection(
                 threshold=float(threshold),
-                macro_f1=metrics.macro_f1,
-                accuracy=metrics.accuracy,
-                roc_auc=metrics.roc_auc,
+                macro_f1=macro_f1,
+                accuracy=accuracy,
+                roc_auc=roc_auc,
             )
+
+    consider(float(np.nextafter(values[0], -np.inf)))
+    for group_index, (start, count) in enumerate(zip(starts, counts, strict=True)):
+        group = sorted_labels[start : start + count]
+        moved_positive = int(np.count_nonzero(group))
+        moved_negative = int(count) - moved_positive
+        true_positive -= moved_positive
+        false_negative += moved_positive
+        false_positive -= moved_negative
+        true_negative += moved_negative
+        threshold = (
+            float(values[group_index] + (values[group_index + 1] - values[group_index]) / 2.0)
+            if group_index + 1 < len(values)
+            else float(np.nextafter(values[-1], np.inf))
+        )
+        consider(threshold)
     assert best is not None  # checked_arrays rejects empty input
     return best
 

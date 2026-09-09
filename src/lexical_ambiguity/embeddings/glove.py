@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import mmap
 import re
 import shutil
 import tempfile
@@ -20,6 +21,7 @@ from lexical_ambiguity.types import Side, WicExample
 
 FloatVector = NDArray[np.float32]
 WORD_PATTERN = re.compile(r"[^\W_]+(?:['\u2019][^\W_]+)*", flags=re.UNICODE)
+GLOVE_ROW_PATTERN = re.compile(rb"(?m)^(\S+) ")
 
 
 class GloveError(ValueError):
@@ -67,6 +69,17 @@ class EmbeddingStore:
     def lookup(self, token: str) -> FloatVector | None:
         return self._vectors.get(token.casefold())
 
+    def to_arrays(self) -> tuple[NDArray[np.str_], NDArray[np.float32]]:
+        """Return a stable, pickle-free representation suitable for the cache."""
+
+        tokens = sorted(self._vectors)
+        vectors = (
+            np.stack([self._vectors[token] for token in tokens])
+            if tokens
+            else np.empty((0, self.dimensions), dtype=np.float32)
+        )
+        return np.asarray(tokens, dtype=np.str_), vectors.astype(np.float32, copy=False)
+
     @classmethod
     def from_text(
         cls,
@@ -78,21 +91,30 @@ class EmbeddingStore:
         requested = {token.casefold() for token in vocabulary} if vocabulary is not None else None
         vectors: dict[str, FloatVector] = {}
         try:
-            with Path(path).open("r", encoding="utf-8") as handle:
-                for line_number, line in enumerate(handle, start=1):
-                    pieces = line.rstrip().split(" ")
-                    token = pieces[0].casefold()
+            with Path(path).open("rb") as handle, mmap.mmap(
+                handle.fileno(), length=0, access=mmap.ACCESS_READ
+            ) as mapped:
+                for line_number, match in enumerate(
+                    GLOVE_ROW_PATTERN.finditer(mapped), start=1
+                ):
+                    try:
+                        token = match.group(1).decode("utf-8").casefold()
+                    except UnicodeDecodeError as error:
+                        raise GloveError(
+                            f"{path}:{line_number} contains an invalid UTF-8 token"
+                        ) from error
                     if requested is not None and token not in requested:
                         continue
-                    if len(pieces) != dimensions + 1:
+                    line_end = mapped.find(b"\n", match.end())
+                    if line_end < 0:
+                        line_end = len(mapped)
+                    raw_values = mapped[match.end() : line_end]
+                    vector = np.fromstring(raw_values, dtype=np.float32, sep=" ")
+                    if len(vector) != dimensions:
                         raise GloveError(
-                            f"{path}:{line_number} has {len(pieces) - 1} values; "
+                            f"{path}:{line_number} has {len(vector)} values; "
                             f"expected {dimensions}"
                         )
-                    try:
-                        vector = np.asarray(pieces[1:], dtype=np.float32)
-                    except ValueError as error:
-                        raise GloveError(f"{path}:{line_number} contains invalid floats") from error
                     vectors[token] = vector
                     if requested is not None and len(vectors) == len(requested):
                         break

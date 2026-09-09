@@ -67,6 +67,14 @@ def test_from_text_streams_only_requested_vocabulary(tmp_path: Path) -> None:
     assert vectors.lookup("skip") is None
 
 
+def test_store_has_stable_pickle_free_cache_arrays() -> None:
+    tokens, vectors = store().to_arrays()
+
+    assert tokens.dtype.kind == "U"
+    assert tokens.tolist() == sorted(tokens.tolist())
+    assert vectors.shape == (len(tokens), 3)
+
+
 def test_static_target_is_identical_across_inflected_surfaces() -> None:
     item = example(
         sentence1="They banked the fire.",

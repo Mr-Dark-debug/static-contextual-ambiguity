@@ -258,6 +258,41 @@ def _bert_cache_metadata(
     }
 
 
+def _glove_store(
+    config: ExperimentConfig, path: Path, vocabulary: set[str]
+) -> tuple[EmbeddingStore, bool]:
+    cache_path = config.output.cache_dir / "glove_subset.npz"
+    metadata = {
+        "schema": CACHE_SCHEMA_VERSION,
+        "kind": "glove_vocabulary_subset",
+        "archive_sha256": config.glove.sha256,
+        "member": config.glove.member,
+        "dimensions": config.glove.dimensions,
+        "vocabulary_hash": canonical_hash(sorted(vocabulary)),
+        "requested_tokens": len(vocabulary),
+    }
+    cached = load_array_cache(cache_path, metadata)
+    if cached is not None and set(cached) == {"tokens", "vectors"}:
+        tokens = np.asarray(cached["tokens"])
+        vectors = np.asarray(cached["vectors"], dtype=np.float32)
+        if tokens.ndim == 1 and vectors.shape == (len(tokens), config.glove.dimensions):
+            return (
+                EmbeddingStore(
+                    {str(token): vector for token, vector in zip(tokens, vectors, strict=True)},
+                    config.glove.dimensions,
+                ),
+                True,
+            )
+    store = EmbeddingStore.from_text(
+        path,
+        dimensions=config.glove.dimensions,
+        vocabulary=vocabulary,
+    )
+    tokens, vectors = store.to_arrays()
+    save_array_cache(cache_path, {"tokens": tokens, "vectors": vectors}, metadata)
+    return store, False
+
+
 def _bert_representations(
     config: ExperimentConfig,
     split: str,
@@ -342,6 +377,7 @@ def run_experiment(
     if not isinstance(config, ExperimentConfig):
         config = load_config(config)
     set_global_seed(config.seed, deterministic=config.runtime.deterministic)
+    run_environment = environment_info(config.project_root)
     for directory in (
         config.output.cache_dir,
         config.output.raw_results_dir,
@@ -384,11 +420,7 @@ def run_experiment(
 
     glove_path = ensure_glove_file(config.glove, config.data.raw_dir)
     vocabulary = collect_vocabulary([*train, *validation])
-    store = EmbeddingStore.from_text(
-        glove_path,
-        dimensions=config.glove.dimensions,
-        vocabulary=vocabulary,
-    )
+    store, glove_cache_hit = _glove_store(config, glove_path, vocabulary)
     train_static, train_static_diagnostics = _static_scores(
         train, store, config.glove.context_windows
     )
@@ -439,8 +471,8 @@ def run_experiment(
         "train_examples": len(train),
         "tune_examples": len(tune_indices),
         "holdout_examples": len(holdout_indices),
-        "tune_indices": tune_indices.tolist(),
-        "holdout_indices": holdout_indices.tolist(),
+        "tune_indices_hash": canonical_hash(tune_indices.tolist()),
+        "holdout_indices_hash": canonical_hash(holdout_indices.tolist()),
         "static_context_candidates": [asdict(record) for record in context_records],
         "selected_static_context": context_winner,
         "bert_candidates": [asdict(record) for record in bert_records],
@@ -611,6 +643,7 @@ def run_experiment(
             "audits": [asdict(audit) for audit in audits],
             "glove_loaded_vocabulary": len(store),
             "glove_requested_vocabulary": len(vocabulary),
+            "glove_cache_hit": glove_cache_hit,
             "static_train": train_static_diagnostics,
             "static_validation": validation_static_diagnostics,
             "bert_train_cache_hit": train_cache_hit,
@@ -631,7 +664,7 @@ def run_experiment(
             "layer_thresholds": layer_thresholds,
         },
     )
-    atomic_write_json(environment_path, environment_info(config.project_root))
+    atomic_write_json(environment_path, run_environment)
 
     return ExperimentArtifacts(
         selection_ledger=selection_path,
