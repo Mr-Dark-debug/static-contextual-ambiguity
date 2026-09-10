@@ -38,7 +38,9 @@ student must supply. Evidence was refreshed on 10 September 2026.
 The last verifier confirmed one 1683.78 x 2383.94 point A1 poster page, eight 595.28 x
 841.89 point A4 appendix pages (one displayed in landscape), extractable required text,
 embedded fonts, four 300-PPI figure previews, byte-identical staged copies, and exactly
-`poster.pdf` plus `appendix.pdf` in `submission/`. The captured LaTeX build contains no
+`poster.pdf` plus `appendix.pdf` in `submission/`. Eleven headline/result values are also
+recomputed from the committed CSV/JSON files and matched against extracted poster text.
+The captured LaTeX build contains no
 overfull-box or unresolved-reference warning.
 
 ## Human PDF review

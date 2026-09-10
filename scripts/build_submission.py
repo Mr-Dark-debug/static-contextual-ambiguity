@@ -39,6 +39,8 @@ def generate_inputs(root: Path) -> None:
     layers = pd.read_csv(results / "layer_metrics.csv")
     paired = pd.read_csv(results / "paired_differences.csv")
     summary = json.loads((results / "analysis_summary.json").read_text(encoding="utf-8"))
+    config = json.loads((results / "config.json").read_text(encoding="utf-8"))
+    diagnostics = json.loads((results / "run_diagnostics.json").read_text(encoding="utf-8"))
     ledger = json.loads(
         (root / "results/raw/selection_ledger.json").read_text(encoding="utf-8")
     )
@@ -49,6 +51,19 @@ def generate_inputs(root: Path) -> None:
         (paired["contrast"] == "glove_context_2 - bert_mean_last_four")
         & (paired["metric"] == "accuracy")
     ].iloc[0]
+    macro_difference = paired.loc[
+        (paired["contrast"] == "glove_context_2 - bert_mean_last_four")
+        & (paired["metric"] == "macro_f1")
+    ].iloc[0]
+    audits = {record["split"]: record for record in diagnostics["audits"]}
+    best_layer = layers.loc[layers["accuracy"].idxmax()]
+    context_different_recall = context["tn"] / (context["tn"] + context["fp"])
+    bert_different_recall = bert["tn"] / (bert["tn"] + bert["fp"])
+    context_window = ledger["selected_static_context"].removeprefix("glove_context_")
+    context_candidates = ", ".join(
+        "sentence" if value == "sentence" else f"$\\pm {value}$"
+        for value in config["glove"]["context_windows"]
+    )
     macros = "".join(
         (
             _macro("TargetAccuracy", f"{_percent(target['accuracy'])}\\%"),
@@ -60,9 +75,34 @@ def generate_inputs(root: Path) -> None:
             ),
             _macro("BertMacroF", f"{_percent(bert['macro_f1'])}\\%"),
             _macro("ContextMacroF", f"{_percent(context['macro_f1'])}\\%"),
+            _macro("BertAuc", f"{bert['roc_auc']:.3f}"),
             _macro("DifferenceLower", _percent(float(difference["lower"]))),
             _macro("DifferenceUpper", _percent(float(difference["upper"]))),
+            _macro("MacroDifferenceLower", _percent(float(macro_difference["lower"]))),
+            _macro("MacroDifferenceUpper", _percent(float(macro_difference["upper"]))),
+            _macro(
+                "BertGainCorrect",
+                str(int(bert["tn"] + bert["tp"] - context["tn"] - context["tp"])),
+            ),
+            _macro("BertSameRecall", f"{_percent(bert['recall'])}\\%"),
+            _macro("BertDifferentRecall", f"{_percent(bert_different_recall)}\\%"),
+            _macro("ContextSameRecall", f"{_percent(context['recall'])}\\%"),
+            _macro("ContextDifferentRecall", f"{_percent(context_different_recall)}\\%"),
+            _macro("TrainCount", f"{audits['train']['examples']:,}"),
             _macro("ValidationCount", str(int(bert["count"]))),
+            _macro("TestCount", f"{audits['test']['examples']:,}"),
+            _macro("TuneCount", f"{ledger['tune_examples']:,}"),
+            _macro("HoldoutCount", f"{ledger['holdout_examples']:,}"),
+            _macro("ExperimentSeed", str(ledger["seed"])),
+            _macro("GloveDimensions", str(config["glove"]["dimensions"])),
+            _macro("ContextCandidates", context_candidates),
+            _macro("SelectedContextWindow", f"$\\pm {context_window}$"),
+            _macro(
+                "BootstrapResamples",
+                f"{config['evaluation']['bootstrap_resamples']:,}",
+            ),
+            _macro("BestAccuracyLayer", str(int(best_layer["system"].removeprefix("layer_")))),
+            _macro("FinalLayerNumber", str(len(layers))),
             _macro("SelectionHash", ledger["selection_hash"]),
             _macro(
                 "BertOnlyCount", str(summary["partition_counts"]["bert_only_correct"])

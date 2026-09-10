@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import hashlib
+import json
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -119,6 +121,52 @@ def _verify_poster_sources(root: Path) -> int:
     return len(pngs)
 
 
+def _verify_result_trace(root: Path, poster_text: str) -> int:
+    results = root / "results/final"
+    with (results / "metrics.csv").open(encoding="utf-8", newline="") as handle:
+        metrics = {row["system"]: row for row in csv.DictReader(handle)}
+    with (results / "paired_differences.csv").open(encoding="utf-8", newline="") as handle:
+        paired = list(csv.DictReader(handle))
+    with (results / "layer_metrics.csv").open(encoding="utf-8", newline="") as handle:
+        layers = list(csv.DictReader(handle))
+    summary = json.loads((results / "analysis_summary.json").read_text(encoding="utf-8"))
+
+    context = metrics["glove_context_2"]
+    bert = metrics["bert_mean_last_four"]
+    accuracy_difference = next(
+        row
+        for row in paired
+        if row["contrast"] == "glove_context_2 - bert_mean_last_four"
+        and row["metric"] == "accuracy"
+    )
+    best_layer = max(layers, key=lambda row: float(row["accuracy"]))["system"].removeprefix(
+        "layer_"
+    )
+    bert_gain_correct = int(
+        float(bert["tn"])
+        + float(bert["tp"])
+        - float(context["tn"])
+        - float(context["tp"])
+    )
+    fragments = {
+        f"{float(metrics['glove_target']['accuracy']) * 100:.1f}%",
+        f"{float(context['accuracy']) * 100:.1f}%",
+        f"{float(bert['accuracy']) * 100:.1f}%",
+        f"{float(bert['roc_auc']):.3f}",
+        f"{float(accuracy_difference['lower']) * 100:.1f}",
+        f"{float(accuracy_difference['upper']) * 100:.1f}",
+        str(bert_gain_correct),
+        best_layer,
+        str(summary["partition_counts"]["bert_only_correct"]),
+        str(summary["partition_counts"]["static_only_correct"]),
+        str(int(float(bert["fp"]) + float(bert["fn"]))),
+    }
+    missing = sorted(fragment for fragment in fragments if fragment not in poster_text)
+    if missing:
+        raise RuntimeError(f"poster/result traceability check failed for values: {missing}")
+    return len(fragments)
+
+
 def verify(root: Path, *, signed: bool = False) -> None:
     submission = root / "submission"
     actual = {path.name for path in submission.iterdir() if path.is_file()}
@@ -153,6 +201,7 @@ def verify(root: Path, *, signed: bool = False) -> None:
     )
     poster_fonts = _verify_fonts(poster, "poster")
     figure_count = _verify_poster_sources(root)
+    traced_values = _verify_result_trace(root, poster_text)
 
     appendix = PdfReader(submission / "appendix.pdf")
     expected_pages = "at least eight" if signed else "eight"
@@ -182,7 +231,8 @@ def verify(root: Path, *, signed: bool = False) -> None:
     print(
         "Submission verified: exactly two PDFs; poster=1 A1 page, "
         f"{poster_fonts} embedded fonts, {len(poster_text)} text characters, "
-        f"{figure_count} figure PNGs >=150 PPI; appendix={len(appendix.pages)} A4 pages, "
+        f"{figure_count} figure PNGs >=150 PPI, {traced_values} traced result values; "
+        f"appendix={len(appendix.pages)} A4 pages, "
         f"{appendix_fonts} embedded fonts, {len(appendix_text)} text characters."
     )
 

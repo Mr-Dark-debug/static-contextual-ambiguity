@@ -70,14 +70,13 @@ than either a context-free GloVe target or an average of nearby GloVe words.
 \end{panel}
 
 \begin{panel}{Methodology}
-\textbf{Data.} Official SuperGLUE v2 WiC: 5,428 balanced training pairs and one
-final evaluation on \ValidationCount{} balanced validation pairs. The 1,400-row
+\textbf{Data.} Official SuperGLUE v2 WiC: \TrainCount{} balanced training pairs and one
+final evaluation on \ValidationCount{} balanced validation pairs. The \TestCount-row
 test split has no public labels and is not reported.
 
-\textbf{Static representations.} GloVe 6B 300d (Pennington et al., 2014):
+\textbf{Static representations.} GloVe 6B \GloveDimensions d (Pennington et al., 2014):
 (i) the lemma vector on both sides; (ii) mean in-vocabulary context vectors after
-excluding the marked target. Candidate windows were $\pm2$, $\pm5$, $\pm10$,
-and sentence.
+excluding the marked target. Candidate windows were \ContextCandidates{}.
 
 \textbf{Contextual representation.} Unfine-tuned BERT-base-uncased (Devlin et
 al., 2019). Fast tokenizer offsets select every WordPiece overlapping the
@@ -91,13 +90,13 @@ same-sense. Thresholds maximize macro F1 on training data only.
 \begin{panel}{Selection stayed inside training}
 \centering
 \begin{tcolorbox}[colback=paper,colframe=blue,boxrule=0.7mm,arc=1mm]
-\centering 5,428 train\\[2mm]
-$\downarrow$ stratified, seed 2026\\[2mm]
-4,342 tune threshold $\rightarrow$ 1,086 rank candidates\\[2mm]
-$\downarrow$ freeze $\pm2$ and mean-last-four\\[2mm]
+\centering \TrainCount{} train\\[2mm]
+$\downarrow$ stratified, seed \ExperimentSeed\\[2mm]
+\TuneCount{} tune threshold $\rightarrow$ \HoldoutCount{} rank candidates\\[2mm]
+$\downarrow$ freeze \SelectedContextWindow{} and mean-last-four\\[2mm]
 refit thresholds on all train\\[2mm]
 $\downarrow$ once\\[2mm]
-638 validation
+\ValidationCount{} validation
 \end{tcolorbox}
 \captionfont The machine-readable ledger is hashed before validation scoring.
 \end{panel}
@@ -117,19 +116,21 @@ diagnostic is exactly constant; nearby static context restores limited signal.
 \includegraphics[width=\linewidth]{../figures/similarity_distributions.pdf}
 \captionfont\RaggedRight
 GloVe's label distributions overlap heavily. BERT shifts same-sense pairs toward
-higher similarity, while substantial overlap remains (ROC-AUC 0.716).
+higher similarity, while substantial overlap remains (ROC-AUC \BertAuc{}).
 \end{panel}
 
 \begin{panel}{Paired evidence, not decorative error bars}
-The BERT-minus-context gain is 74 additional correct pairs. In 1,000 paired
+The BERT-minus-context gain is \BertGainCorrect{} additional correct pairs. In
+\BootstrapResamples{} paired
 bootstrap resamples, the reverse contrast (GloVe minus BERT) remains below zero:
 accuracy [\DifferenceLower{}, \DifferenceUpper{}] points and macro F1
-[-16.9, -6.6] points.
+[\MacroDifferenceLower{}, \MacroDifferenceUpper{}] points.
 \end{panel}
 
 \begin{panel}{The systems fail in opposite directions}
-BERT recovers 77.4\% of same-sense pairs but 56.7\% of different-sense pairs.
-GloVe context recovers 46.4\% and 64.6\%, respectively. These class skews are
+BERT recovers \BertSameRecall{} of same-sense pairs but \BertDifferentRecall{} of
+different-sense pairs. GloVe context recovers \ContextSameRecall{} and
+\ContextDifferentRecall{}, respectively. These class skews are
 thresholded observations, not intrinsic representation preferences.
 \end{panel}
 \end{minipage}\hfill
@@ -139,7 +140,8 @@ thresholded observations, not intrinsic representation preferences.
 \centering
 \includegraphics[width=\linewidth]{../figures/layer_analysis.pdf}
 \captionfont\RaggedRight
-Individual-layer accuracy rises broadly through layer 9 and falls at layer 12.
+Individual-layer accuracy rises broadly through layer \BestAccuracyLayer{} and falls at
+layer \FinalLayerNumber{}.
 This is secondary validation analysis; it did not redefine the frozen primary
 representation.
 \end{panel}
@@ -155,7 +157,7 @@ but it does not settle fine-grained sense boundaries.
 
 \begin{panel}{Limitations}
 \begin{itemize}\setlength\itemsep{2mm}
-\item One balanced English benchmark and 638 validation pairs.
+\item One balanced English benchmark and \ValidationCount{} validation pairs.
 \item Frozen BERT features, not fine-tuning or a modern encoder comparison.
 \item GloVe context is an unweighted lexical mean; syntax is absent.
 \item Thresholded cosine tests geometry, not every fact encoded in a vector.
