@@ -9,6 +9,7 @@ import subprocess
 from pathlib import Path
 
 import pandas as pd
+from pypdf import PdfReader, PdfWriter
 
 from lexical_ambiguity.utils import atomic_write_text
 
@@ -150,7 +151,34 @@ def stage_submission(root: Path) -> None:
         raise RuntimeError(f"submission file gate failed: {sorted(actual)}")
 
 
-def compile_documents(root: Path, tectonic: Path) -> None:
+def _append_signed_declaration(appendix: Path, declaration: Path) -> None:
+    """Replace the generated placeholder page with user-supplied declaration pages."""
+    if not declaration.is_file():
+        raise RuntimeError(f"signed declaration not found: {declaration}")
+    base = PdfReader(appendix)
+    if not base.pages:
+        raise RuntimeError("compiled appendix has no pages")
+    last_page_text = (base.pages[-1].extract_text() or "").lower()
+    if "unsigned placeholder" not in last_page_text:
+        raise RuntimeError("appendix does not end with the expected unsigned placeholder")
+    signed = PdfReader(declaration)
+    if not signed.pages:
+        raise RuntimeError("signed declaration PDF has no pages")
+
+    writer = PdfWriter()
+    for page in base.pages[:-1]:
+        writer.add_page(page)
+    for page in signed.pages:
+        writer.add_page(page)
+    if base.metadata:
+        writer.add_metadata(dict(base.metadata))
+    temporary = appendix.with_name("appendix.with-declaration.pdf")
+    with temporary.open("wb") as handle:
+        writer.write(handle)
+    temporary.replace(appendix)
+
+
+def compile_documents(root: Path, tectonic: Path, declaration: Path | None = None) -> None:
     """Compile the declaration first, then the two deliverables."""
     if not tectonic.is_file():
         raise RuntimeError(f"Tectonic executable not found: {tectonic}")
@@ -176,6 +204,8 @@ def compile_documents(root: Path, tectonic: Path) -> None:
             cwd=source.parent,
             check=True,
         )
+    if declaration is not None:
+        _append_signed_declaration(root / "appendix/appendix.pdf", declaration)
 
 
 def main() -> None:
@@ -187,13 +217,21 @@ def main() -> None:
         type=Path,
         help="path to the Tectonic executable (required with --compile)",
     )
+    parser.add_argument(
+        "--declaration",
+        type=Path,
+        help="signed declaration PDF to replace the generated placeholder page",
+    )
     arguments = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
     generate_inputs(root)
     if arguments.compile:
         if arguments.tectonic is None:
             parser.error("--compile requires --tectonic PATH")
-        compile_documents(root, arguments.tectonic.resolve())
+        declaration = arguments.declaration.resolve() if arguments.declaration else None
+        compile_documents(root, arguments.tectonic.resolve(), declaration)
+    elif arguments.declaration is not None:
+        parser.error("--declaration requires --compile")
     if arguments.stage:
         stage_submission(root)
         print("Staged exactly poster.pdf and appendix.pdf")

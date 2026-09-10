@@ -1,4 +1,4 @@
-# Static vs Contextual Embeddings for Lexical Ambiguity
+# Static vs Contextual Embeddings for Lexical Ambiguity: A Word-in-Context Evaluation
 
 Static embeddings give *bank* one vector forever. Very loyal. Unfortunately, English is
 not. This MSc NLP project evaluates whether a marked word's representation changes in a
@@ -58,7 +58,12 @@ reuse a cache only when its metadata match.
 The measured full run used Python 3.11.15, PyTorch 2.11.0+cu130, Transformers 5.17.0,
 and an NVIDIA GeForce RTX 3050 Ti Laptop GPU. Its clean source revision is recorded in
 `results/final/environment.json`; a later cached reproduction regenerated the same
-artifacts.
+artifacts. On that machine, a full cache-integrity rerun took about 18 seconds. A batch of
+the 16 longest training pairs peaked at 469 MiB allocated / 492 MiB reserved CUDA memory,
+including the loaded model; driver overhead is additional. The checked workspace used
+1.77 GiB for source archives, 0.44 GiB for experiment caches, and 0.41 GiB in the external
+Hugging Face model cache (about 2.62 GiB total). A first run also depends on download speed
+and should be budgeted in tens of minutes; only the cache-hit timing is directly measured.
 
 ## Build and verify the documents
 
@@ -76,6 +81,14 @@ uv run python scripts/verify_submission.py
 The verifier checks byte identity with the built sources, exact submission contents,
 page counts, A1/A4 media boxes, required extractable headings, and embedded fonts
 (including Type 3 glyph programs inside vector figures).
+
+After obtaining the real signed declaration, pass it without editing or forging metadata:
+
+```powershell
+uv run python scripts/build_submission.py --compile --stage --tectonic $tectonic `
+  --declaration "C:\path\to\signed-declaration.pdf"
+uv run python scripts/verify_submission.py --signed
+```
 
 ## Project map
 
@@ -96,7 +109,7 @@ The repository intentionally does not invent a student name, ID, institutional
 declaration, signature, or repository URL. Replace the clearly marked author/repository
 placeholders in `poster/poster.tex` and `appendix/appendix.tex`, replace
 `appendix/integrity_declaration_PLACEHOLDER.tex` with the institution-approved wording,
-sign it yourself, rebuild, and rerun the verifier.
+sign it yourself, rebuild with `--declaration`, and rerun the verifier in `--signed` mode.
 
 WiC is CC BY-NC 4.0 according to its authors. Raw datasets, GloVe vectors, model weights,
 and embedding caches are excluded from Git; upstream terms still apply. Detailed data

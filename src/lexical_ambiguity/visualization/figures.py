@@ -13,6 +13,8 @@ from matplotlib.figure import Figure
 
 from lexical_ambiguity.utils import atomic_write_text
 
+plt.switch_backend("Agg")
+
 BACKGROUND = "#F7F4ED"
 INK = "#17324D"
 COLORS = {
