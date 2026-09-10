@@ -3,12 +3,15 @@
 from __future__ import annotations
 
 import textwrap
+from datetime import UTC, datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from matplotlib.figure import Figure
+
+from lexical_ambiguity.utils import atomic_write_text
 
 BACKGROUND = "#F7F4ED"
 INK = "#17324D"
@@ -19,6 +22,8 @@ COLORS = {
     "different": "#CC79A7",
     "same": "#009E73",
 }
+FIGURE_TIMESTAMP = datetime(2026, 9, 10, tzinfo=UTC)
+plt.rcParams["svg.hashsalt"] = "static-contextual-ambiguity"
 
 
 def _system_kind(name: str) -> str:
@@ -71,11 +76,27 @@ def _style_axes(axis: plt.Axes) -> None:
 def _save_all(figure: Figure, output_dir: Path, stem: str) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     for suffix in ("pdf", "svg"):
+        metadata = (
+            {
+                "Creator": "static-contextual-ambiguity",
+                "CreationDate": FIGURE_TIMESTAMP,
+                "ModDate": FIGURE_TIMESTAMP,
+            }
+            if suffix == "pdf"
+            else {"Creator": "static-contextual-ambiguity", "Date": "2026-09-10"}
+        )
+        path = output_dir / f"{stem}.{suffix}"
         figure.savefig(
-            output_dir / f"{stem}.{suffix}",
+            path,
             bbox_inches="tight",
             facecolor=BACKGROUND,
+            metadata=metadata,
         )
+        if suffix == "svg":
+            normalized = "\n".join(
+                line.rstrip() for line in path.read_text(encoding="utf-8").splitlines()
+            )
+            atomic_write_text(path, normalized + "\n")
     figure.savefig(
         output_dir / f"{stem}.png",
         dpi=300,
@@ -326,4 +347,3 @@ def generate_all_figures(
     plot_similarity_distributions(scores, output_dir)
     plot_layer_analysis(layers, metrics, output_dir)
     plot_qualitative_cases(cases, output_dir)
-
