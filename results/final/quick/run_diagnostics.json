@@ -50,6 +50,7 @@
   "bert_train_device": "cache",
   "bert_validation_cache_hit": true,
   "bert_validation_device": "cache",
+  "glove_cache_hit": false,
   "glove_loaded_vocabulary": 997,
   "glove_requested_vocabulary": 1024,
   "imputation_medians": {
