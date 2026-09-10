@@ -3,7 +3,7 @@
   "cuda_runtime": "13.0",
   "git": {
     "branch": "main",
-    "commit": "7c6c956a173920b8aa685e206b9e4cdade1afdb6",
+    "commit": "b61984544cdb394f45a0cf7582bf3481eea6682a",
     "dirty": false
   },
   "gpu": "NVIDIA GeForce RTX 3050 Ti Laptop GPU",
