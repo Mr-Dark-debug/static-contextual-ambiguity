@@ -1,183 +1,153 @@
 \documentclass{article}
-\usepackage[paperwidth=594mm,paperheight=841mm,top=13mm,bottom=12mm,left=14mm,right=14mm]{geometry}
+\usepackage[paperwidth=594mm,paperheight=841mm,top=17mm,bottom=17mm,left=20mm,right=20mm]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{helvet}
 \usepackage{xcolor}
 \usepackage{graphicx}
-\usepackage{tcolorbox}
 \usepackage{ragged2e}
-\usepackage{array}
 \usepackage{microtype}
 \renewcommand{\familydefault}{\sfdefault}
-\definecolor{paper}{HTML}{F7F4ED}
-\definecolor{ink}{HTML}{17324D}
-\definecolor{accent}{HTML}{D55E00}
-\definecolor{blue}{HTML}{0072B2}
-\definecolor{soft}{HTML}{EAE5DC}
-\pagecolor{paper}
+\definecolor{ink}{HTML}{182E42}
+\definecolor{blue}{HTML}{007AC3}
+\definecolor{accent}{HTML}{C55A11}
+\definecolor{rulegray}{HTML}{CBD5DC}
 \color{ink}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{4mm}
+\setlength{\parskip}{3mm}
 \hyphenpenalty=10000
 \exhyphenpenalty=10000
 \input{generated_results.tex}
-\newtcolorbox{panel}[1]{
-  colback=white,colframe=soft,boxrule=0.8mm,arc=2mm,
-  left=5mm,right=5mm,top=4mm,bottom=4mm,before skip=4mm,after skip=4mm,
-  title={#1},coltitle=ink,fonttitle=\fontsize{32}{37}\selectfont\bfseries,
-  halign title=left
-}
+\input{authors.tex}
 \newcommand{\bodyfont}{\fontsize{27}{33}\selectfont}
 \newcommand{\captionfont}{\fontsize{24}{29}\selectfont}
-\newcommand{\tinyfooter}{\fontsize{15}{18}\selectfont}
-\newcommand{\key}[1]{\textcolor{accent}{\bfseries #1}}
+\newcommand{\sectiontitle}[2]{%
+  {\fontsize{33}{39}\selectfont\bfseries\textcolor{blue}{#1}\hspace{3mm}#2\par}
+  \vspace{2mm}}
+\newcommand{\divider}{\par\vspace{2mm}{\color{rulegray}\rule{\linewidth}{0.5pt}}\par\vspace{3mm}}
 \begin{document}
 \bodyfont
-\begin{minipage}[t]{0.74\textwidth}
-  {\fontsize{59}{63}\selectfont\bfseries A word is not one vector}\par
-  \vspace{3mm}
-  {\fontsize{31}{36}\selectfont Static vs Contextual Embeddings for Lexical
-  Ambiguity: A Word-in-Context Evaluation}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.23\textwidth}\RaggedLeft
-  {\fontsize{25}{30}\selectfont\bfseries Student Name}\par
-  {\fontsize{20}{24}\selectfont replace before submission}\par
-  \vspace{5mm}
-  {\fontsize{18}{22}\selectfont University of Trier\par
-  MSc Natural Language Processing\par
-  Trends in Natural Language Processing}
-\end{minipage}
+\begin{center}
+\setlength{\parskip}{1mm}
+\includegraphics[width=70mm]{assets/university-trier.pdf}\par
+\vspace{3mm}
+{\fontsize{47}{53}\selectfont\bfseries Static vs Contextual Embeddings}\par
+{\fontsize{36}{43}\selectfont for Lexical Ambiguity: A Word-in-Context Evaluation}\par
+\vspace{3mm}
+\begin{minipage}[t]{0.40\textwidth}\centering
+{\fontsize{28}{34}\selectfont\bfseries\FirstAuthor{}}\par
+{\fontsize{24}{29}\selectfont Enrollment no.\ \FirstEnrollment{}}
+\end{minipage}\hspace{4mm}%
+\begin{minipage}[t]{0.40\textwidth}\centering
+{\fontsize{28}{34}\selectfont\bfseries\SecondAuthor{}}\par
+{\fontsize{24}{29}\selectfont Enrollment no.\ \SecondEnrollment{}}
+\end{minipage}\par
+\vspace{3mm}
+{\fontsize{25}{31}\selectfont University of Trier\enspace\textperiodcentered\enspace MSc Natural Language Processing}\par
+{\fontsize{23}{28}\selectfont Trends in Natural Language Processing}
+\end{center}
+\raggedright
+\vspace{-7mm}
+\divider
 
-\vspace{7mm}
-\begin{tcolorbox}[colback=accent,colframe=accent,arc=2mm,boxrule=0pt,left=8mm,right=8mm,top=6mm,bottom=6mm]
-\color{white}\centering
-{\fontsize{42}{48}\selectfont\bfseries Frozen BERT adds \AccuracyGain{} accuracy points over local GloVe context}\par
-{\fontsize{24}{29}\selectfont \BertAccuracy{} vs \ContextAccuracy{}; paired 95\% interval for GloVe minus BERT: [\DifferenceLower{}, \DifferenceUpper{}] points}
-\end{tcolorbox}
-
-\vspace{2mm}
 \noindent
-\begin{minipage}[t]{0.316\textwidth}
-\RaggedRight
-\begin{panel}{Hypothesis}
-A single static vector conflates a word's meanings; WiC asks whether sentence
-context separates them (Camacho-Collados \& Pilehvar, 2018; Pilehvar \&
-Camacho-Collados, 2019).
+\begin{minipage}[t]{0.477\textwidth}\vspace{0pt}\RaggedRight
+\setlength{\parskip}{3mm}
+\sectiontitle{01}{The concept}
+\textbf{Lexical ambiguity} means a word has several meanings.
+\textbf{Context}, the surrounding words, helps identify the intended meaning.
 
-\key{Prediction:} frozen BERT target similarity will separate WiC labels better
-than either a context-free GloVe target or an average of nearby GloVe words.
-\end{panel}
+\textbf{Homonymy: unrelated meanings} [4]. A river \textcolor{blue}{\textbf{bank}}
+and a savings \textcolor{blue}{\textbf{bank}} refer to different things.
+\textbf{Polysemy: related meanings} [4], such as ``newspaper'' for the
+printed object or its publisher.
 
-\begin{panel}{Methodology}
-\textbf{Data.} Official SuperGLUE v2 WiC: \TrainCount{} balanced training pairs and one
-final evaluation on \ValidationCount{} balanced validation pairs. The \TestCount-row
-test split has no public labels and is not reported.
-
-\textbf{Static representations.} GloVe 6B \GloveDimensions d (Pennington et al., 2014):
-(i) the lemma vector on both sides; (ii) mean in-vocabulary context vectors after
-excluding the marked target. Candidate windows were \ContextCandidates{}.
-
-\textbf{Contextual representation.} Unfine-tuned BERT-base-uncased (Devlin et
-al., 2019). Fast tokenizer offsets select every WordPiece overlapping the
-supplied half-open character span; WordPieces are mean pooled. Candidates:
-final layer and mean of the last four layers.
-
-\textbf{Decision rule.} Cosine similarity $\geq$ a global threshold means
-same-sense. Thresholds maximize macro F1 on training data only.
-\end{panel}
-
-\begin{panel}{Selection stayed inside training}
-\centering
-\begin{tcolorbox}[colback=paper,colframe=blue,boxrule=0.7mm,arc=1mm]
-\centering \TrainCount{} train\\[2mm]
-$\downarrow$ stratified, seed \ExperimentSeed\\[2mm]
-\TuneCount{} tune threshold $\rightarrow$ \HoldoutCount{} rank candidates\\[2mm]
-$\downarrow$ freeze \SelectedContextWindow{} and mean-last-four\\[2mm]
-refit thresholds on all train\\[2mm]
-$\downarrow$ once\\[2mm]
-\ValidationCount{} validation
-\end{tcolorbox}
-\captionfont The machine-readable ledger is hashed before validation scoring.
-\end{panel}
+\textbf{Word embeddings} are vectors: lists of numbers representing words.
+They are learned from language data, with similar word uses often producing
+similar vectors.
 \end{minipage}\hfill
-\begin{minipage}[t]{0.348\textwidth}
-\RaggedRight
-\begin{panel}{Results: context changes the geometry}
-\centering
-\includegraphics[width=\linewidth]{../figures/model_comparison.pdf}
-\captionfont\RaggedRight
-BERT reaches \BertAccuracy{} accuracy and \BertMacroF{} macro F1. The target-only
-diagnostic is exactly constant; nearby static context restores limited signal.
-\end{panel}
+\begin{minipage}[t]{0.477\textwidth}\vspace{0pt}\RaggedRight
+\setlength{\parskip}{3mm}
+\sectiontitle{02}{Static vs contextual}
+\textbf{Static embeddings: one vector per word.}
+GloVe learns from word co-occurrence counts [2]. Its vector for ``bank''
+stays the same in river and money sentences. Both meanings share one vector.
 
-\begin{panel}{Same-sense scores separate more clearly}
-\centering
-\includegraphics[width=\linewidth]{../figures/similarity_distributions.pdf}
-\captionfont\RaggedRight
-GloVe's label distributions overlap heavily. BERT shifts same-sense pairs toward
-higher similarity, while substantial overlap remains (ROC-AUC \BertAuc{}).
-\end{panel}
+\textbf{Contextual embeddings: one vector per use.}
+BERT uses attention to combine information from surrounding words [3].
+It builds a context-dependent vector for each occurrence of ``bank.''
 
-\begin{panel}{Paired evidence, not decorative error bars}
-The BERT-minus-context gain is \BertGainCorrect{} additional correct pairs. In
-\BootstrapResamples{} paired
-bootstrap resamples, the reverse contrast (GloVe minus BERT) remains below zero:
-accuracy [\DifferenceLower{}, \DifferenceUpper{}] points and macro F1
-[\MacroDifferenceLower{}, \MacroDifferenceUpper{}] points.
-\end{panel}
-
-\begin{panel}{The systems fail in opposite directions}
-BERT recovers \BertSameRecall{} of same-sense pairs but \BertDifferentRecall{} of
-different-sense pairs. GloVe context recovers \ContextSameRecall{} and
-\ContextDifferentRecall{}, respectively. These class skews are
-thresholded observations, not intrinsic representation preferences.
-\end{panel}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.316\textwidth}
-\RaggedRight
-\begin{panel}{Where the signal appears}
-\centering
-\includegraphics[width=\linewidth]{../figures/layer_analysis.pdf}
-\captionfont\RaggedRight
-Individual-layer accuracy rises broadly through layer \BestAccuracyLayer{} and falls at
-layer \FinalLayerNumber{}.
-This is secondary validation analysis; it did not redefine the frozen primary
-representation.
-\end{panel}
-
-\begin{panel}{One success, one warning}
-\centering
-\includegraphics[width=\linewidth]{../figures/qualitative_cases.pdf}
-\captionfont\RaggedRight
-BERT is uniquely correct on \BertOnlyCount{} pairs; GloVe context is uniquely
-correct on \StaticOnlyCount{}. A contextual representation improves separation,
-but it does not settle fine-grained sense boundaries.
-\end{panel}
-
-\begin{panel}{Limitations}
-\begin{itemize}\setlength\itemsep{2mm}
-\item One balanced English benchmark and \ValidationCount{} validation pairs.
-\item Frozen BERT features, not fine-tuning or a modern encoder comparison.
-\item GloVe context is an unweighted lexical mean; syntax is absent.
-\item Thresholded cosine tests geometry, not every fact encoded in a vector.
-\item \BertErrorCount{} BERT errors remain; selected cases suggest hypotheses,
-not causal explanations.
-\end{itemize}
-\end{panel}
-
-\begin{panel}{Conclusion}
-\key{Contextualization matters here.} Under one locked protocol, BERT target
-vectors discriminate word meaning substantially better than local static context.
-The middle-to-late layer pattern and confident errors also show that ``more
-contextual'' is not the same as ``ambiguity solved.''
-\end{panel}
+\textbf{Both learn from context.} BERT also updates the target representation
+for each new sentence.
 \end{minipage}
+
+\divider
+\noindent
+\begin{minipage}[t]{0.477\textwidth}\vspace{0pt}\RaggedRight
+\setlength{\parskip}{3mm}
+\sectiontitle{03}{Related approaches}
+\textbf{Word sense disambiguation} selects a dictionary meaning.
+Knowledge-based methods use definitions and word relations.
+Supervised methods learn from sense-labelled examples [5].
+
+\textbf{Word-in-Context (WiC)} instead asks whether two uses share a meaning [1].
+We test pretrained vectors on this task.
+
+\sectiontitle{04}{Hypothesis}
+\textbf{BERT will distinguish word meanings more accurately than static GloVe.}
+Sentence context should help separate meanings that share a fixed word vector.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.477\textwidth}\vspace{0pt}\RaggedRight
+\setlength{\parskip}{3mm}
+\sectiontitle{05}{Methodology}
+\textbf{1. Represent each use.} Compare GloVe target only,
+GloVe nearby-word average and BERT target in context.
+
+\textbf{2. Compare vectors.} Cosine similarity measures how closely their
+directions align. Above a cutoff, predict ``same meaning.''
+
+\textbf{3. Evaluate.} Select settings and cutoffs on \TrainCount{} training
+pairs. Score \ValidationCount{} separate English validation pairs,
+half same meaning and half different.
+
+{\captionfont\textbf{Settings:} GloVe 6B, \GloveDimensions{} dimensions,
+up to two words on each side. BERT-base-uncased, mean of target subwords
+in the last four layers. No BERT fine-tuning.}
+\end{minipage}
+
+\divider
+\sectiontitle{06}{Results}
+{\fontsize{36}{43}\selectfont\bfseries BERT answered \BertGainCorrect{} more pairs correctly.}\par
+\par\vspace{0mm}
+\includegraphics[width=\textwidth]{../figures/poster_accuracy.pdf}
+\par\vspace{-1mm}
+{\captionfont Dots show accuracy and short lines show 95\% bootstrap intervals.
+The dashed line marks the 50\% chance level.}
+\par\vspace{1mm}
+\textbf{BERT's advantage: \AccuracyGain{} percentage points}
+(95\% paired interval: \GainLower{} to \GainUpper{}).
+Uncertainty estimated from \BootstrapResamples{} resamples of the validation pairs.
+
+\divider
+\sectiontitle{07}{Conclusion}
+\textbf{Contextual word representations help distinguish meanings on WiC.}
+BERT's \BertAccuracy{} accuracy supports our hypothesis.
+Nearby-word GloVe reaches \ContextAccuracy{}. BERT still makes \BertErrorCount{}
+errors, so context helps without resolving every ambiguous use.
 
 \vfill
-{\tinyfooter
-\textbf{Sources:} WiC (Pilehvar \& Camacho-Collados, 2019); GloVe (Pennington et
-al., 2014); BERT (Devlin et al., 2019); WSD review (Loureiro et al., 2021).
-Full details and declaration: appendix.
-Repo: \textbf{[URL]}.}
+{\color{rulegray}\rule{\textwidth}{0.5pt}}\par
+{\fontsize{19}{24}\selectfont\RaggedRight
+\textbf{References}\quad
+[1] Pilehvar \& Camacho-Collados (2019). \textit{WiC: the Word-in-Context Dataset.} NAACL.\par
+\vspace{-3mm}
+[2] Pennington, Socher \& Manning (2014). \textit{GloVe: Global Vectors for Word Representation.} EMNLP.\par
+\vspace{-3mm}
+[3] Devlin et al. (2019). \textit{BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding.} NAACL.\par
+\vspace{-3mm}
+[4] Haber \& Poesio (2021). \textit{Patterns of Polysemy and Homonymy in Contextualised Language Models.} Findings of EMNLP.\par
+\vspace{-3mm}
+[5] Loureiro et al. (2021). \textit{Analysis and Evaluation of Language Models for Word Sense Disambiguation.} Computational Linguistics.\par
+\vspace{-2mm}
+Methods, additional analyses and reproducibility details: accompanying appendix.}
 \end{document}

@@ -82,6 +82,23 @@ The verifier checks byte identity with the built sources, exact submission conte
 page counts, A1/A4 media boxes, required extractable headings, and embedded fonts
 (including Type 3 glyph programs inside vector figures).
 
+The 13 September poster revision starts with definitions of lexical ambiguity,
+homonymy, polysemy and embeddings. It explains static versus contextual representations,
+related approaches, the hypothesis and methodology before presenting the results.
+The open two-column layout uses one wide accuracy chart from the frozen results.
+The paired-outcome chart remains available as an additional figure.
+The original distribution, layer and example figures remain in `figures/` for research
+reference. The official Trier logo is stored as vector artwork in `poster/assets/`.
+To rebuild only the poster after a layout edit, run:
+
+```powershell
+uv run python scripts/generate_figures.py
+uv run python scripts/build_submission.py
+make -C poster poster preview TECTONIC="$tectonic"
+uv run python scripts/build_submission.py --stage
+uv run python scripts/verify_submission.py
+```
+
 After obtaining the real signed declaration, pass it without editing or forging metadata:
 
 ```powershell
@@ -105,9 +122,10 @@ uv run python scripts/verify_submission.py --signed
 
 ## Before personal submission
 
-The repository intentionally does not invent a student name, ID, institutional
-declaration, signature, or repository URL. Replace the clearly marked author/repository
-placeholders in `poster/poster.tex` and `appendix/appendix.tex`, replace
+The poster contains the author details supplied on 13 September 2026:
+Choudhary Prashant Santosh (1910474) and Rahul Khunt (1911272), maintained in
+`poster/authors.tex`. The existing appendix was not modified during the poster redesign.
+Replace its remaining author/repository placeholders in `appendix/appendix.tex`, replace
 `appendix/integrity_declaration_PLACEHOLDER.tex` with the institution-approved wording,
 sign it yourself, rebuild with `--declaration`, and rerun the verifier in `--signed` mode.
 

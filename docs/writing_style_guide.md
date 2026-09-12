@@ -10,7 +10,10 @@ The poster must work at three distances:
 2. **At one step:** the research question, three conditions, largest comparison figure, and takeaway.
 3. **Up close:** thresholds, confidence intervals, failure example, limitations, and compact citations.
 
-The scan path is top → Hypothesis → Methodology → Results → Takeaway. Three columns and restrained dividers should make this order obvious without decorative arrows everywhere.
+The revised scan path is title → concepts and definitions → static/contextual
+mechanisms → related approaches → hypothesis → methodology → results → conclusion.
+Use two open columns and restrained dividers. Define the topic before presenting
+the hypothesis, as requested by the user on 13 September 2026.
 
 ## Evidence order
 
@@ -84,7 +87,8 @@ These phrases are not banned because a machine might use them. They are weak bec
 ### Results
 
 - Let the largest chart answer the research question.
-- Follow it with the distribution plot that explains separation and the layer/error item that adds nuance.
+- Keep one large, directly labelled accuracy plot on the poster. Detailed distributions,
+  layers and error comparisons stay in the supplementary research artifacts.
 - Put the strongest limitation next to the claim it bounds.
 - End with one evidence-based takeaway, not a generic future-work paragraph.
 

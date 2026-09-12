@@ -69,6 +69,10 @@ def generate_inputs(root: Path) -> None:
             _macro("TargetAccuracy", f"{_percent(target['accuracy'])}\\%"),
             _macro("ContextAccuracy", f"{_percent(context['accuracy'])}\\%"),
             _macro("BertAccuracy", f"{_percent(bert['accuracy'])}\\%"),
+            _macro("BertCorrect", str(int(bert["tn"] + bert["tp"]))),
+            _macro("ContextCorrect", str(int(context["tn"] + context["tp"]))),
+            _macro("GainLower", _percent(-float(difference["upper"]))),
+            _macro("GainUpper", _percent(-float(difference["lower"]))),
             _macro(
                 "AccuracyGain",
                 f"{_percent(bert['accuracy'] - context['accuracy'])}",

@@ -5,7 +5,6 @@ from __future__ import annotations
 import argparse
 import csv
 import hashlib
-import json
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -86,7 +85,7 @@ def _verify_fonts(reader: PdfReader, label: str) -> int:
 
 
 def _verify_text(reader: PdfReader, required: tuple[str, ...], label: str) -> str:
-    text = "\n".join(page.extract_text() or "" for page in reader.pages)
+    text = " ".join(" ".join(page.extract_text() or "" for page in reader.pages).split())
     missing = [heading for heading in required if heading not in text]
     if missing:
         raise RuntimeError(f"{label} is missing extractable text: {missing}")
@@ -103,6 +102,10 @@ def _verify_poster_sources(root: Path) -> int:
     )
     if any(marker not in source for marker in required):
         raise RuntimeError("poster body/caption text no longer meets the 24 pt target")
+    if "tcolorbox" in source or "One success, one warning" in source or "Limitations" in source:
+        raise RuntimeError("poster contains a removed panel or container")
+    if r"\input{authors.tex}" not in source or "assets/university-trier.pdf" not in source:
+        raise RuntimeError("poster is missing its author block or official university logo")
     pngs = sorted((root / "figures").glob("*.png"))
     if not pngs:
         raise RuntimeError("no high-resolution figure previews found")
@@ -127,20 +130,30 @@ def _verify_result_trace(root: Path, poster_text: str) -> int:
         metrics = {row["system"]: row for row in csv.DictReader(handle)}
     with (results / "paired_differences.csv").open(encoding="utf-8", newline="") as handle:
         paired = list(csv.DictReader(handle))
-    with (results / "layer_metrics.csv").open(encoding="utf-8", newline="") as handle:
-        layers = list(csv.DictReader(handle))
-    summary = json.loads((results / "analysis_summary.json").read_text(encoding="utf-8"))
+    with (results / "predictions.csv").open(encoding="utf-8", newline="") as handle:
+        predictions = list(csv.DictReader(handle))
+    outcomes = {(True, True): 0, (True, False): 0, (False, True): 0, (False, False): 0}
+    for row in predictions:
+        columns = (row["bert_mean_last_four_correct"], row["glove_context_2_correct"])
+        if any(value not in {"True", "False"} for value in columns):
+            raise RuntimeError("invalid correctness value in prediction ledger")
+        outcomes[tuple(value == "True" for value in columns)] += 1
 
     context = metrics["glove_context_2"]
     bert = metrics["bert_mean_last_four"]
+    if len(predictions) != int(float(bert["count"])):
+        raise RuntimeError("prediction count differs from the reported evaluation count")
+    for record, correct in (
+        (bert, outcomes[(True, True)] + outcomes[(True, False)]),
+        (context, outcomes[(True, True)] + outcomes[(False, True)]),
+    ):
+        if correct != int(float(record["tn"]) + float(record["tp"])):
+            raise RuntimeError("correct-answer count differs from the saved predictions")
     accuracy_difference = next(
         row
         for row in paired
         if row["contrast"] == "glove_context_2 - bert_mean_last_four"
         and row["metric"] == "accuracy"
-    )
-    best_layer = max(layers, key=lambda row: float(row["accuracy"]))["system"].removeprefix(
-        "layer_"
     )
     bert_gain_correct = int(
         float(bert["tn"])
@@ -152,13 +165,13 @@ def _verify_result_trace(root: Path, poster_text: str) -> int:
         f"{float(metrics['glove_target']['accuracy']) * 100:.1f}%",
         f"{float(context['accuracy']) * 100:.1f}%",
         f"{float(bert['accuracy']) * 100:.1f}%",
-        f"{float(bert['roc_auc']):.3f}",
-        f"{float(accuracy_difference['lower']) * 100:.1f}",
-        f"{float(accuracy_difference['upper']) * 100:.1f}",
+        f"{-float(accuracy_difference['upper']) * 100:.1f}",
+        f"{-float(accuracy_difference['lower']) * 100:.1f}",
+        f"{(float(bert['accuracy']) - float(context['accuracy'])) * 100:.1f}",
         str(bert_gain_correct),
-        best_layer,
-        str(summary["partition_counts"]["bert_only_correct"]),
-        str(summary["partition_counts"]["static_only_correct"]),
+        str(int(float(bert["tn"]) + float(bert["tp"]))),
+        str(int(float(context["tn"]) + float(context["tp"]))),
+        str(len(predictions)),
         str(int(float(bert["fp"]) + float(bert["fn"]))),
     }
     missing = sorted(fragment for fragment in fragments if fragment not in poster_text)
@@ -194,8 +207,15 @@ def verify(root: Path, *, signed: bool = False) -> None:
             "Hypothesis",
             "Methodology",
             "Results",
-            "Limitations",
             "Conclusion",
+            "Lexical ambiguity",
+            "Static embeddings",
+            "Contextual embeddings",
+            "Related approaches",
+            "Choudhary Prashant Santosh",
+            "1910474",
+            "Rahul Khunt",
+            "1911272",
         ),
         "poster",
     )

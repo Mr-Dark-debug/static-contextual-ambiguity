@@ -75,7 +75,9 @@ def _style_axes(axis: plt.Axes) -> None:
     axis.title.set_color(INK)
 
 
-def _save_all(figure: Figure, output_dir: Path, stem: str) -> None:
+def _save_all(
+    figure: Figure, output_dir: Path, stem: str, *, background: str = BACKGROUND
+) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     for suffix in ("pdf", "svg"):
         metadata = (
@@ -91,7 +93,7 @@ def _save_all(figure: Figure, output_dir: Path, stem: str) -> None:
         figure.savefig(
             path,
             bbox_inches="tight",
-            facecolor=BACKGROUND,
+            facecolor=background,
             metadata=metadata,
         )
         if suffix == "svg":
@@ -103,7 +105,7 @@ def _save_all(figure: Figure, output_dir: Path, stem: str) -> None:
         output_dir / f"{stem}.png",
         dpi=300,
         bbox_inches="tight",
-        facecolor=BACKGROUND,
+        facecolor=background,
     )
     plt.close(figure)
 
