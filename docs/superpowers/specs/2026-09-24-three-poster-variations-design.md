@@ -38,7 +38,7 @@ The three posters share branding but not page structure. This keeps them compara
 
 ## Variation 1: Standard academic structure
 
-Filename: `submission/poster_variation_1_standard.pdf`
+Filename: `output/pdf/poster_variation_1_standard.pdf`
 
 This version follows the familiar academic reading order. It uses three balanced columns below the centered header:
 
@@ -50,7 +50,7 @@ The results table and accuracy chart provide complementary views. The prose rema
 
 ## Variation 2: Question-led structure
 
-Filename: `submission/poster_variation_2_questions.pdf`
+Filename: `output/pdf/poster_variation_2_questions.pdf`
 
 This version uses a two-column question-and-answer narrative:
 
@@ -67,7 +67,7 @@ The result is designed for non-specialist scanning. A large central result band 
 
 ## Variation 3: Concise numbered structure
 
-Filename: `submission/poster_variation_3_concise.pdf`
+Filename: `output/pdf/poster_variation_3_concise.pdf`
 
 This version emphasizes distance readability. It uses eight numbered sections with short bullets and a strong vertical rhythm. The poster contains the fewest words of the three, the largest section labels, and prominent numerical callouts for the three accuracy values and the 11.6-point gain.
 
@@ -90,7 +90,7 @@ References will be compact and human-readable. No unverified citation or placeho
 
 The editable TeX sources will live under `poster/variations/`. Shared identity, generated result macros, figures, and logo assets will be reused rather than copied when practical. Each variation will compile independently to its own PDF.
 
-Rendered inspection images and other temporary QA files will stay outside the final submission directory. The three requested PDFs will be copied into `submission/` alongside the existing canonical `poster.pdf` and `appendix.pdf`.
+Rendered inspection images and other temporary QA files will stay outside the final submission directory. The three requested comparison PDFs will be copied into `output/pdf/`. The canonical `submission/` directory will remain unchanged with exactly `poster.pdf` and `appendix.pdf`.
 
 ## Verification
 
@@ -109,6 +109,6 @@ Each PDF must pass these checks:
 ## Deliverables
 
 - Three editable LaTeX source files and any small shared helper file required by them.
-- Three A1 poster PDFs in `submission/` with the stable filenames specified above.
+- Three A1 poster PDFs in `output/pdf/` with the stable filenames specified above.
 - Updated build and verification automation covering all three variants.
 - A committed and pushed Git revision containing the sources and generated PDFs.
