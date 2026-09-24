@@ -327,7 +327,7 @@ git add docs/superpowers/plans/2026-09-24-three-poster-variations.md poster/vari
 git commit -m "verify and publish poster variations"
 ```
 
-- [ ] **Step 5: Push and verify the remote revision**
+- [x] **Step 5: Push and verify the remote revision**
 
 ```powershell
 git push origin main
