@@ -1,0 +1,60 @@
+\documentclass{article}
+\input{shared_style.tex}
+
+\begin{document}
+\bodyfont
+\PosterHeader{Can Word Embeddings Handle Words With Multiple Meanings?}{GloVe vs BERT on WiC}
+
+\noindent
+\begin{minipage}[t][390mm][s]{0.485\textwidth}\vspace{0pt}\RaggedRight
+\questiontitle{INTRODUCTION}{What is the problem?}
+The same word can mean different things. \textbf{Bank} can describe a river edge or a financial institution. This is \textbf{lexical ambiguity}. A representation that stays identical everywhere cannot separate those uses.
+
+\vfill
+\questiontitle{BACKGROUND}{What do the terms mean?}
+\textbf{Homonymy} describes unrelated meanings. \textbf{Polysemy} describes related meanings. An \textbf{embedding} is a word represented as a vector. \textbf{Cosine similarity} measures how closely two vectors point in the same direction.
+
+GloVe is \textbf{static}: one vector per word [2]. BERT is \textbf{contextual}: the target vector changes with the sentence [3].
+
+\vfill
+\questiontitle{RELATED WORK}{What have others done?}
+Word sense disambiguation first relied on dictionaries such as WordNet. Multi-sense embeddings then assigned several vectors to one word [4]. ELMo and BERT build vectors from context. WiC asks whether a word keeps the same meaning in two sentences without requiring a named dictionary sense [1].
+
+\vfill
+\questiontitle{HYPOTHESIS}{What did we expect?}
+The GloVe target diagnostic should remain at chance. Nearby GloVe words should help slightly. Frozen BERT should be clearly better because it encodes each target in its sentence.
+\end{minipage}\hfill
+\begin{minipage}[t][390mm][s]{0.485\textwidth}\vspace{0pt}\RaggedRight
+\questiontitle{METHODOLOGY}{What did we do?}
+We used \TrainCount{} WiC training pairs and \ValidationCount{} separate validation pairs. The \TestCount{} public test pairs have no public labels, so we report no test score.
+
+For each pair we compared cosine similarity using three representations: GloVe target only, GloVe nearby-word average at \SelectedContextWindow{}, and frozen \texttt{bert-base-uncased} target vectors averaged over the last four layers. Settings and thresholds were selected on training data only. Validation was used once. Intervals use \BootstrapResamples{} paired bootstrap resamples.
+
+\vfill
+\questiontitle{ERROR ANALYSIS}{Where do they fail?}
+BERT alone solves \BertOnlyCount{} pairs and GloVe context alone solves \StaticOnlyCount{}. Both are wrong on 106 pairs. BERT finds \BertSameRecall{} of same-sense pairs but \BertDifferentRecall{} of different-sense pairs. GloVe context finds \ContextSameRecall{} and \ContextDifferentRecall{}. BERT makes \BertErrorCount{} errors, including ``engrave a letter'' versus ``engrave a pen.''
+
+\vfill
+\questiontitle{CONCLUSION}{So what?}
+Context changes the answer. Frozen BERT separates meanings better than local GloVe context, but \BertAccuracy{} is not a solved task. This result concerns one English benchmark, one frozen BERT model and a simple static baseline.
+\end{minipage}
+
+\divider
+\questiontitle{RESULTS}{What did we find?}
+\noindent
+\ResultCallout{\TargetAccuracy}{GloVe target\\chance diagnostic}\hfill
+\ResultCallout{\ContextAccuracy}{GloVe context\\nearby words}\hfill
+\ResultCallout{\BertAccuracy}{BERT target\\sentence-aware}
+
+\vspace{2mm}
+\begin{minipage}[c]{0.62\textwidth}
+\includegraphics[width=\linewidth]{../../figures/poster_accuracy.pdf}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.34\textwidth}\RaggedRight
+{\fontsize{34}{40}\selectfont\bfseries\textcolor{accent}{+\AccuracyGain{} points}\par}
+{\smallfont BERT over GloVe context. Paired 95\% interval: \GainLower{} to \GainUpper{} points. Layer \BestAccuracyLayer{} reaches 66.6\%, compared with 63.6\% at layer \FinalLayerNumber{}.}
+\end{minipage}
+
+\vfill
+\ReferencesBlock
+\end{document}

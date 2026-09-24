@@ -1,0 +1,82 @@
+\usepackage[paperwidth=594mm,paperheight=841mm,top=16mm,bottom=16mm,left=19mm,right=19mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{ragged2e}
+\usepackage{microtype}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+
+\renewcommand{\familydefault}{\sfdefault}
+\definecolor{ink}{HTML}{182E42}
+\definecolor{blue}{HTML}{007AC3}
+\definecolor{accent}{HTML}{C55A11}
+\definecolor{softblue}{HTML}{EAF5FA}
+\definecolor{softorange}{HTML}{FBEFE7}
+\definecolor{rulegray}{HTML}{CBD5DC}
+\color{ink}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{2.5mm}
+\setlength{\tabcolsep}{3mm}
+\renewcommand{\arraystretch}{1.22}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\setlist[itemize]{leftmargin=8mm,itemsep=1.6mm,topsep=1mm,parsep=0mm}
+
+\input{../generated_results.tex}
+\input{../authors.tex}
+
+\newcommand{\bodyfont}{\fontsize{25}{31}\selectfont}
+\newcommand{\smallfont}{\fontsize{22}{27}\selectfont}
+\newcommand{\reffont}{\fontsize{17}{21}\selectfont}
+\newcommand{\sectiontitle}[1]{%
+  {\fontsize{31}{37}\selectfont\bfseries\textcolor{blue}{#1}\par}\vspace{1mm}}
+\newcommand{\numbertitle}[2]{%
+  {\fontsize{31}{37}\selectfont\bfseries\textcolor{accent}{#1}\hspace{2.5mm}\textcolor{blue}{#2}\par}\vspace{1mm}}
+\newcommand{\questiontitle}[2]{%
+  {\fontsize{18}{22}\selectfont\bfseries\textcolor{accent}{#1}\par}\vspace{-0.5mm}%
+  {\fontsize{31}{37}\selectfont\bfseries\textcolor{blue}{#2}\par}\vspace{1mm}}
+\newcommand{\divider}{\par\vspace{1mm}{\color{rulegray}\rule{\linewidth}{0.6pt}}\par\vspace{2mm}}
+\newcommand{\ResultCallout}[2]{%
+  \begin{minipage}[t]{0.31\linewidth}\centering
+  {\fontsize{42}{48}\selectfont\bfseries\textcolor{blue}{#1}\par}
+  {\fontsize{21}{26}\selectfont #2}
+  \end{minipage}}
+\newcommand{\PosterHeader}[2]{%
+  \begin{center}
+  \setlength{\parskip}{0.7mm}
+  \includegraphics[width=65mm]{../assets/university-trier.pdf}\par
+  \vspace{2mm}
+  {\fontsize{45}{51}\selectfont\bfseries #1\par}
+  {\fontsize{27}{33}\selectfont\textcolor{blue}{#2}\par}
+  \vspace{2mm}
+  \begin{minipage}[t]{0.40\textwidth}\centering
+  {\fontsize{26}{31}\selectfont\bfseries\FirstAuthor{}}\par
+  {\fontsize{22}{27}\selectfont Enrollment no.\ \FirstEnrollment{}}
+  \end{minipage}\hspace{5mm}%
+  \begin{minipage}[t]{0.40\textwidth}\centering
+  {\fontsize{26}{31}\selectfont\bfseries\SecondAuthor{}}\par
+  {\fontsize{22}{27}\selectfont Enrollment no.\ \SecondEnrollment{}}
+  \end{minipage}\par
+  \vspace{1mm}
+  {\fontsize{22}{27}\selectfont University of Trier\quad MSc Natural Language Processing\quad Trends in Natural Language Processing}
+  \end{center}
+  \vspace{-4mm}\divider}
+\newcommand{\ReferencesBlock}{%
+  {\color{rulegray}\rule{\textwidth}{0.6pt}}\par\vspace{1mm}
+  {\reffont\textbf{References}\par\vspace{0.5mm}
+  \begin{minipage}[t]{0.32\textwidth}\RaggedRight
+  [1] Pilehvar \& Camacho-Collados (2019). \textit{WiC}. NAACL.\par
+  [2] Pennington, Socher \& Manning (2014). \textit{GloVe}. EMNLP.
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.32\textwidth}\RaggedRight
+  [3] Devlin et al. (2019). \textit{BERT}. NAACL.\par
+  [4] Camacho-Collados \& Pilehvar (2018). \textit{From Word to Sense Embeddings}. JAIR.
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.32\textwidth}\RaggedRight
+  [5] Loureiro et al. (2021). \textit{Language Models for Word Sense Disambiguation}. Computational Linguistics.\par
+  [6] Haber \& Poesio (2021). \textit{Polysemy and Homonymy in Contextualised Language Models}. Findings of EMNLP.
+  \end{minipage}}}

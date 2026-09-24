@@ -1,0 +1,73 @@
+\documentclass{article}
+\input{shared_style.tex}
+
+\begin{document}
+\bodyfont
+\PosterHeader{Static vs Contextual Embeddings for Lexical Ambiguity}{A Word-in-Context Evaluation}
+
+\noindent
+\begin{minipage}[t][560mm][s]{0.315\textwidth}\vspace{0pt}\RaggedRight
+\sectiontitle{Introduction}
+Many words have more than one meaning. A \textbf{bank} can be the side of a river or a place that keeps money. This is \textbf{lexical ambiguity}. Computers represent words as vectors, so we ask whether those vectors distinguish meanings in context.
+
+\vfill
+\sectiontitle{Background}
+\textbf{Homonymy} means unrelated meanings, as in river bank and money bank. \textbf{Polysemy} means related meanings, as in paper as material and paper as a newspaper.
+
+A \textbf{word embedding} is a vector learned from language. \textbf{Cosine similarity} measures how closely two vector directions align.
+
+\textbf{Static GloVe} gives each word one vector in every sentence [2]. \textbf{Contextual BERT} creates a new vector for each occurrence using its sentence [3].
+
+\vfill
+\sectiontitle{Related work}
+Earlier word sense disambiguation used dictionaries such as WordNet. Multi-sense embeddings assign several vectors to a word [4]. ELMo and BERT instead build representations from context. WiC tests whether the same word expresses the same meaning in two sentences [1]. Most competitive systems are fine-tuned. We study frozen representations.
+\end{minipage}\hfill
+\begin{minipage}[t][560mm][s]{0.315\textwidth}\vspace{0pt}\RaggedRight
+\sectiontitle{Hypotheses}
+\textbf{H1.} A static target vector cannot distinguish senses because both uses receive the same vector.
+
+\textbf{H2.} Averaging nearby GloVe words should add a small contextual signal.
+
+\textbf{H3.} Frozen BERT should outperform that GloVe context baseline because its target vector changes with the sentence.
+
+\vfill
+\sectiontitle{Methodology}
+\textbf{Data.} SuperGLUE WiC contains \TrainCount{} training pairs, \ValidationCount{} validation pairs and \TestCount{} public test pairs without public labels.
+
+\textbf{Systems.} We compare the GloVe target word, the average of nearby GloVe vectors within \SelectedContextWindow{}, and \texttt{bert-base-uncased} target vectors averaged over the last four layers.
+
+\textbf{Decision.} Each sentence pair receives a cosine similarity. A training-selected threshold turns it into ``same meaning'' or ``different meaning.'' Window size, layers and thresholds use training data only. Validation is evaluated once.
+
+\textbf{Uncertainty.} Paired confidence intervals use \BootstrapResamples{} bootstrap resamples.
+
+\vfill
+\includegraphics[width=\linewidth]{../../figures/poster_outcomes.pdf}
+{\smallfont Paired outcomes show that the systems make different mistakes.}
+\end{minipage}\hfill
+\begin{minipage}[t][560mm][s]{0.315\textwidth}\vspace{0pt}\RaggedRight
+\sectiontitle{Results}
+\begin{tabularx}{\linewidth}{>{\RaggedRight\arraybackslash}X r r r}
+\textbf{System} & \textbf{Acc.} & \textbf{F1} & \textbf{AUC}\\
+GloVe target & \TargetAccuracy & 33.3\% & 0.500\\
+GloVe context & \ContextAccuracy & \ContextMacroF & 0.580\\
+BERT & \textbf{\BertAccuracy} & \textbf{\BertMacroF} & \textbf{\BertAuc}\\
+\end{tabularx}
+
+\includegraphics[width=\linewidth]{../../figures/poster_accuracy.pdf}
+
+BERT is \textbf{\AccuracyGain{} points} more accurate than GloVe context. The paired 95\% interval is \GainLower{} to \GainUpper{} points. Layer \BestAccuracyLayer{} reaches 66.6\%, while layer \FinalLayerNumber{} reaches 63.6\%.
+
+\vfill
+\sectiontitle{Discussion}
+BERT alone gets \BertOnlyCount{} pairs right. GloVe context alone gets \StaticOnlyCount{} right. BERT recovers \BertSameRecall{} of same-sense pairs but only \BertDifferentRecall{} of different-sense pairs. GloVe context shows the reverse tendency: \ContextSameRecall{} and \ContextDifferentRecall{}.
+
+Both systems fail on difficult cases such as ``engrave a letter'' versus ``engrave a pen.''
+
+\vfill
+\sectiontitle{Conclusion}
+Contextual embeddings capture sense differences better than static representations on this WiC protocol, even without fine-tuning. Yet BERT still makes \BertErrorCount{} errors. The finding is limited to one frozen model, a simple GloVe baseline and \ValidationCount{} validation pairs.
+\end{minipage}
+
+\vfill
+\ReferencesBlock
+\end{document}

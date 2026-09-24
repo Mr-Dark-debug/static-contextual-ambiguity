@@ -1,0 +1,81 @@
+\documentclass{article}
+\input{shared_style.tex}
+
+\begin{document}
+\bodyfont
+\PosterHeader{Static vs Contextual Embeddings for Lexical Ambiguity}{WiC evaluation in eight steps}
+
+\noindent
+\begin{minipage}[t][530mm][s]{0.485\textwidth}\vspace{0pt}\RaggedRight
+\numbertitle{1}{Introduction}
+\begin{itemize}
+\item \textbf{Lexical ambiguity} means that words such as \textbf{bank} have more than one meaning.
+\item Static GloVe uses one vector for every occurrence [2].
+\item Contextual BERT changes the vector with the sentence [3].
+\item \textbf{Aim:} test which representation captures sense differences better.
+\end{itemize}
+
+\vfill
+\numbertitle{2}{Definitions}
+\begin{itemize}
+\item \textbf{Homonymy:} unrelated meanings. \textbf{Polysemy:} related meanings [6].
+\item \textbf{Embedding:} a word represented as a numerical vector.
+\item \textbf{Cosine similarity:} how closely two vector directions align.
+\item \textbf{WiC task:} does the same word have the same meaning in two sentences? [1]
+\end{itemize}
+
+\vfill
+\numbertitle{3}{Related work}
+\begin{itemize}
+\item WordNet and dictionary-based word sense disambiguation.
+\item Multi-sense embeddings with several vectors per word [4].
+\item Contextual models such as ELMo and BERT.
+\item WiC as a context-sensitive benchmark, introduced in 2019 [1].
+\end{itemize}
+
+\vfill
+\numbertitle{4}{Hypotheses}
+\begin{itemize}
+\item H1: the static target diagnostic remains at chance.
+\item H2: nearby GloVe context gives a small improvement.
+\item H3: frozen BERT beats GloVe context without fine-tuning.
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t][530mm][s]{0.485\textwidth}\vspace{0pt}\RaggedRight
+\numbertitle{5}{Methodology}
+\begin{itemize}
+\item WiC: \TrainCount{} train, \ValidationCount{} validation and \TestCount{} public test pairs without public labels.
+\item Systems: GloVe target, GloVe context \SelectedContextWindow{}, BERT last-four-layer mean.
+\item Cosine threshold and settings selected on training data only.
+\item Validation used once. \BootstrapResamples{} paired bootstrap resamples.
+\end{itemize}
+
+\vfill
+\numbertitle{6}{Results}
+\noindent
+\ResultCallout{\TargetAccuracy}{GloVe target}\hfill
+\ResultCallout{\ContextAccuracy}{GloVe context}\hfill
+\ResultCallout{\BertAccuracy}{BERT}
+
+\vspace{2mm}
+\includegraphics[width=\linewidth]{../../figures/poster_accuracy.pdf}
+
+{\smallfont BERT gains \AccuracyGain{} points over GloVe context. Paired 95\% interval: \GainLower{} to \GainUpper{}. BERT macro F1 is \BertMacroF{} and ROC-AUC is \BertAuc{}. Layer \BestAccuracyLayer{} reaches 66.6\%, while layer \FinalLayerNumber{} reaches 63.6\%.}
+
+\vfill
+\numbertitle{7}{Error analysis}
+\begin{itemize}
+\item BERT right and GloVe wrong: \BertOnlyCount{}. GloVe right and BERT wrong: \StaticOnlyCount{}.
+\item BERT same-sense recall: \BertSameRecall{}. Different-sense recall: \BertDifferentRecall{}.
+\item GloVe context same-sense recall: \ContextSameRecall{}. Different-sense recall: \ContextDifferentRecall{}.
+\item BERT errors: \BertErrorCount{} of \ValidationCount{}.
+\end{itemize}
+
+\vfill
+\numbertitle{8}{Conclusion}
+BERT captures sense differences better than GloVe on this frozen WiC protocol. It still reaches only \BertAccuracy{}. The evidence comes from one small English validation set, one frozen BERT model and a simple GloVe baseline.
+\end{minipage}
+
+\vfill
+\ReferencesBlock
+\end{document}

@@ -107,6 +107,21 @@ uv run python scripts/build_submission.py --compile --stage --tectonic $tectonic
 uv run python scripts/verify_submission.py --signed
 ```
 
+## Compare three poster structures
+
+Three additional A1 candidates present the same verified experiment as a standard academic
+poster, a question-led explanation, and a concise numbered poster. They are comparison
+artifacts under `output/pdf/`; the canonical `submission/` directory still contains exactly
+`poster.pdf` and `appendix.pdf`.
+
+```powershell
+uv run python scripts/build_poster_variations.py --tectonic "C:\path\to\tectonic.exe"
+uv run python scripts/verify_poster_variations.py
+```
+
+The variation verifier checks one-page A1 dimensions, embedded fonts, author identity,
+conceptual sections, citations, and result values traced to `results/final/`.
+
 ## Project map
 
 - `configs/default.yaml` — frozen full protocol; `configs/quick_test.yaml` — bounded

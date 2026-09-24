@@ -31,7 +31,7 @@
 - Consumes: PDFs in `output/pdf/`, values in `results/final/metrics.csv`, and author identity in `poster/authors.tex`.
 - Produces: `verify_variations(root: Path) -> None`, which raises `RuntimeError` on any failed gate.
 
-- [ ] **Step 1: Write failing tests for required files and result tracing**
+- [x] **Step 1: Write failing tests for required files and result tracing**
 
 ```python
 from pathlib import Path
@@ -57,13 +57,13 @@ def test_missing_output_directory_fails(tmp_path: Path) -> None:
         VERIFY["verify_variations"](tmp_path)
 ```
 
-- [ ] **Step 2: Run the tests and confirm the missing verifier fails**
+- [x] **Step 2: Run the tests and confirm the missing verifier fails**
 
 Run: `uv run pytest tests/test_poster_variations.py -q`
 
 Expected: FAIL because `scripts/verify_poster_variations.py` does not exist.
 
-- [ ] **Step 3: Implement the verifier boundary and exact output set**
+- [x] **Step 3: Implement the verifier boundary and exact output set**
 
 ```python
 from pathlib import Path
@@ -91,17 +91,17 @@ def verify_variations(root: Path) -> None:
             raise RuntimeError(f"{name} must contain exactly one page")
 ```
 
-- [ ] **Step 4: Extend tests for A1 dimensions, required sections, authors, and result values**
+- [x] **Step 4: Extend tests for A1 dimensions, required sections, authors, and result values**
 
 Add small test PDFs or monkeypatched readers that prove the verifier rejects a wrong page count, a wrong media box, a missing author, a missing conceptual definition, and a changed reported accuracy. Keep the expected text list explicit per variation rather than using one generic heading set.
 
-- [ ] **Step 5: Run focused tests**
+- [x] **Step 5: Run focused tests**
 
 Run: `uv run pytest tests/test_poster_variations.py -q`
 
 Expected: PASS.
 
-- [ ] **Step 6: Commit the verification boundary**
+- [x] **Step 6: Commit the verification boundary**
 
 ```powershell
 git add scripts/verify_poster_variations.py tests/test_poster_variations.py
@@ -119,7 +119,7 @@ git commit -m "test poster variation release gates"
 - Consumes: `poster/authors.tex`, `poster/generated_results.tex`, `poster/assets/university-trier.pdf`, and `figures/poster_accuracy.pdf`.
 - Produces: a standalone TeX source compiling to `poster_variation_1_standard.pdf`.
 
-- [ ] **Step 1: Define shared A1 geometry, palette, title block, and result callouts**
+- [x] **Step 1: Define shared A1 geometry, palette, title block, and result callouts**
 
 The shared style must define `\bodyfont`, `\sectiontitle`, `\divider`, `\PosterHeader`, and `\ResultCallout`. It must resolve shared inputs relative to the repository root and use the current navy, Trier blue, orange, and rule gray colors.
 
@@ -133,11 +133,11 @@ The shared style must define `\bodyfont`, `\sectiontitle`, `\divider`, `\PosterH
   \end{minipage}}
 ```
 
-- [ ] **Step 2: Implement the three-column standard narrative**
+- [x] **Step 2: Implement the three-column standard narrative**
 
 Use the supplied Introduction, Background, Related Work, Hypotheses, Methodology, Results, Discussion, and Conclusion content. Replace raw numeric claims with generated macros such as `\TargetAccuracy`, `\ContextAccuracy`, `\BertAccuracy`, `\BertMacroF`, `\BertAuc`, `\AccuracyGain`, `\GainLower`, `\GainUpper`, `\BertOnlyCount`, `\StaticOnlyCount`, and `\BertErrorCount`.
 
-- [ ] **Step 3: Compile the source manually**
+- [x] **Step 3: Compile the source manually**
 
 Run from `poster/variations/`:
 
@@ -147,7 +147,7 @@ tectonic -X compile --outdir . --outfmt pdf --print --untrusted poster_variation
 
 Expected: one A1 PDF with no LaTeX error and no overfull box warning that affects visible content.
 
-- [ ] **Step 4: Run the verifier and focused test**
+- [x] **Step 4: Run the verifier and focused test**
 
 Copy the compiled PDF temporarily to its stable output path, then run:
 
@@ -158,7 +158,7 @@ uv run python scripts/verify_poster_variations.py
 
 Expected: the standard poster passes; absent variants are reported until Task 4 completes.
 
-- [ ] **Step 5: Commit the shared system and standard source**
+- [x] **Step 5: Commit the shared system and standard source**
 
 ```powershell
 git add poster/variations/shared_style.tex poster/variations/poster_variation_1_standard.tex scripts/verify_poster_variations.py
@@ -176,15 +176,15 @@ git commit -m "add standard academic poster variation"
 - Consumes: the commands from `poster/variations/shared_style.tex` and the same generated data inputs as Task 2.
 - Produces: two standalone TeX sources with distinct reading structures.
 
-- [ ] **Step 1: Implement the question-led two-column source**
+- [x] **Step 1: Implement the question-led two-column source**
 
 Use the eight approved question headings verbatim. Place a full-width result band between the upper conceptual questions and lower methodological/error-analysis questions. The result band must include the three accuracy values and the 11.6-point paired gain.
 
-- [ ] **Step 2: Implement the concise eight-section source**
+- [x] **Step 2: Implement the concise eight-section source**
 
 Use numbered headings 1 through 8, short bullets, and larger number callouts. Preserve definitions for ambiguity, homonymy, polysemy, embeddings, cosine similarity, and WiC even though this version is shorter.
 
-- [ ] **Step 3: Add structural assertions for the two new sources**
+- [x] **Step 3: Add structural assertions for the two new sources**
 
 ```python
 def test_question_source_uses_all_question_headings() -> None:
@@ -199,7 +199,7 @@ def test_concise_source_keeps_concept_definitions() -> None:
         assert term in source
 ```
 
-- [ ] **Step 4: Run focused tests and compile both sources**
+- [x] **Step 4: Run focused tests and compile both sources**
 
 Run:
 
@@ -211,7 +211,7 @@ tectonic -X compile --outdir poster/variations --outfmt pdf --print --untrusted 
 
 Expected: tests pass and both PDFs compile as single A1 pages.
 
-- [ ] **Step 5: Commit the two sources**
+- [x] **Step 5: Commit the two sources**
 
 ```powershell
 git add poster/variations/poster_variation_2_questions.tex poster/variations/poster_variation_3_concise.tex tests/test_poster_variations.py
@@ -231,7 +231,7 @@ git commit -m "add question-led and concise poster variations"
 - Consumes: the three TeX sources and a resolved Tectonic executable path.
 - Produces: `build_variations(root: Path, tectonic: Path) -> tuple[Path, ...]` returning the three stable PDF paths.
 
-- [ ] **Step 1: Mark the PDF edit operation once**
+- [x] **Step 1: Mark the PDF edit operation once**
 
 Run from the installed PDF skill root:
 
@@ -241,7 +241,7 @@ node container_tools/mark_artifact_operation_started.mjs --operation-kind create
 
 Expected: success before the first PDF-authoring command.
 
-- [ ] **Step 2: Add a failing build-map test**
+- [x] **Step 2: Add a failing build-map test**
 
 ```python
 def test_build_map_has_three_stable_outputs() -> None:
@@ -253,11 +253,11 @@ def test_build_map_has_three_stable_outputs() -> None:
     }
 ```
 
-- [ ] **Step 3: Implement deterministic compilation and copying**
+- [x] **Step 3: Implement deterministic compilation and copying**
 
 The script must run Tectonic once per source with `check=True`, create `output/pdf/`, copy only the expected PDFs, and remove stale unexpected PDFs from that output directory only after resolving and validating that the directory is exactly `<root>/output/pdf`.
 
-- [ ] **Step 4: Document the comparison outputs**
+- [x] **Step 4: Document the comparison outputs**
 
 Add a README section explaining that `submission/` remains the canonical two-file exam package and that the three comparison posters are built with:
 
@@ -266,7 +266,7 @@ uv run python scripts/build_poster_variations.py --tectonic "C:\path\to\tectonic
 uv run python scripts/verify_poster_variations.py
 ```
 
-- [ ] **Step 5: Build and verify the three PDFs**
+- [x] **Step 5: Build and verify the three PDFs**
 
 Run the build command with the detected Tectonic executable, then:
 
@@ -276,7 +276,7 @@ uv run python scripts/verify_poster_variations.py
 
 Expected: exactly three named PDFs, each one-page A1 portrait, with all content and provenance gates passing.
 
-- [ ] **Step 6: Commit the build outputs**
+- [x] **Step 6: Commit the build outputs**
 
 ```powershell
 git add scripts/build_poster_variations.py scripts/verify_poster_variations.py README.md output/pdf/*.pdf poster/variations/*.pdf
@@ -294,7 +294,7 @@ git commit -m "build three A1 poster variations"
 - Consumes: final PDFs from Task 4.
 - Produces: visually approved PDFs and a pushed `main` branch whose remote SHA matches local HEAD.
 
-- [ ] **Step 1: Render every poster at inspection resolution**
+- [x] **Step 1: Render every poster at inspection resolution**
 
 ```powershell
 pdftoppm -png -r 150 -singlefile output/pdf/poster_variation_1_standard.pdf tmp/pdfs/poster_variation_1_standard
@@ -302,11 +302,11 @@ pdftoppm -png -r 150 -singlefile output/pdf/poster_variation_2_questions.pdf tmp
 pdftoppm -png -r 150 -singlefile output/pdf/poster_variation_3_concise.pdf tmp/pdfs/poster_variation_3_concise
 ```
 
-- [ ] **Step 2: Inspect all three rendered pages**
+- [x] **Step 2: Inspect all three rendered pages**
 
 Check title balance, author alignment, reading order, chart legibility, whitespace, section balance, reference readability, bottom margin, clipping, collisions, and stray glyphs. Revise and rebuild until all three have zero visible defects.
 
-- [ ] **Step 3: Run complete validation**
+- [x] **Step 3: Run complete validation**
 
 ```powershell
 uv run pytest -q
@@ -318,7 +318,7 @@ git diff --check
 
 Expected: all tests pass, Ruff passes, all three variation checks pass, canonical submission verification passes, and `git diff --check` returns no output.
 
-- [ ] **Step 4: Record completion and commit final refinements**
+- [x] **Step 4: Record completion and commit final refinements**
 
 Mark every plan checkbox complete. Commit any visual refinements, regenerated PDFs, and the completed plan:
 
