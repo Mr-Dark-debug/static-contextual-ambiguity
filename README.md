@@ -107,12 +107,15 @@ uv run python scripts/build_submission.py --compile --stage --tectonic $tectonic
 uv run python scripts/verify_submission.py --signed
 ```
 
-## Compare three poster structures
+## Compare poster structures
 
-Three additional A1 candidates present the same verified experiment as a standard academic
-poster, a question-led explanation, and a concise numbered poster. They are comparison
+Two A1 candidates present the same verified experiment as a standard academic
+poster and a question-led explanation. They are comparison
 artifacts under `output/pdf/`; the canonical `submission/` directory still contains exactly
 `poster.pdf` and `appendix.pdf`.
+
+The next text revision is drafted in `docs/poster_variation_1_text_draft.md`. It has not
+been applied to a PDF.
 
 ```powershell
 uv run python scripts/build_poster_variations.py --tectonic "C:\path\to\tectonic.exe"

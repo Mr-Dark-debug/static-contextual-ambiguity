@@ -1,4 +1,4 @@
-"""Compile the three comparison posters without changing the canonical submission."""
+"""Compile the two active comparison posters without changing the canonical submission."""
 
 from __future__ import annotations
 
@@ -10,7 +10,6 @@ from pathlib import Path
 VARIATIONS = {
     "poster_variation_1_standard.tex": "poster_variation_1_standard.pdf",
     "poster_variation_2_questions.tex": "poster_variation_2_questions.pdf",
-    "poster_variation_3_concise.tex": "poster_variation_3_concise.pdf",
 }
 
 
@@ -88,4 +87,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

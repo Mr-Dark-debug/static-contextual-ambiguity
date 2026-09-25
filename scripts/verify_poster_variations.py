@@ -1,4 +1,4 @@
-"""Verify the three A1 comparison posters and their evidence traceability."""
+"""Verify the two active A1 comparison posters and their evidence traceability."""
 
 from __future__ import annotations
 
@@ -13,7 +13,6 @@ from pypdf.generic import DictionaryObject
 EXPECTED_FILES = {
     "poster_variation_1_standard.pdf",
     "poster_variation_2_questions.pdf",
-    "poster_variation_3_concise.pdf",
 }
 A1_POINTS = (1683.78, 2383.94)
 COMMON_TEXT = (
@@ -50,13 +49,6 @@ VARIANT_TEXT = {
         "What did we find?",
         "Where do they fail?",
         "So what?",
-    ),
-    "poster_variation_3_concise.pdf": (
-        "1 Introduction",
-        "2 Definitions",
-        "4 Hypotheses",
-        "7 Error analysis",
-        "8 Conclusion",
     ),
 }
 
@@ -146,7 +138,6 @@ def _verify_sources(root: Path) -> None:
     for source_name in (
         "poster_variation_1_standard.tex",
         "poster_variation_2_questions.tex",
-        "poster_variation_3_concise.tex",
     ):
         source = (source_dir / source_name).read_text(encoding="utf-8")
         for marker in (
