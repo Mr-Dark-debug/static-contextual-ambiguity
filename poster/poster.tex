@@ -73,13 +73,13 @@
 }
 
 % ---------- Result bar helper ----------
-% #1 = label, #2 = percentage width on a 0-75 scale, #3 = printed result, #4 = fill colour
+% #1 = label, #2 = percentage width on a true 0-100 scale, #3 = printed result, #4 = fill colour
 \newcommand{\resultbar}[4]{%
-  \begin{tikzpicture}[x=1.43mm,y=1mm,baseline]
+  \begin{tikzpicture}[x=1.04mm,y=1mm,baseline]
     \node[anchor=west,font=\fontsize{22}{26}\selectfont\bfseries,text=ink] at (0,11) {#1};
-    \fill[lightgray] (0,0) rectangle (75,7);
+    \fill[lightgray] (0,0) rectangle (100,7);
     \fill[#4] (0,0) rectangle (#2,7);
-    \node[anchor=west,font=\fontsize{21}{25}\selectfont\bfseries,text=ink] at (77,3.5) {#3};
+    \node[anchor=west,font=\fontsize{21}{25}\selectfont\bfseries,text=ink] at (102,3.5) {#3};
   \end{tikzpicture}\par\vspace{2.2mm}
 }
 
