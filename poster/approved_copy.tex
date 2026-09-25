@@ -1,0 +1,139 @@
+% Generated from docs/poster_variation_1_text_draft.md. Do not edit by hand.
+
+\PosterSection{Introduction}
+
+Consider these two sentences:\par
+
+``She sat on the \emph{bank} of the river.'' Here, \emph{bank} means the land beside the water.\par
+
+``She deposited money at the \emph{bank}.'' Here, \emph{bank} means a financial institution.\par
+
+As we can see, the word \emph{bank} is written exactly the same way in both sentences, but its meaning changes because of the context around it. This is called \textbf{lexical ambiguity}.\par
+
+In this project, we wanted to understand whether a computer model can recognise this difference. More specifically, we wanted to see whether the way a model represents a word changes when that same word appears in a different context, and whether that change helps the model decide if the word has the same meaning or a different meaning.\par
+
+\PosterSection{Inspiration}
+
+Our experiment was inspired mainly by the \textbf{Word-in-Context, or WiC, task introduced by Pilehvar and Camacho-Collados (2019)}. Instead of asking a model to choose a dictionary definition for a word, WiC asks a much simpler question: when the same word appears in two sentences, \textbf{does it have the same meaning in both sentences or not?}\par
+
+We were also interested in a problem discussed by \textbf{Camacho-Collados and Pilehvar (2018)}. Traditional word representations often store only one representation for a word, even when that word has several meanings. Their work discusses different ways of representing multiple meanings more clearly. This led us to compare a simple fixed representation with representations that use the surrounding context.\par
+
+\PosterSection{Background}
+
+Computers do not understand words directly in the way humans do. Language models usually represent words using \textbf{embeddings}, which are lists of numbers that capture information about a word.\par
+
+In our experiment, we worked with two pretrained approaches: \textbf{GloVe} and \textbf{BERT}.\par
+
+\textbf{GloVe} creates one stored vector for each word based on how words appear together across a large amount of text. This means that \emph{bank} receives the same basic GloVe representation whether we are talking about a river bank or a financial bank. Because this representation does not change with the sentence, it is called a \textbf{static embedding}.\par
+
+\textbf{BERT}, on the other hand, reads the sentence around a word before creating its representation. The representation of \emph{bank} in a sentence about a river can therefore be different from the representation of \emph{bank} in a sentence about money. This is called a \textbf{contextual representation}.\par
+
+The two meanings of \emph{bank} in our example are usually considered \textbf{homonyms} because the meanings are unrelated. Words can also have several related meanings, which is called \textbf{polysemy}. For example, \emph{paper} can refer to the material we write on or to a newspaper.\par
+
+Our task does not require the model to explain which exact meaning is being used. It only has to decide whether the marked word has the \textbf{same meaning} in two sentences or a \textbf{different meaning}.\par
+
+\PosterSection{Hypothesis}
+
+We expected that using more information from the sentence would make it easier to recognise changes in meaning.\par
+
+If we use only GloVe's stored representation of the target word, the word \emph{bank} receives exactly the same vector in both sentences. The model therefore has no information about whether one sentence is talking about a river and the other about money. It sees the same representation twice.\par
+
+Our validation data contains \textbf{638 sentence pairs}, with \textbf{319 same-meaning pairs and 319 different-meaning pairs}. Because the two classes are perfectly balanced, a method that always gives the same answer would still get half of them correct. That is why \textbf{50\% is our simple baseline}.\par
+
+We expected that adding nearby words such as \emph{river} or \emph{money} would give GloVe some useful context and improve this result. We expected BERT to perform better again because it uses information from the entire sentence when creating the representation of the target word.\par
+
+\PosterSection{Methodology}
+
+\PosterSubsection{The Dataset}
+
+We used the \textbf{SuperGLUE version of the Word-in-Context dataset, WiC}, for all three comparison methods.\par
+
+Every WiC example contains \textbf{two sentences containing the same target word}. The dataset also tells us whether that word has the same meaning in both sentences or whether its meaning changes.\par
+
+For example, a pair could contain \emph{bank} in a sentence about a river and \emph{bank} in a sentence about money. That pair would be labelled \textbf{different meaning}. If both sentences used \emph{bank} to describe a financial institution, the pair would be labelled \textbf{same meaning}.\par
+
+The dataset contains \textbf{5,428 labelled training pairs} and \textbf{638 labelled validation pairs}.\par
+
+We used the training data to decide the configuration of our methods, such as how many nearby words to use with GloVe, which BERT representations to combine, and what similarity value should separate ``same meaning'' from ``different meaning.'' After making those choices, we kept them fixed and measured the final performance on the 638 validation pairs.\par
+
+The dataset also contains \textbf{1,400 test pairs}, but their correct answers are not publicly included in this version of SuperGLUE. Without those correct answers, we cannot check how many test examples our methods answered correctly. For that reason, the results presented here are based on the validation set.\par
+
+\PosterSubsection{The Comparison}
+
+We used \textbf{two pretrained model families, GloVe and BERT, but compared them in three different ways}. The dataset remained exactly the same for all three methods.\par
+
+\textbf{1. GloVe target word only}\par
+
+For the first method, we used only the stored GloVe vector of the marked word.\par
+
+For example, if the target word is \emph{bank}, GloVe uses the same stored representation of \emph{bank} in both the river sentence and the money sentence. This gives us a useful baseline showing what happens when the surrounding sentence is ignored.\par
+
+\textbf{2. GloVe with nearby words}\par
+
+For the second method, we tried to give GloVe some context.\par
+
+Instead of using the target word itself, we looked at up to \textbf{two words before and two words after it} and combined their GloVe representations.\par
+
+For example:\par
+
+``The \textbf{muddy river} \emph{bank} \textbf{flooded after} rain.''\par
+
+For the target word \emph{bank}, we use the nearby words \emph{muddy}, \emph{river}, \emph{flooded}, and \emph{after}. Their vectors are averaged to create a simple representation of the context around \emph{bank}.\par
+
+This allows words such as \emph{river}, \emph{money}, \emph{water}, or \emph{deposit} to provide clues about which meaning is being used.\par
+
+\textbf{3. BERT using the full sentence}\par
+
+For the third method, BERT reads the complete sentence before representing the target word.\par
+
+BERT-base processes a sentence through \textbf{12 successive layers}, where each layer gradually builds a richer representation using information from the sentence. Instead of using only one of these stages, our selected configuration combines the representation of the target word from the \textbf{final four layers}.\par
+
+We used BERT as a pretrained model. We did not retrain or fine-tune BERT on the WiC task itself.\par
+
+\PosterSubsection{Deciding Same Meaning or Different Meaning}
+
+For every WiC example, each method produces one representation of the target word from the first sentence and another from the second sentence.\par
+
+We then compare those two representations using \textbf{cosine similarity}. In simple terms, this gives us a number showing how similar the two representations are.\par
+
+A higher similarity suggests that the word is being represented in a similar way in both sentences. A lower similarity suggests that its representation has changed.\par
+
+Using the training data, we selected a cutoff value for each method. If the similarity is above that cutoff, we predict \textbf{same meaning}. If it is below the cutoff, we predict \textbf{different meaning}.\par
+
+Finally, we calculate \textbf{accuracy}, which simply means the percentage of the 638 validation pairs that each method classified correctly.\par
+
+\PosterSection{Results}
+
+\PosterAccuracyChart
+
+The difference between the three methods was clear.\par
+
+Using only the \textbf{GloVe target word}, the method correctly answered \textbf{319 of 638 pairs}, giving an accuracy of \textbf{50.0\%}. This is exactly what we expected from a representation that remains identical for the target word regardless of its sentence.\par
+
+When we added the \textbf{nearby words around the target}, GloVe improved to \textbf{354 correct pairs}, or \textbf{55.5\% accuracy}. This shows that even a small amount of surrounding context provided useful information.\par
+
+The strongest result came from \textbf{BERT using the target word in its full sentence}. BERT correctly classified \textbf{428 of 638 pairs}, giving an accuracy of \textbf{67.1\%}.\par
+
+So, compared with nearby-word GloVe, BERT correctly answered \textbf{74 additional sentence pairs}. That is an improvement of \textbf{11.6 percentage points}.\par
+
+We also repeatedly resampled the validation examples to check whether this advantage depended heavily on a particular set of examples. Across 1,000 such resamples, the estimated 95\% interval for BERT's improvement over nearby-word GloVe was \textbf{6.6 to 16.9 percentage points}. In other words, the advantage remained positive throughout that interval.\par
+
+Looking more closely at the two stronger methods, \textbf{both BERT and nearby-word GloVe were correct on 250 pairs}. BERT was correct while nearby-word GloVe was wrong on \textbf{178 pairs}, while nearby-word GloVe was correct and BERT was wrong on \textbf{104 pairs}. Both methods were wrong on \textbf{106 pairs}.\par
+
+This is important because BERT performed better overall, but it was not correct on every example.\par
+
+\PosterSection{Conclusion}
+
+Our experiment shows that \textbf{the context around a word matters when trying to recognise its meaning}.\par
+
+When GloVe looked only at the target word, it achieved \textbf{50.0\% accuracy} because the word received the same representation regardless of the sentence. Adding a few nearby words increased the result to \textbf{55.5\%}, showing that even simple contextual information helped.\par
+
+BERT performed best at \textbf{67.1\% accuracy} because its representation of the target word could change according to the complete sentence around it.\par
+
+The experiment therefore supports what we expected at the beginning: a representation that changes with context is more useful for this Word-in-Context task than using one fixed representation of the word.\par
+
+At the same time, BERT still answered \textbf{210 of the 638 validation pairs incorrectly}, so contextual representations do not solve lexical ambiguity perfectly. What made this project interesting for us was seeing this difference directly in an experiment we built and evaluated ourselves, rather than only reading about static and contextual embeddings in theory.\par
+
+The result is specific to the methods and English WiC validation data used in this experiment, but it gives us a clear practical example of why modern language models use the surrounding sentence when representing ambiguous words.\par
+
+\emph{If you think this is all AI-generated, I will take it as an honour. After enough late nights working with AI, even this human can seem difficult to disambiguate.}\par

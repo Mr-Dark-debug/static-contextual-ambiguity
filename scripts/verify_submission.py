@@ -97,15 +97,21 @@ def _verify_text(reader: PdfReader, required: tuple[str, ...], label: str) -> st
 def _verify_poster_sources(root: Path) -> int:
     source = (root / "poster/poster.tex").read_text(encoding="utf-8")
     required = (
-        r"\newcommand{\bodyfont}{\fontsize{27}{33}\selectfont}",
-        r"\newcommand{\captionfont}{\fontsize{24}{29}\selectfont}",
+        r"\newcommand{\bodyfont}{\fontsize{24}{25}\selectfont}",
+        r"\input{approved_copy.tex}",
+        r"\PosterAccuracyChart",
     )
     if any(marker not in source for marker in required):
-        raise RuntimeError("poster body/caption text no longer meets the 24 pt target")
+        raise RuntimeError("poster is missing approved copy, chart, or 24 pt body type")
     if "tcolorbox" in source or "One success, one warning" in source or "Limitations" in source:
         raise RuntimeError("poster contains a removed panel or container")
     if r"\input{authors.tex}" not in source or "assets/university-trier.pdf" not in source:
         raise RuntimeError("poster is missing its author block or official university logo")
+    generated_copy = (root / "poster/approved_copy.tex").read_text(encoding="utf-8")
+    if r"\PosterSection{Conclusion}" not in generated_copy:
+        raise RuntimeError("poster copy is missing its conclusion")
+    if "AI-generated" not in generated_copy:
+        raise RuntimeError("poster copy is missing the approved closing line")
     pngs = sorted((root / "figures").glob("*.png"))
     if not pngs:
         raise RuntimeError("no high-resolution figure previews found")
@@ -203,15 +209,19 @@ def verify(root: Path, *, signed: bool = False) -> None:
     poster_text = _verify_text(
         poster,
         (
-            "Static vs Contextual Embeddings for Lexical Ambiguity: A Word-in-Context Evaluation",
+            "Static vs Contextual Embeddings for Lexical Ambiguity",
+            "A Word-in-Context Evaluation",
             "Hypothesis",
             "Methodology",
             "Results",
             "Conclusion",
-            "Lexical ambiguity",
-            "Static embeddings",
-            "Contextual embeddings",
-            "Related approaches",
+            "Introduction",
+            "Inspiration",
+            "Background",
+            "lexical ambiguity",
+            "static embedding",
+            "contextual",
+            "AI-generated",
             "Choudhary Prashant Santosh",
             "1910474",
             "Rahul Khunt",

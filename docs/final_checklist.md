@@ -2,7 +2,7 @@
 
 This checklist distinguishes completed project gates from the personal metadata that the
 student must supply. Experiment evidence dates to 10 September 2026. Poster design
-and artifact checks were refreshed on 13 September 2026.
+and artifact checks were refreshed on 25 September 2026.
 
 ## Experiment and evidence
 
@@ -27,7 +27,7 @@ and artifact checks were refreshed on 13 September 2026.
 ## Code and artifact gates
 
 - [x] `uv sync --frozen --all-groups`
-- [x] `uv run pytest -q` (59 tests after the poster revision)
+- [x] `uv run pytest -q` (66 tests after the full-copy poster revision)
 - [x] `uv run ruff check .`
 - [x] `uv run python scripts/run_quick_test.py`
 - [x] `uv run python scripts/run_experiment.py` (full cache-integrity reproduction)
@@ -38,7 +38,7 @@ and artifact checks were refreshed on 13 September 2026.
 
 The last verifier confirmed one 1683.78 x 2383.94 point A1 poster page, eight 595.28 x
 841.89 point A4 appendix pages (one displayed in landscape), extractable required text,
-embedded fonts, six 300-PPI figure previews, byte-identical staged copies, and exactly
+embedded fonts, six figure previews at or above 150 PPI, byte-identical staged copies, and exactly
 `poster.pdf` plus `appendix.pdf` in `submission/`. Eleven headline/result values are also
 recomputed from the committed CSV/JSON files and matched against extracted poster text.
 The captured LaTeX build contains no
@@ -46,16 +46,17 @@ overfull-box or unresolved-reference warning.
 
 ## Human PDF review
 
-- [x] Poster reviewed as a full-page raster: centered header, two aligned columns,
-  body-text size, charts, labels, margins, and footer are readable with no clipping.
-- [x] All eight appendix pages reviewed as rasters: tables, long URLs/hashes, rotated
-  results table, references, page numbers, and declaration page render without clipping.
+- [x] Poster reviewed as a full-page raster: centered header, three aligned columns,
+  24 pt body text, vector accuracy chart, labels, margins, and closing line are readable
+  with no clipping.
+- [x] The changed appendix title page and the unchanged declaration placeholder page
+  were rerendered and inspected. Earlier review covered the other appendix pages.
 - [x] Poster visibly contains **Hypothesis**, **Methodology**, and **Results**.
-- [x] Definitions and model explanations come first, followed by related approaches,
-  hypothesis, methodology, results and conclusion. The secondary outcome chart was
-  removed from the page to make room for the requested conceptual explanation.
-- [x] Poster background/model claims use numbered citations and a short reference list. Complete verified
-  references and DOI links are in the appendix.
+- [x] The complete approved text appears in this order: Introduction, Inspiration,
+  Background, Hypothesis, Methodology, Results, and Conclusion. The full results remain
+  traceable to the saved experiment record.
+- [x] Poster background/model claims use compact author-year citations. Complete
+  verified references and DOI links are in the appendix.
 - [x] Results use “validation” consistently and do not disguise it as a public test score.
 
 ## Required personal action before hand-in
@@ -63,7 +64,7 @@ overfull-box or unresolved-reference warning.
 - [x] Poster names and enrollment numbers match the details supplied by the user.
 - [x] Official Trier logo is included as vector artwork with source recorded.
 - [x] Requested limitations, success/warning, banner and bordered panels are removed.
-- [ ] Personalize the remaining author/repository fields in the unchanged appendix.
+- [x] Appendix author names, enrollment numbers, and repository link are personalized.
 - [ ] Insert the exact institution-approved integrity declaration.
 - [ ] Sign and date the declaration personally.
 - [ ] Rebuild with `--declaration`, then rerun `scripts/verify_submission.py --signed`.

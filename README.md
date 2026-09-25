@@ -82,13 +82,14 @@ The verifier checks byte identity with the built sources, exact submission conte
 page counts, A1/A4 media boxes, required extractable headings, and embedded fonts
 (including Type 3 glyph programs inside vector figures).
 
-The 13 September poster revision starts with definitions of lexical ambiguity,
-homonymy, polysemy and embeddings. It explains static versus contextual representations,
-related approaches, the hypothesis and methodology before presenting the results.
-The open two-column layout uses one wide accuracy chart from the frozen results.
-The paired-outcome chart remains available as an additional figure.
-The original distribution, layer and example figures remain in `figures/` for research
-reference. The official Trier logo is stored as vector artwork in `poster/assets/`.
+The canonical poster now typesets the complete approved wording from
+`docs/poster_variation_1_text_draft.md`, including the authors' closing line. The
+Markdown is converted to `poster/approved_copy.tex` during the build. The one-page
+A1 layout uses three open columns, 24 pt body type, and a directly labelled vector
+accuracy chart. The original distribution, layer, outcome, and example figures remain
+in `figures/` for research reference. The official Trier logo is stored as vector
+artwork in `poster/assets/`. The current poster build uses Arial, available on the
+target Windows machine, with horizontal width adjustment to fit the approved copy.
 To rebuild only the poster after a layout edit, run:
 
 ```powershell
@@ -114,8 +115,7 @@ poster and a question-led explanation. They are comparison
 artifacts under `output/pdf/`; the canonical `submission/` directory still contains exactly
 `poster.pdf` and `appendix.pdf`.
 
-The next text revision is drafted in `docs/poster_variation_1_text_draft.md`. It has not
-been applied to a PDF.
+The approved text has been applied to the canonical `submission/poster.pdf`.
 
 ```powershell
 uv run python scripts/build_poster_variations.py --tectonic "C:\path\to\tectonic.exe"
@@ -140,10 +140,9 @@ conceptual sections, citations, and result values traced to `results/final/`.
 
 ## Before personal submission
 
-The poster contains the author details supplied on 13 September 2026:
+The poster and appendix contain the author details supplied on 13 September 2026:
 Choudhary Prashant Santosh (1910474) and Rahul Khunt (1911272), maintained in
-`poster/authors.tex`. The existing appendix was not modified during the poster redesign.
-Replace its remaining author/repository placeholders in `appendix/appendix.tex`, replace
+`poster/authors.tex` and `appendix/appendix.tex`. Replace
 `appendix/integrity_declaration_PLACEHOLDER.tex` with the institution-approved wording,
 sign it yourself, rebuild with `--declaration`, and rerun the verifier in `--signed` mode.
 

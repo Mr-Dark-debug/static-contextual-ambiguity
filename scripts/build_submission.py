@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import runpy
 import shutil
 import subprocess
 from pathlib import Path
@@ -33,6 +34,11 @@ def _tex_escape(value: object) -> str:
 
 
 def generate_inputs(root: Path) -> None:
+    render = runpy.run_path(str(root / "scripts/render_poster_copy.py"))["render"]
+    approved_markdown = (root / "docs/poster_variation_1_text_draft.md").read_text(
+        encoding="utf-8"
+    )
+    atomic_write_text(root / "poster/approved_copy.tex", render(approved_markdown))
     results = root / "results/final"
     metrics = pd.read_csv(results / "metrics.csv").set_index("system")
     intervals = pd.read_csv(results / "bootstrap_ci.csv")
@@ -69,6 +75,9 @@ def generate_inputs(root: Path) -> None:
             _macro("TargetAccuracy", f"{_percent(target['accuracy'])}\\%"),
             _macro("ContextAccuracy", f"{_percent(context['accuracy'])}\\%"),
             _macro("BertAccuracy", f"{_percent(bert['accuracy'])}\\%"),
+            _macro("TargetAccuracyFraction", f"{target['accuracy']:.6f}"),
+            _macro("ContextAccuracyFraction", f"{context['accuracy']:.6f}"),
+            _macro("BertAccuracyFraction", f"{bert['accuracy']:.6f}"),
             _macro("BertCorrect", str(int(bert["tn"] + bert["tp"]))),
             _macro("ContextCorrect", str(int(context["tn"] + context["tp"]))),
             _macro("GainLower", _percent(-float(difference["upper"]))),

@@ -133,3 +133,5 @@ The experiment therefore supports what we expected at the beginning: a represent
 At the same time, BERT still answered **210 of the 638 validation pairs incorrectly**, so contextual representations do not solve lexical ambiguity perfectly. What made this project interesting for us was seeing this difference directly in an experiment we built and evaluated ourselves, rather than only reading about static and contextual embeddings in theory.
 
 The result is specific to the methods and English WiC validation data used in this experiment, but it gives us a clear practical example of why modern language models use the surrounding sentence when representing ambiguous words.
+
+*If you think this is all AI-generated, I will take it as an honour. After enough late nights working with AI, even this human can seem difficult to disambiguate.*
