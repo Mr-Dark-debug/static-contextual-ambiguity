@@ -1,70 +1,230 @@
 \documentclass{article}
-\usepackage[paperwidth=594mm,paperheight=841mm,top=10mm,bottom=10mm,left=10mm,right=10mm]{geometry}
-\usepackage{fontspec}
-\setmainfont{Arial}[FakeStretch=0.90]
+
+% ============================================================
+% A1 POSTER - CANONICAL REPOSITORY SOURCE
+% Compile from poster/ after generating result macros and figures.
+% ============================================================
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[
+  paperwidth=594mm,
+  paperheight=841mm,
+  top=16mm,
+  bottom=16mm,
+  left=18mm,
+  right=18mm
+]{geometry}
+
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
 \usepackage{xcolor}
 \usepackage{graphicx}
+\usepackage{ragged2e}
 \usepackage{microtype}
 \usepackage{multicol}
 \usepackage{needspace}
-\definecolor{ink}{HTML}{182E42}
-\definecolor{blue}{HTML}{007AC3}
-\definecolor{accent}{HTML}{C55A11}
-\definecolor{pale}{HTML}{E8EEF2}
-\definecolor{rulegray}{HTML}{C4CFD7}
-\color{ink}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5mm}
-\setlength{\columnsep}{9mm}
-\setlength{\emergencystretch}{1em}
-\hyphenpenalty=500
-\exhyphenpenalty=500
+\setlength{\parskip}{5.5mm}
+\setlength{\columnsep}{10mm}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+
+% ---------- Colour palette ----------
+\definecolor{ink}{HTML}{183044}
+\definecolor{trierblue}{HTML}{0077B5}
+\definecolor{deepblue}{HTML}{005A87}
+\definecolor{accent}{HTML}{D36B2C}
+\definecolor{lightblue}{HTML}{EAF5FA}
+\definecolor{lightgray}{HTML}{F2F5F7}
+\definecolor{midgray}{HTML}{CBD5DC}
+\definecolor{darkgray}{HTML}{526575}
+\color{ink}
+
+% ---------- Typography ----------
 \input{generated_results.tex}
 \input{authors.tex}
-\newcommand{\bodyfont}{\fontsize{24}{25}\selectfont}
-\newcommand{\PosterSection}[1]{%
+\newcommand{\bodyfont}{\fontsize{24}{27}\selectfont}
+\newcommand{\smallfont}{\fontsize{22}{26}\selectfont}
+\newcommand{\tinyposterfont}{\fontsize{21}{25}\selectfont}
+\newcommand{\sectiontitle}[1]{%
   \Needspace{4\baselineskip}%
-  \par\vspace{1.4mm}%
-  {\fontsize{29}{32}\selectfont\bfseries\textcolor{blue}{#1}\par}%
-  \vspace{0.3mm}}
-\newcommand{\PosterSubsection}[1]{%
+  \par\vspace{5mm}%
+  {\fontsize{30}{35}\selectfont\bfseries\textcolor{trierblue}{#1}\par}%
+  \vspace{6mm}%
+}
+\newcommand{\subsectiontitle}[1]{%
   \Needspace{3\baselineskip}%
-  \par\vspace{0.8mm}%
-  {\fontsize{26}{29}\selectfont\bfseries #1\par}}
-\newcommand{\PosterBar}[4]{%
-  {\bfseries #1\hfill #2\par}%
-  \vspace{-0.5mm}%
-  {\color{pale}\rule{\linewidth}{6mm}}\par\vspace{-8.1mm}%
-  {\color{#4}\rule{#3\linewidth}{6mm}}\par\vspace{1.3mm}}
-\newcommand{\PosterAccuracyChart}{%
-  \Needspace{15\baselineskip}%
-  \begin{minipage}{\linewidth}
-  \vspace{1mm}
-  {\fontsize{23}{26}\selectfont
-  \PosterBar{GloVe word}{\TargetAccuracy}{\TargetAccuracyFraction}{rulegray}
-  \PosterBar{GloVe nearby}{\ContextAccuracy}{\ContextAccuracyFraction}{blue}
-  \PosterBar{BERT in sentence}{\BertAccuracy}{\BertAccuracyFraction}{accent}
-  {\fontsize{20}{23}\selectfont 0\%\hfill Accuracy on \ValidationCount{} pairs\hfill 100\%\par}}
-  \end{minipage}\par\vspace{1mm}}
+  \par\vspace{4mm}%
+  {\fontsize{25}{29}\selectfont\bfseries\textcolor{deepblue}{#1}\par}%
+  \vspace{4mm}%
+}
+\newcommand{\thinrule}{\par\vspace{2mm}{\color{midgray}\rule{\linewidth}{0.55pt}}\par\vspace{2mm}}
+
+% ---------- Small highlight box ----------
+\newcommand{\keybox}[1]{%
+  \colorbox{lightblue}{%
+    \parbox{0.955\linewidth}{\vspace{2mm}\RaggedRight #1\vspace{2mm}}%
+  }%
+}
+
+% ---------- Result bar helper ----------
+% #1 = label, #2 = percentage width on a 0-75 scale, #3 = printed result, #4 = fill colour
+\newcommand{\resultbar}[4]{%
+  \begin{tikzpicture}[x=1.43mm,y=1mm,baseline]
+    \node[anchor=west,font=\fontsize{22}{26}\selectfont\bfseries,text=ink] at (0,11) {#1};
+    \fill[lightgray] (0,0) rectangle (75,7);
+    \fill[#4] (0,0) rectangle (#2,7);
+    \node[anchor=west,font=\fontsize{21}{25}\selectfont\bfseries,text=ink] at (77,3.5) {#3};
+  \end{tikzpicture}\par\vspace{2.2mm}
+}
+
 \begin{document}
 \bodyfont
+
+% ============================================================
+% HEADER
+% ============================================================
 \begin{center}
-\setlength{\parskip}{0.5mm}
-\includegraphics[width=51mm]{assets/university-trier.pdf}\par
-\vspace{1.1mm}
-{\fontsize{43}{47}\selectfont\bfseries Static vs Contextual Embeddings for Lexical Ambiguity\par}
-{\fontsize{30}{34}\selectfont\textcolor{blue}{A Word-in-Context Evaluation}\par}
-\vspace{1.5mm}
-{\fontsize{23}{26}\selectfont\bfseries
-\FirstAuthor{} (\FirstEnrollment{})\quad\textcolor{rulegray}{\rule{0.4pt}{6mm}}\quad
-\SecondAuthor{} (\SecondEnrollment{})\par}
-{\fontsize{20}{23}\selectfont University of Trier\quad MSc Natural Language Processing\quad Trends in Natural Language Processing\par}
-{\fontsize{18}{21}\selectfont\textcolor{blue}{github.com/Mr-Dark-debug/static-contextual-ambiguity}\par}
+  \setlength{\parskip}{0.8mm}
+  \IfFileExists{../assets/university-trier.pdf}{%
+    \includegraphics[width=66mm]{../assets/university-trier.pdf}\par
+  }{%
+    {\fontsize{29}{34}\selectfont\bfseries University of Trier}\par
+  }
+
+  \vspace{2mm}
+  {\fontsize{44}{49}\selectfont\bfseries Static vs Contextual Embeddings for Lexical Ambiguity\par}
+  {\fontsize{29}{34}\selectfont\textcolor{trierblue}{A Word-in-Context Evaluation}\par}
+
+  \vspace{3mm}
+  \begin{minipage}[t]{0.43\textwidth}\centering
+    {\fontsize{25}{29}\selectfont\bfseries \FirstAuthor}\par
+    {\fontsize{21}{25}\selectfont Enrollment no. \FirstEnrollment}
+  \end{minipage}
+  \hspace{7mm}
+  \begin{minipage}[t]{0.43\textwidth}\centering
+    {\fontsize{25}{29}\selectfont\bfseries \SecondAuthor}\par
+    {\fontsize{21}{25}\selectfont Enrollment no. \SecondEnrollment}
+  \end{minipage}\par
+
+  \vspace{1mm}
+  {\fontsize{20.5}{24}\selectfont University of Trier \quad | \quad MSc Natural Language Processing \quad | \quad Trends in Natural Language Processing}\par
+  {\fontsize{18}{22}\selectfont\textcolor{trierblue}{github.com/Mr-Dark-debug/static-contextual-ambiguity}}
 \end{center}
-\vspace{-3mm}
-{\color{rulegray}\rule{\linewidth}{0.6pt}}\par\vspace{-2mm}
+
+\vspace{-1mm}
+{\color{midgray}\rule{\textwidth}{0.7pt}}
+\vspace{4mm}
+
+% ============================================================
+% Balanced columns let the explanatory text continue naturally between columns.
+% ============================================================
 \begin{multicols}{3}
-\input{approved_copy.tex}
+\RaggedRight
+
+\sectiontitle{Introduction}
+\keybox{%
+``She sat on the \textbf{\textit{bank}} of the river.'' Here, \textit{bank} means the land beside the water.\\[1.5mm]
+``She deposited money at the \textbf{\textit{bank}}.'' Here, \textit{bank} means a financial institution.
+}
+\par\vspace{3mm}
+
+The spelling is identical, but the meaning changes because of the surrounding words. This is \textbf{lexical ambiguity}.
+
+We wanted to understand whether a computer model represents the same word differently when its context changes, and whether that difference helps it decide if the meaning is the same or different.
+
+\sectiontitle{Inspiration}
+Our experiment follows the \textbf{Word-in-Context (WiC)} task introduced by Pilehvar and Camacho-Collados (2019). WiC avoids asking for a dictionary definition. Instead it asks: \textbf{does the same word have the same meaning in two sentences?}
+
+Camacho-Collados and Pilehvar (2018) also describe a problem with traditional word representations: one stored vector can mix several meanings together. That motivated our comparison between a fixed representation and representations that use context.
+
+\sectiontitle{Background}
+A \textbf{word embedding} is a list of numbers used to represent a word computationally. We compare two pretrained approaches: \textbf{GloVe} and \textbf{BERT}.
+
+\textbf{GloVe} learns one stored vector for each word from patterns of words occurring together in large text collections. The vector for \textit{bank} therefore stays the same in a river sentence and a money sentence. This is a \textbf{static embedding}.
+
+\textbf{BERT} reads the surrounding sentence before creating the target-word representation. Its representation of \textit{bank} can therefore change between those two sentences. This is a \textbf{contextual representation}.
+
+The two meanings of \textit{bank} above are \textbf{homonyms} because they are unrelated. Related meanings are called \textbf{polysemy}; for example, \textit{paper} can mean writing material or a newspaper. The names are a mouthful, but the distinction is simple: unrelated meanings versus related ones.
+
+WiC does not ask the model to name a sense. It only asks whether the target word has the \textbf{same meaning} or a \textbf{different meaning} in the two sentences.
+
+\sectiontitle{Hypothesis}
+We expected more sentence context to make changes in meaning easier to recognise.
+
+\columnbreak
+With GloVe target-only, \textit{bank} receives the same vector in both sentences, so the method cannot see the river-versus-money difference. The validation set has \textbf{638 pairs}: 319 same-meaning and 319 different-meaning. A method that always chooses one answer would still get half correct, so \textbf{50\% is our simple baseline}.
+
+We expected nearby words such as \textit{river} or \textit{money} to help GloVe somewhat. We expected BERT to do better because it uses the full sentence when representing the target word.
+
+\sectiontitle{Methodology}
+
+\subsectiontitle{The dataset}
+We used the \textbf{SuperGLUE Word-in-Context (WiC)} dataset for every comparison. Each example contains \textbf{two sentences with the same marked word} and a label telling us whether that word has the same meaning in both.
+
+A river-side \textit{bank} paired with a financial \textit{bank} is labelled \textbf{different meaning}. Two financial uses of \textit{bank} would be labelled \textbf{same meaning}.
+
+WiC provides \textbf{5,428 labelled training pairs} and \textbf{638 labelled validation pairs}. We used the training data to choose the settings for each method, then kept those choices fixed and measured final performance on validation.
+
+The release also contains \textbf{1,400 test pairs}, but their correct labels are not public. We therefore cannot calculate a local test score and report validation results instead.
+
+\subsectiontitle{The comparison}
+We used \textbf{two pretrained model families, GloVe and BERT, in three experimental conditions}. The dataset stayed identical in all three.
+
+\textbf{1. GloVe target word only.} We use the stored GloVe 6B 300-dimensional vector of the marked word. The same word receives the same vector in both sentences, giving us a context-free baseline.
+
+\textbf{2. GloVe with nearby words.} We take up to \textbf{two words before and two words after the target}, leave out the target itself, and average those GloVe vectors.
+
+\keybox{%
+``The \textbf{muddy river} \textit{bank} \textbf{flooded after} rain.''\\[1mm]
+For \textit{bank}, the context words are \textbf{muddy, river, flooded, after}.
+}
+\par\vspace{3mm}
+
+\textbf{3. BERT using the full sentence.} We use frozen \texttt{google-bert/bert-base-uncased}. BERT-base has 12 processing layers; our selected configuration combines the target representation from the \textbf{last four layers}. We do not fine-tune BERT on WiC.
+
+\columnbreak
+\subsectiontitle{From vectors to an answer}
+For each sentence pair, a method gives us two target representations. We compare them with \textbf{cosine similarity}. A higher score means the representations are more alike; a lower score means they are more different.
+
+Using training data, we select a cutoff for each condition. Scores above the cutoff predict \textbf{same meaning}; scores below it predict \textbf{different meaning}. Our main score is \textbf{accuracy}, the percentage of the 638 validation pairs answered correctly.
+
+\sectiontitle{Results}
+All three conditions were evaluated on the same \textbf{638 validation pairs}.
+
+GloVe target-only answered \textbf{\TargetCorrect{} pairs correctly (\TargetAccuracy)}. Adding nearby GloVe words increased this to \textbf{\ContextCorrect{} pairs (\ContextAccuracy)}. BERT performed best with \textbf{\BertCorrect{} correct pairs (\BertAccuracy)}.
+
+\vspace{2mm}
+{\fontsize{27}{32}\selectfont\bfseries\textcolor{deepblue}{Validation accuracy}}\par\vspace{3mm}
+
+\begin{minipage}{\linewidth}
+\resultbar{GloVe target only}{\TargetBarValue}{\TargetAccuracy{} \; (\TargetCorrect/638)}{midgray}
+\resultbar{GloVe nearby words}{\ContextBarValue}{\ContextAccuracy{} \; (\ContextCorrect/638)}{trierblue!60}
+\resultbar{BERT in full sentence}{\BertBarValue}{\BertAccuracy{} \; (\BertCorrect/638)}{trierblue}
+\end{minipage}
+\par\vspace{2mm}
+
+\keybox{%
+{\fontsize{30}{35}\selectfont\bfseries\textcolor{deepblue}{+\AccuracyGain{} percentage points}}\\[1mm]
+Compared with nearby-word GloVe, BERT answered \textbf{\BertGainCorrect{} additional sentence pairs correctly}.
+}
+\par\vspace{3mm}
+
+We repeated that comparison on \textbf{1,000 resampled versions} of the validation set. The estimated 95\% interval for BERT's advantage was \textbf{\GainLower{} to \GainUpper{} percentage points}, so the advantage remained positive throughout this interval.
+
+Looking pair by pair, both stronger methods were correct on \textbf{\BothCorrectCount{} pairs}. BERT alone was correct on \textbf{\BertOnlyCount}, nearby-word GloVe alone on \textbf{\StaticOnlyCount}, and both were wrong on \textbf{\BothWrongCount}. BERT was stronger overall, but it did not solve every example.
+
+\sectiontitle{Conclusion}
+Our results support the idea that \textbf{context helps a model recognise a word's meaning}. The fixed GloVe vector could not distinguish the two uses of a word. Nearby words helped a little, and BERT's full-sentence representation did better.
+
+BERT still missed \textbf{\BertErrorCount{} of 638 pairs}. We found a clear improvement, not a complete solution. Building and checking this comparison ourselves made the difference between static and contextual embeddings much easier to see.
+
+{\smallfont\textit{If this sounds AI-generated, I will take it as a compliment to one human working late at night. Perhaps the boundary between us is ambiguous too.}\par}
 \end{multicols}
+
 \end{document}

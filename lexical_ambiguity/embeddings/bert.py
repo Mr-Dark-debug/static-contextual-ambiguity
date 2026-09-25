@@ -31,7 +31,11 @@ class BertRepresentations:
 def overlapping_token_indices(
     offsets: Sequence[Sequence[int]], target_start: int, target_end: int
 ) -> tuple[int, ...]:
-    """Return tokens whose non-empty half-open spans overlap the target."""
+    """Find BERT's pieces of the marked word using character positions.
+
+One everyday word can become several WordPieces. We need all of them, not
+just the first piece, before comparing its two sentence representations.
+    """
 
     if target_start < 0 or target_end <= target_start:
         raise BertAlignmentError(f"invalid target span {target_start}:{target_end}")
@@ -72,7 +76,11 @@ def resolve_device(requested: str) -> torch.device:
 
 
 class BertTargetEncoder:
-    """Extract every BERT layer for both marked occurrences in one pass."""
+    """Read each sentence with frozen BERT and keep the marked word's vectors.
+
+We collect every layer in one pass so training-only selection can compare
+layer choices without repeatedly running the model.
+    """
 
     def __init__(
         self,

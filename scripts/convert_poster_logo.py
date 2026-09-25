@@ -13,7 +13,7 @@ from svglib.svglib import svg2rlg
 
 
 def main() -> None:
-    assets = Path(__file__).resolve().parents[1] / "poster/assets"
+    assets = Path(__file__).resolve().parents[1] / "assets"
     drawing = svg2rlg(str(assets / "university-trier.svg"))
     raw = BytesIO(renderPDF.drawToString(drawing))
     reader = PdfReader(raw)

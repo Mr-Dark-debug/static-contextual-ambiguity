@@ -1,15 +1,13 @@
+"""The current poster takes its displayed scores from saved experiment results."""
+
 import csv
 from pathlib import Path
-from runpy import run_path
 
 ROOT = Path(__file__).resolve().parents[1]
-RENDER = run_path(str(ROOT / "scripts/render_poster_copy.py"))["render"]
-SOURCE = ROOT / "docs/poster_variation_1_text_draft.md"
-GENERATED = ROOT / "poster/approved_copy.tex"
 
 
-def test_all_approved_sections_and_closing_line_are_rendered() -> None:
-    rendered = RENDER(SOURCE.read_text(encoding="utf-8"))
+def test_canonical_poster_has_explanatory_sections_and_human_close() -> None:
+    source = (ROOT / "poster/poster.tex").read_text(encoding="utf-8")
     for heading in (
         "Introduction",
         "Inspiration",
@@ -19,15 +17,9 @@ def test_all_approved_sections_and_closing_line_are_rendered() -> None:
         "Results",
         "Conclusion",
     ):
-        assert rf"\PosterSection{{{heading}}}" in rendered
-    assert r"\PosterAccuracyChart" in rendered
-    assert "even this human can seem difficult to disambiguate" in rendered
-    assert rendered == GENERATED.read_text(encoding="utf-8")
-
-
-def test_inline_formatting_preserves_the_approved_wording() -> None:
-    rendered = RENDER("# Title\n\n## Introduction\n\n**Same** *bank* costs 50%.")
-    assert r"\textbf{Same} \emph{bank} costs 50\%.\par" in rendered
+        assert rf"\sectiontitle{{{heading}}}" in source
+    assert "AI-generated" in source
+    assert r"\input{generated_results.tex}" in source
 
 
 def test_chart_widths_are_generated_from_saved_metrics() -> None:
@@ -36,10 +28,10 @@ def test_chart_widths_are_generated_from_saved_metrics() -> None:
     macros = (ROOT / "poster/generated_results.tex").read_text(encoding="utf-8")
     source = (ROOT / "poster/poster.tex").read_text(encoding="utf-8")
     for system, name in (
-        ("glove_target", "TargetAccuracyFraction"),
-        ("glove_context_2", "ContextAccuracyFraction"),
-        ("bert_mean_last_four", "BertAccuracyFraction"),
+        ("glove_target", "TargetBarValue"),
+        ("glove_context_2", "ContextBarValue"),
+        ("bert_mean_last_four", "BertBarValue"),
     ):
-        expected = float(metrics[system]["accuracy"])
-        assert rf"\newcommand{{\{name}}}{{{expected:.6f}}}" in macros
+        expected = float(metrics[system]["accuracy"]) * 100
+        assert rf"\newcommand{{\{name}}}{{{expected:.1f}}}" in macros
         assert rf"\{name}" in source

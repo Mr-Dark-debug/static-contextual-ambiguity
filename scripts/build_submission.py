@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import runpy
 import shutil
 import subprocess
 from pathlib import Path
@@ -34,11 +33,6 @@ def _tex_escape(value: object) -> str:
 
 
 def generate_inputs(root: Path) -> None:
-    render = runpy.run_path(str(root / "scripts/render_poster_copy.py"))["render"]
-    approved_markdown = (root / "docs/poster_variation_1_text_draft.md").read_text(
-        encoding="utf-8"
-    )
-    atomic_write_text(root / "poster/approved_copy.tex", render(approved_markdown))
     results = root / "results/final"
     metrics = pd.read_csv(results / "metrics.csv").set_index("system")
     intervals = pd.read_csv(results / "bootstrap_ci.csv")
@@ -78,6 +72,10 @@ def generate_inputs(root: Path) -> None:
             _macro("TargetAccuracyFraction", f"{target['accuracy']:.6f}"),
             _macro("ContextAccuracyFraction", f"{context['accuracy']:.6f}"),
             _macro("BertAccuracyFraction", f"{bert['accuracy']:.6f}"),
+            _macro("TargetBarValue", f"{target['accuracy'] * 100:.1f}"),
+            _macro("ContextBarValue", f"{context['accuracy'] * 100:.1f}"),
+            _macro("BertBarValue", f"{bert['accuracy'] * 100:.1f}"),
+            _macro("TargetCorrect", str(int(target["tn"] + target["tp"]))),
             _macro("BertCorrect", str(int(bert["tn"] + bert["tp"]))),
             _macro("ContextCorrect", str(int(context["tn"] + context["tp"]))),
             _macro("GainLower", _percent(-float(difference["upper"]))),
@@ -121,8 +119,17 @@ def generate_inputs(root: Path) -> None:
                 "BertOnlyCount", str(summary["partition_counts"]["bert_only_correct"])
             ),
             _macro(
+                "BothCorrectCount", str(summary["partition_counts"]["both_primary_correct"])
+            ),
+            _macro(
                 "StaticOnlyCount",
                 str(summary["partition_counts"]["static_only_correct"]),
+            ),
+            _macro(
+                "BothWrongCount", str(
+                    summary["partition_counts"]["both_primary_wrong"]
+                    + summary["partition_counts"]["all_wrong"]
+                )
             ),
             _macro("BertErrorCount", str(int(bert["fp"] + bert["fn"]))),
         )

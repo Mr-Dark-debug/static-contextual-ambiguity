@@ -9,10 +9,7 @@ poster: poster.pdf
 
 preview: preview.png
 
-approved_copy.tex: ../docs/poster_variation_1_text_draft.md ../scripts/render_poster_copy.py
-	uv run python ../scripts/render_poster_copy.py
-
-poster.pdf: poster.tex authors.tex generated_results.tex approved_copy.tex assets/university-trier.pdf
+poster.pdf: poster.tex authors.tex generated_results.tex ../assets/university-trier.pdf
 	$(TECTONIC) -X compile --outdir . --outfmt pdf --print --untrusted poster.tex
 
 preview.png: poster.pdf

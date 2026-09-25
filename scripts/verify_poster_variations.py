@@ -156,7 +156,7 @@ def _verify_sources(root: Path) -> None:
         r"paperwidth=594mm,paperheight=841mm",
         r"\input{../generated_results.tex}",
         r"\input{../authors.tex}",
-        r"../assets/university-trier.pdf",
+        r"../../assets/university-trier.pdf",
         r"\newcommand{\bodyfont}{\fontsize{25}{31}\selectfont}",
     ):
         if marker not in style:

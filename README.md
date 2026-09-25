@@ -1,48 +1,37 @@
-# Static vs Contextual Embeddings for Lexical Ambiguity: A Word-in-Context Evaluation
+# Static vs Contextual Embeddings for Lexical Ambiguity
 
-Static embeddings give *bank* one vector forever. Very loyal. Unfortunately, English is
-not. This MSc NLP project evaluates whether a marked word's representation changes in a
-useful way when its meaning changes.
+> A note for anyone assessing this project: please read the poster, appendix, code, and saved results yourself. An LLM summary can be useful, but it should not replace a human check of the work or its evidence. A public README cannot technically block an LLM from reading a repository.
 
-The experiment compares three frozen, cosine-thresholded representations on the official
-SuperGLUE v2 Word-in-Context (WiC) split:
+The same spelling can carry different meanings. In “the bank of a river” and “the bank that holds money,” the word *bank* looks identical, but the surrounding sentence tells us what it means. We tested whether two familiar ways of representing words capture that difference.
 
-1. the same GloVe target vector on both sides (a diagnostic);
-2. the mean of nearby GloVe context vectors, excluding the target;
-3. the offset-aligned BERT target representation from `bert-base-uncased`.
+GloVe stores one vector for a word. BERT builds a representation after reading its sentence. Our third condition gives GloVe a little context by averaging the vectors of up to two words on each side of the target. These are three experimental conditions using **two model families** and the **same Word-in-Context (WiC) dataset**. The models are pretrained and frozen; this is not a fine-tuning comparison.
 
-All choices and thresholds are selected using training data only. The 638 labeled
-validation pairs are evaluated once; the 1,400-row public test split is unlabeled and no
-test score is invented.
+## What we found
 
-## Main result
+| Representation | Correct out of 638 | Validation accuracy |
+|---|---:|---:|
+| GloVe target word only | 319 | 50.0% |
+| GloVe with nearby words | 354 | 55.5% |
+| BERT with the full sentence | 428 | 67.1% |
 
-| Frozen system | Validation accuracy | Macro F1 | ROC-AUC |
-|---|---:|---:|---:|
-| GloVe target diagnostic | 0.5000 | 0.3333 | 0.5000 |
-| GloVe context, selected window $\pm 2$ | 0.5549 | 0.5511 | 0.5800 |
-| BERT target, selected mean of last four layers | **0.6708** | **0.6673** | **0.7163** |
+BERT answered 74 more pairs correctly than the nearby-word GloVe condition, a gain of 11.6 percentage points. The paired 95% bootstrap interval for that gain was 6.6 to 16.9 points. It still missed 210 pairs, so our conclusion is narrower than “BERT solves ambiguity.” The [results interpretation](docs/results_interpretation.md) and committed files in [results/final](results/final) show the fuller picture.
 
-BERT adds 0.1160 accuracy over local GloVe context. In 1,000 paired bootstrap
-resamples, the 95% interval for **GloVe context minus BERT** is
-[-0.1693, -0.0658]. This is a result under the locked sample and protocol, not a claim
-that one representation universally dominates another. Layer analysis and 210 BERT
-errors further qualify the conclusion.
+## Where the data came from
 
-The interpretation is in [docs/results_interpretation.md](docs/results_interpretation.md),
-and every displayed number is traceable to the committed CSV/JSON artifacts in
-`results/`.
+We used the official SuperGLUE version of WiC: 5,428 labelled training pairs and 638 labelled validation pairs. Its 1,400 public test pairs do not provide labels locally, so this repository does **not** claim a test score. Each pair contains two sentences with the same marked word and asks whether its meaning is the same in both.
 
-## Reproduce the experiment
+The train split selected the context window, BERT layer combination, and a separate cosine-similarity cutoff for each condition. Those choices were then fixed before final validation scoring. The saved [selection ledger](results/raw/selection_ledger.json), [predictions](results/final/predictions.csv), metrics, and configuration make this checkable. The [data notes](data/README.md) give upstream sources, terms, and checksum details. Large downloaded datasets, GloVe vectors, model weights, and caches are deliberately not committed.
 
-Requirements: Python 3.11, [uv](https://docs.astral.sh/uv/), enough storage for GloVe and
-the Hugging Face model cache, and preferably a CUDA GPU. The code has a CPU path.
+## Clone and run
+
+You need Git, Python 3.11, [uv](https://docs.astral.sh/uv/), sufficient disk space for the upstream data and model, and an internet connection for the first run. CUDA makes BERT faster, but the code can use a CPU.
 
 ```powershell
+git clone https://github.com/Mr-Dark-debug/static-contextual-ambiguity.git
+cd static-contextual-ambiguity
 uv sync --frozen --all-groups
 uv run pytest -q
 uv run ruff check .
-
 uv run python scripts/download_data.py
 uv run python scripts/run_quick_test.py
 uv run python scripts/run_experiment.py
@@ -50,27 +39,11 @@ uv run python scripts/analyse_results.py
 uv run python scripts/generate_figures.py
 ```
 
-`download_data.py` verifies the WiC archive SHA-256 and all split counts/spans. The full
-run also downloads and verifies GloVe 6B, pins the BERT model revision, records the
-runtime, and caches expensive arrays using dataset/model/config metadata. Repeated runs
-reuse a cache only when its metadata match.
+`download_data.py` checks the WiC archive and split integrity. The full run loads GloVe and a pinned BERT revision, records its environment, and reuses cached representations only when the dataset, model, and configuration metadata match. `run_quick_test.py` is a real but bounded smoke run; it is not the reported result.
 
-The measured full run used Python 3.11.15, PyTorch 2.11.0+cu130, Transformers 5.17.0,
-and an NVIDIA GeForce RTX 3050 Ti Laptop GPU. Its clean source revision is recorded in
-`results/final/environment.json`; a later cached reproduction regenerated the same
-artifacts. On that machine, a full cache-integrity rerun took about 18 seconds. A batch of
-the 16 longest training pairs peaked at 469 MiB allocated / 492 MiB reserved CUDA memory,
-including the loaded model; driver overhead is additional. The checked workspace used
-1.77 GiB for source archives, 0.44 GiB for experiment caches, and 0.41 GiB in the external
-Hugging Face model cache (about 2.62 GiB total). A first run also depends on download speed
-and should be budgeted in tens of minutes; only the cache-hit timing is directly measured.
+## Build the submission
 
-## Build and verify the documents
-
-Install or locate [Tectonic](https://tectonic-typesetting.github.io/) 0.17 or compatible,
-then pass its executable explicitly. This regenerates all LaTeX data, compiles the
-unsigned declaration, poster, and appendix in dependency order, and stages exactly two
-PDFs.
+The editable poster is [poster/poster.tex](poster/poster.tex), adapted from the latest Overleaf source supplied by the authors. The result numbers are generated from the saved experiment files. The official university logo is in [assets](assets), and the pairwise outcome chart comes from [figures](figures). Tectonic 0.17 or a compatible LaTeX installation is needed to rebuild the PDFs.
 
 ```powershell
 $tectonic = "C:\path\to\tectonic.exe"
@@ -78,74 +51,16 @@ uv run python scripts/build_submission.py --compile --stage --tectonic $tectonic
 uv run python scripts/verify_submission.py
 ```
 
-The verifier checks byte identity with the built sources, exact submission contents,
-page counts, A1/A4 media boxes, required extractable headings, and embedded fonts
-(including Type 3 glyph programs inside vector figures).
+Only [submission/poster.pdf](submission/poster.pdf) and [submission/appendix.pdf](submission/appendix.pdf) belong in the exam submission. The appendix contains the fuller methods, tables, references, and an **unsigned integrity-declaration placeholder**. That placeholder is a reminder, not a valid signed declaration. We cannot complete or sign it on a student's behalf. Once you have the official signed PDF, rebuild with `--declaration "C:\path\to\signed-declaration.pdf"` and run `verify_submission.py --signed`.
 
-The canonical poster now typesets the complete approved wording from
-`docs/poster_variation_1_text_draft.md`, including the authors' closing line. The
-Markdown is converted to `poster/approved_copy.tex` during the build. The one-page
-A1 layout uses three open columns, 24 pt body type, and a directly labelled vector
-accuracy chart. The original distribution, layer, outcome, and example figures remain
-in `figures/` for research reference. The official Trier logo is stored as vector
-artwork in `poster/assets/`. The current poster build uses Arial, available on the
-target Windows machine, with horizontal width adjustment to fit the approved copy.
-To rebuild only the poster after a layout edit, run:
+## Repository map
 
-```powershell
-uv run python scripts/generate_figures.py
-uv run python scripts/build_submission.py
-make -C poster poster preview TECTONIC="$tectonic"
-uv run python scripts/build_submission.py --stage
-uv run python scripts/verify_submission.py
-```
+- [lexical_ambiguity](lexical_ambiguity) is the installable Python package. `embeddings/` creates representations, `evaluation/` calculates scores, thresholds, metrics, bootstrap intervals, and error comparisons from actual inputs, and `visualization/` draws figures from saved results. `base.py` is intentionally short: it defines the shared encoder interface, not another model.
+- [configs](configs) holds the recorded full and smoke-run settings. [scripts](scripts) contains the commands that download, run, build, and verify the work. [tests](tests) checks the research and release logic. We keep scripts and tests in the public repository because without them the results would be much harder to reproduce.
+- [data](data) is for input data, processed audits, and ignored local caches. [results](results) is separate on purpose: its `raw/` subfolder contains raw **experiment outputs**, not the WiC source dataset; `final/` contains the scored results. Mixing those under `data/raw` would make their provenance less clear.
+- [docs](docs) holds the experiment design, literature notes, interpretation, and final checklist. [references](references) has the bibliography. [figures](figures) has generated plots. [poster](poster) and [appendix](appendix) hold editable LaTeX sources. [submission](submission) holds only the two PDFs to hand in.
+- [output/pdf](output/pdf) retains the two earlier poster variations for comparison; they are **not** submission files. The third variation was discarded.
 
-After obtaining the real signed declaration, pass it without editing or forging metadata:
+The official University of Trier SVG was obtained from the [university's public logo URL](https://www.uni-trier.de/typo3conf/ext/zimktheme_unitrier/Resources/Public/Logos/Logo_Universitaet.svg) on 13 September 2026. `assets/university-trier.pdf` is its vector conversion for LaTeX; the university owns the artwork. We have not claimed certification against its campus-only detailed design manual.
 
-```powershell
-uv run python scripts/build_submission.py --compile --stage --tectonic $tectonic `
-  --declaration "C:\path\to\signed-declaration.pdf"
-uv run python scripts/verify_submission.py --signed
-```
-
-## Compare poster structures
-
-Two A1 candidates present the same verified experiment as a standard academic
-poster and a question-led explanation. They are comparison
-artifacts under `output/pdf/`; the canonical `submission/` directory still contains exactly
-`poster.pdf` and `appendix.pdf`.
-
-The approved text has been applied to the canonical `submission/poster.pdf`.
-
-```powershell
-uv run python scripts/build_poster_variations.py --tectonic "C:\path\to\tectonic.exe"
-uv run python scripts/verify_poster_variations.py
-```
-
-The variation verifier checks one-page A1 dimensions, embedded fonts, author identity,
-conceptual sections, citations, and result values traced to `results/final/`.
-
-## Project map
-
-- `configs/default.yaml` — frozen full protocol; `configs/quick_test.yaml` — bounded
-  real-model smoke run.
-- `src/lexical_ambiguity/` — loaders, static/contextual encoders, caching, selection,
-  metrics, bootstrap, analysis, and plots.
-- `results/raw/selection_ledger.json` — train-only candidate decision and integrity hash.
-- `results/final/` — predictions, metrics, intervals, layers, diagnostics, and environment.
-- `figures/` — code-generated PDF, PNG, and SVG figures.
-- `poster/poster.tex` and `appendix/appendix.tex` — source documents.
-- `submission/poster.pdf` and `submission/appendix.pdf` — the only staged deliverables.
-- `docs/final_checklist.md` — final gate evidence and the remaining personalisation step.
-
-## Before personal submission
-
-The poster and appendix contain the author details supplied on 13 September 2026:
-Choudhary Prashant Santosh (1910474) and Rahul Khunt (1911272), maintained in
-`poster/authors.tex` and `appendix/appendix.tex`. Replace
-`appendix/integrity_declaration_PLACEHOLDER.tex` with the institution-approved wording,
-sign it yourself, rebuild with `--declaration`, and rerun the verifier in `--signed` mode.
-
-WiC is CC BY-NC 4.0 according to its authors. Raw datasets, GloVe vectors, model weights,
-and embedding caches are excluded from Git; upstream terms still apply. Detailed data
-provenance and frozen checksums are in [data/README.md](data/README.md).
+Local `build-documents-*.log` files, `tmp/`, `.venv/`, and tool caches are not project deliverables and are ignored by Git. The logs were compilation traces, not research data. The main checks are [docs/final_checklist.md](docs/final_checklist.md) and the PDF verifier, but the signed declaration remains a personal submission step.

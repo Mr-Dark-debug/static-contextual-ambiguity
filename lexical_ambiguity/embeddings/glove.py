@@ -136,6 +136,7 @@ def context_tokens(
     side: Side,
     window: ContextWindow,
 ) -> tuple[TokenSpan, ...]:
+    """Collect nearby words, leaving out the word whose meaning we are testing."""
     sentence = example.sentence(side)
     target_start, target_end = example.target_span(side)
     tokens = word_tokens(sentence)
@@ -170,6 +171,8 @@ def collect_vocabulary(examples: Iterable[WicExample]) -> set[str]:
 
 
 class StaticTargetEncoder:
+    """Give the target its dictionary vector, regardless of the sentence."""
+
     def __init__(self, store: EmbeddingStore) -> None:
         self.store = store
 
@@ -179,6 +182,8 @@ class StaticTargetEncoder:
 
 
 class StaticContextEncoder:
+    """Represent a target by the words around it, using an ordinary average."""
+
     def __init__(self, store: EmbeddingStore, *, window: ContextWindow) -> None:
         self.store = store
         self.window = window
