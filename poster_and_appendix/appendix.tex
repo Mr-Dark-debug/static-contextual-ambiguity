@@ -1,0 +1,243 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=23mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{helvet}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{microtype}
+\renewcommand{\familydefault}{\sfdefault}
+\definecolor{ink}{HTML}{17324D}
+\definecolor{accent}{HTML}{D55E00}
+\color{ink}
+\hypersetup{colorlinks=true,linkcolor=accent,urlcolor=accent,citecolor=accent}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\input{generated_tables.tex}
+\title{Static vs Contextual Embeddings for Lexical Ambiguity:\\
+A Word-in-Context Evaluation\\Method and Results Appendix}
+\author{Choudhary Prashant Santosh (1910474) \and Rahul Khunt (1911272)}
+\date{September 2026}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\vspace{1.25em}
+\noindent\textbf{Project repository:} \url{https://github.com/Mr-Dark-debug/static-contextual-ambiguity}
+
+\clearpage
+\section{Research question and scope}
+This project asks whether a context-sensitive target representation distinguishes
+same-sense from different-sense uses more effectively than static alternatives.
+It compares type-level GloVe, a lexical GloVe context mean, and an unfine-tuned
+BERT-base target representation. It is a controlled representation probe, not a
+claim about fine-tuned task state of the art.
+
+\section{Dataset provenance and audit}
+Our examples come from the WiC files in SuperGLUE v2. The archive is available
+at \url{https://dl.fbaipublicfiles.com/glue/superglue/data/v2/WiC.zip}.
+The WiC license is CC BY-NC 4.0.
+
+\begin{table}[h]
+\centering
+\caption{Validated release counts and span diagnostics.}
+\begin{tabular}{lrrrrrr}
+\toprule
+Split & Rows & Positive & Negative & Unlabeled & Lemma mismatch & Repeated surface \\
+\midrule
+Train & 5,428 & 2,714 & 2,714 & 0 & 1,852 & 93 \\
+Validation & 638 & 319 & 319 & 0 & 251 & 1 \\
+Test & 1,400 & 0 & 0 & 1,400 & 521 & 20 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+We checked the number of rows, the target positions, and the IDs in each split.
+Every marked target covers at least one character, and no ID is repeated within
+its split. Four training pairs appear again with the sentences reversed. We
+found none of these repeated pairs in validation or across the two splits. We
+also checked the test rows, but their labels are unavailable, so we did not
+calculate a test score.
+
+\section{Representations}
+\subsection{Static baselines}
+We used the uncased GloVe 6B vectors with 300 dimensions for both static
+conditions. The vectors are from the
+\url{https://nlp.stanford.edu/projects/glove/} release. In the target-only
+condition, both sentences use the vector for the same WiC lemma. Its cosine
+similarity is therefore 1 whenever GloVe contains that lemma. We found 18
+training lemmas without vectors and filled those missing scores with the median
+valid score from training.
+
+For the context condition, we took word tokens on either side of the marked
+target, left the target out, and averaged the available GloVe vectors. We tested
+windows of two, five, and ten words on each side, plus the whole sentence. When
+no context vector was available on one side, we used the lemma vector for that
+side instead. This happened once per window in training and did not happen in
+validation.
+
+\subsection{Contextual target}
+The contextual condition uses the pretrained
+\path{google-bert/bert-base-uncased} checkpoint, available at
+\url{https://huggingface.co/google-bert/bert-base-uncased}. We did not update its
+weights. The tokenizer reports character positions for each word piece. We
+selected the pieces that overlap the marked target, averaged their vectors, and
+saved the target representation from every BERT layer. The mean of the last
+four layers was one of the configurations compared on training data.
+
+\section{Selection and evaluation protocol}
+We kept model selection inside the training split. Seed 2026 produced 4,342
+tuning pairs and 1,086 internal holdout pairs, with balanced labels in both.
+Each candidate received a similarity threshold fitted on the tuning pairs for
+macro F1. We compared candidates on the holdout pairs by macro F1, then by
+accuracy and ROC-AUC if needed, with a preset simpler choice for exact ties.
+After choosing the GloVe context window and BERT representation, we fitted
+their final thresholds using all 5,428 training pairs. We had already checked
+the validation text for data quality, but its labels were used for scoring only
+after those choices were fixed.
+
+\begin{longtable}{llrrc}
+\caption{Training-only candidate selection.}\\
+\toprule
+Family & Candidate & Tune macro F1 & Holdout macro F1 & Selected \\
+\midrule
+\endfirsthead
+\toprule
+Family & Candidate & Tune macro F1 & Holdout macro F1 & Selected \\
+\midrule
+\endhead
+\SelectionRows
+\bottomrule
+\end{longtable}
+
+\section{Primary validation results}
+A similarity at or above the threshold counts as a same-meaning prediction.
+The same-meaning label is positive for precision and recall. We estimated the
+intervals by resampling the 638 validation pairs 1,000 times with a fixed seed.
+
+\begin{table}[!htbp]
+\centering
+\caption{Primary results on 638 balanced validation pairs.}
+\setlength{\tabcolsep}{3pt}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lrrrrrrr}
+\toprule
+System & Threshold & Accuracy & Accuracy 95\% CI & Macro F1 & Precision & Recall & ROC-AUC \\
+\midrule
+\PrimaryMetricRows
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+The selected BERT condition answered 428 pairs correctly. GloVe with nearby
+words answered 354 correctly. Both got 250 pairs right. BERT alone got 178
+right, GloVe alone got 104 right, and neither got the remaining 106 right.
+
+\begin{longtable}{llrr}
+\caption{Paired primary-system differences with 95\% intervals.}\\
+\toprule
+Contrast & Metric & Estimate & 95\% interval \\
+\midrule
+\endfirsthead
+\toprule
+Contrast & Metric & Estimate & 95\% interval \\
+\midrule
+\endhead
+\PairedRows
+\bottomrule
+\end{longtable}
+
+For accuracy, macro F1, and ROC-AUC, the paired intervals for GloVe context
+minus BERT lie below zero. That is evidence of a BERT advantage for these
+validation examples and these settings. It does not establish the same result
+for every dataset.
+
+\section{Secondary BERT layer analysis}
+We checked each BERT layer as a secondary analysis. Every layer received its own
+threshold from training data. The validation scores below describe those layers
+but were not used to change our primary BERT choice.
+
+\begin{table}[h]
+\centering
+\caption{Individual BERT target layers.}
+\begin{tabular}{rrrrr}
+\toprule
+Layer & Threshold & Accuracy & Macro F1 & ROC-AUC \\
+\midrule
+\LayerMetricRows
+\bottomrule
+\end{tabular}
+\end{table}
+
+The individual-layer accuracy rises overall through layer 9 and then drops by
+layer 12. Layer 10 has the highest ROC-AUC among single layers. The pattern is
+consistent with using information from later layers, although our last-four
+choice had already been made on training data.
+
+\section{Error analysis}
+The 106 pairs missed by both main systems contain 54 that the GloVe target
+diagnostic also missed and 52 that it happened to answer correctly. BERT made
+210 mistakes in all. Of these, 33 were very close to its threshold, within
+0.025, while 53 were among the quarter with the largest distances from it.
+
+BERT recalled 77.43\% of same-meaning pairs and 56.74\% of different-meaning
+pairs. The corresponding figures for GloVe context were 46.39\% and 64.58\%.
+Among our saved examples, BERT separated an anatomical \emph{ball}/\emph{balls}
+pair that has the same meaning. It placed different meanings of \emph{engrave}
+and \emph{map} close together. It also brought together the same meaning in
+\emph{rust remover} and \emph{paint remover}. These examples help us inspect
+the mistakes, but they cannot establish a cause for them.
+
+\section{Reproducibility record}
+We first ran the full BERT pass on an NVIDIA GeForce RTX 3050 Ti Laptop GPU.
+On 29 September 2026, we ran it again on an Apple Silicon CPU using the same
+WiC release, GloVe vectors, and pinned BERT revision. All 638 primary
+predictions and the reported intervals matched the saved run. The cosine
+scores had small hardware-level numerical differences. The repository includes
+our locked dependencies, configuration, commands, and saved results.
+
+\section{Limitations}
+This experiment uses one English benchmark and one frozen BERT base model. The
+bootstrap intervals vary the sampled validation pairs; they do not cover every
+choice we made while designing the study. The GloVe average leaves out word
+order and syntax, and one cutoff may hide useful differences between words.
+The unpublished test labels prevented us from calculating a test result.
+
+\section{Author contributions and use of AI tools}
+We selected WiC, set up the three conditions, chose the pretrained GloVe and
+BERT models, and made the configuration and threshold decisions from training
+data. We ran the dataset checks and the evaluation, and we checked the reported
+numbers and graphs against our saved results. We did not train or fine-tune
+model weights.
+
+We wrote the research content, poster explanations, and interpretations
+together. We used Canva while planning the poster layout and GLM to help with
+some LaTeX layout code. OpenAI Codex assisted us as a coding partner, including
+debugging, generating the LaTeX tables from our result files, and checking the
+PDFs. It also suggested more formal phrasing in parts of this appendix. We read
+those suggestions, corrected the wording, and checked that the tables and
+claims still match our own experiment. The explanatory text in Sections 1--9
+contains this AI-assisted phrasing. We remain responsible for the final code,
+text, figures, and submission.
+
+\clearpage
+\addcontentsline{toc}{section}{References}
+\begin{thebibliography}{2}
+\bibitem{survey} J. Camacho-Collados and M. T. Pilehvar. From Word to Sense
+Embeddings: A Survey on Vector Representations of Meaning. \emph{JAIR}, 2018.
+\url{https://doi.org/10.1613/jair.1.11259}.
+\bibitem{wic} M. T. Pilehvar and J. Camacho-Collados. WiC: The Word-in-Context
+Dataset for Evaluating Context-Sensitive Meaning Representations. NAACL, 2019.
+\url{https://doi.org/10.18653/v1/N19-1128}.
+\end{thebibliography}
+
+\clearpage
+\includepdf[pages=-]{../declaration_1910474_signed.pdf}
+\includepdf[pages=-]{../declaration_1911272_signed.pdf}
+\end{document}

@@ -1,0 +1,58 @@
+{
+  "bert": {
+    "batch_size": 16,
+    "max_length": 256,
+    "model": "google-bert/bert-base-uncased",
+    "primary_candidates": [
+      "layer_12",
+      "mean_last_four"
+    ],
+    "revision": "f584a14f45f850d60d0036d54f3e4dfdb3d52075"
+  },
+  "data": {
+    "processed_dir": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\data\\processed",
+    "raw_dir": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\data\\raw",
+    "sha256": "ee7e67f4ae9eafbf533780faa198e62167f3cda54256cdf261877be3c0e90900",
+    "test_split": "test",
+    "train_split": "train",
+    "url": "https://dl.fbaipublicfiles.com/glue/superglue/data/v2/WiC.zip",
+    "validation_split": "val"
+  },
+  "evaluation": {
+    "bootstrap_resamples": 1000,
+    "confidence_level": 0.95,
+    "threshold_objective": "macro_f1",
+    "tune_holdout_fraction": 0.2
+  },
+  "glove": {
+    "context_windows": [
+      2,
+      5,
+      10,
+      "sentence"
+    ],
+    "dimensions": 300,
+    "member": "glove.6B.300d.txt",
+    "sha256": "617afb2fe6cbd085c235baf7a465b96f4112bd7f7ccb2b2cbd649fed9cbcf2fb",
+    "url": "https://nlp.stanford.edu/data/glove.6B.zip"
+  },
+  "limits": {
+    "train": null,
+    "validation": null
+  },
+  "output": {
+    "cache_dir": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\data\\cache",
+    "examples_dir": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\results\\examples",
+    "figures_dir": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\figures",
+    "final_results_dir": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\results\\final",
+    "raw_results_dir": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\results\\raw"
+  },
+  "project_root": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project",
+  "runtime": {
+    "deterministic": true,
+    "device": "auto",
+    "num_workers": 0
+  },
+  "seed": 2026,
+  "source_path": "D:\\MSC - NLP\\SEM 1\\Trends in Natural Language Processing (1st parallel group)\\poster-project\\configs\\default.yaml"
+}

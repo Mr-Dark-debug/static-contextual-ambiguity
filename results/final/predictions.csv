@@ -1,0 +1,639 @@
+row,idx,word,sentence1,sentence2,target1,target2,label,glove_target_score,glove_target_prediction,glove_target_correct,glove_context_2_score,glove_context_2_prediction,glove_context_2_correct,bert_mean_last_four_score,bert_mean_last_four_prediction,bert_mean_last_four_correct
+0,0,class,An emerging professional class.,"Apologizing for losing your temper, even though you were badly provoked, showed real class.",class,class,False,1.0,True,False,0.4000397260862309,False,True,0.5982728914324936,True,False
+1,1,stripe,Businessmen of every stripe joined in opposition to the proposal.,They earned their stripes in Kuwait.,stripe,stripes,False,1.0,True,False,0.7198558440398746,True,False,0.4146529197601752,False,True
+2,2,check,As he called the role he put a check mark by each student's name.,A check on its dependability under stress.,check,check,False,1.0,True,False,0.7387416429138303,True,False,0.5165559703215857,False,True
+3,3,brush,She gave her hair a quick brush.,The dentist recommended two brushes a day.,brush,brushes,True,1.0,True,True,0.6985577708264968,True,True,0.5724304300358317,False,False
+4,4,acquisition,The child's acquisition of language.,That graphite tennis racquet is quite an acquisition.,acquisition,acquisition,False,1.0,True,False,0.5423105977420546,False,True,0.5974593805632338,True,False
+5,5,thing,A thing of the spirit.,Things of the heart.,thing,Things,True,1.0,True,True,0.9295545777933742,True,True,0.6232866401187042,True,True
+6,6,minister,The minister said a prayer on behalf of the entire congregation.,Clergymen are usually called ministers in Protestant churches.,minister,ministers,True,1.0,True,True,0.6423681782791264,False,False,0.6247777072738334,True,True
+7,7,easiness,The very easiness of the deed held her back.,There was an easiness between them.,easiness,easiness,False,1.0,True,False,0.7601837352846496,True,False,0.7981584129708791,True,False
+8,8,contradistinction,Sculpture in contradistinction to painting.,We used hamburgers and soda in contradistinction to healthy food.,contradistinction,contradistinction,True,1.0,True,True,0.5320916191969493,False,False,0.7965818641075372,True,True
+9,9,home,Canadian tariffs enabled United States lumber companies to raise prices at home.,His home is New Jersey.,home,home,True,1.0,True,True,0.4429483160902255,False,False,0.40335158581302544,False,False
+10,10,inclination,The alkaline inclination of the local waters.,An inclination of his head indicated his agreement.,inclination,inclination,False,1.0,True,False,0.6787585014107318,True,False,0.48970061746412086,False,True
+11,11,assurance,An assurance of help when needed.,His assurance in his superiority did not make him popular.,assurance,assurance,False,1.0,True,False,0.6199094029987438,False,True,0.662138481060393,True,False
+12,12,save,The relief pitcher got credit for a save.,The goalie made a brilliant save.,save,save,True,1.0,True,True,0.7188405638625004,True,True,0.7817453465428048,True,True
+13,13,bang,He got a bang on the head.,They got a great bang out of it.,bang,bang,False,1.0,True,False,0.863539831069888,True,False,0.6545690341641341,True,False
+14,14,tremor,She felt a tremor in her stomach before going on stage.,Did you feel the tremor this morning?,tremor,tremor,False,1.0,True,False,0.8012984899462785,True,False,0.7148106176769878,True,False
+15,15,response,This situation developed in response to events in Africa.,His responses have slowed with age.,response,responses,False,1.0,True,False,0.6099218393283127,False,True,0.44852241942798277,False,True
+16,16,touch,He could not touch the meaning of the poem.,Helen Keller felt the physical world by touching people and objects around her.,touch,touching,False,1.0,True,False,0.7023775754464919,True,False,0.5980110125895682,True,False
+17,17,hail,Hail a cab.,He was hailed as a hero.,Hail,hailed,True,1.0,True,True,0.5912309029419404,False,False,0.38035095551324033,False,False
+18,18,rail,He was concerned with rail safety.,He traveled by rail.,rail,rail,True,1.0,True,True,0.4363995979124332,False,False,0.704096947347544,True,True
+19,19,obstacle,Lack of imagination is an obstacle to one's advancement.,The poverty of a district is an obstacle to good education.,obstacle,obstacle,True,1.0,True,True,0.9648481182509243,True,True,0.9249920800637099,True,True
+20,20,socialization,"Force socialization rarely creates strong friendships, but there are exceptions.",There was too much socialization with the enlisted men.,socialization,socialization,True,1.0,True,True,0.5835456285740521,False,False,0.7616606930948545,True,True
+21,21,rank,The strike was supported by the union rank and file.,He rose from the ranks to become a colonel.,rank,ranks,True,1.0,True,True,0.7285888641223114,True,True,0.4044478867790761,False,False
+22,22,bend,The stick does not bend.,Bend your knees.,bend,Bend,False,1.0,True,False,0.41440582763540745,False,True,0.5929403284013516,True,False
+23,23,buy,$50 won't even buy a dress.,FMC has bought 565.,buy,bought,True,1.0,True,True,0.028118989881798583,False,False,0.5855035162183646,True,True
+24,24,youth,Youth everywhere rises in revolt.,Her youth and beauty is what attracted him to her.,Youth,youth,False,1.0,True,False,0.30975088331481315,False,True,0.6046022641359439,True,False
+25,25,lay,To lay a tax on land.,Lay a responsibility on someone.,lay,Lay,True,1.0,True,True,0.6984916159222048,True,True,0.6774446819066803,True,True
+26,26,leave,Leave lots of time for the trip.,This leaves no room for improvement.,Leave,leaves,True,1.0,True,True,0.6065875997186476,False,False,0.47618949912478414,False,False
+27,27,aliyah,Students making aliyah.,He was called on for an aliyah.,aliyah,aliyah,False,1.0,True,False,0.5615406165300572,False,True,0.8810209167422071,True,False
+28,28,violate,Violate the sanctity of the church.,This sentence violates the rules of syntax.,Violate,violates,False,1.0,True,False,0.5433799290038009,False,True,0.5858625448389739,True,False
+29,29,pencil,An eyebrow pencil.,This artist's favorite medium is pencil.,pencil,pencil,False,1.0,True,False,0.29133875614873367,False,True,0.6594548845327037,True,False
+30,30,invasion,An invasion of locusts.,An invasion of tourists.,invasion,invasion,True,1.0,True,True,0.7598365611030431,True,True,0.8582632972524726,True,True
+31,31,answer,Answer the question.,She didn't want to answer.,Answer,answer,True,1.0,True,True,0.6063240573853711,False,False,0.5003010099968819,False,False
+32,32,smoothness,The weather system of the Pacific is determined by the uninterrupted smoothness of the ocean.,His oily smoothness concealed his guilt from the police.,smoothness,smoothness,False,1.0,True,False,0.3629528528749316,False,True,0.6190642234566339,True,False
+33,33,adhocracy,The need for informational flexibility can lead to adhocracy.,The choice between bureaucracy and adhocracy represents a common dilemma.,adhocracy,adhocracy,True,1.0,True,True,0.4978634208119952,False,False,0.803967743608249,True,True
+34,34,allowance,The captain was obliged to allowance his crew.,Our provisions were allowanced.,allowance,allowanced,True,1.0,True,True,0.43496685283600955,False,False,0.7031848545850228,True,True
+35,35,lie,Lie down on the bed until you feel better.,She lied when she told me she was only 29.,Lie,lied,False,1.0,True,False,0.5219297058160213,False,True,0.3774186410795437,False,True
+36,36,shtik,He's a shtik crazy.,How did you ever fall for a shtik like that?,shtik,shtik,False,1.0,True,False,0.7333161031159874,True,False,0.8748797751508871,True,False
+37,37,squeaker,Which hinge is the squeaker?,Those sneakers are squeakers.,squeaker,squeakers,True,1.0,True,True,0.3711302966290389,False,False,0.7795057821608153,True,True
+38,38,touch,He has a touch of rheumatism.,He longed for the touch of her hand.,touch,touch,False,1.0,True,False,0.752462280010812,True,False,0.42658633537687124,False,True
+39,39,walk,After the blizzard he shoveled the front walk.,Walking is a healthy form of exercise.,walk,Walking,False,1.0,True,False,0.543342186278544,False,True,0.49124562552497436,False,True
+40,40,average,"If you average 10, 20 and 24, you get 18.",The number of hours I work per work averages out to 40.,average,averages,False,1.0,True,False,0.7713791173267507,True,False,0.5080891916733543,False,True
+41,41,get,The operator couldn't get Kobe because of the earthquake.,I'll get this finished by lunchtime.,get,get,False,1.0,True,False,0.4331372064723159,False,True,0.3940986273065024,False,True
+42,42,part,The government must do its part.,Religions in all parts of the world.,part,parts,False,1.0,True,False,0.7321169042833561,True,False,0.31091489434437547,False,True
+43,43,earshot,I'll row out on the lake but stay within earshot.,The children were told to stay within earshot.,earshot,earshot,True,1.0,True,True,0.9999999999999999,True,True,0.8748353911798163,True,True
+44,44,strike,Strike an arc.,The clock struck midnight.,Strike,struck,False,1.0,True,False,0.4063192291033532,False,True,0.3790230507548504,False,True
+45,45,department,His work established a new department of literature.,Baking is not my department.,department,department,True,1.0,True,True,0.5344354956639777,False,False,0.5663058400878325,False,False
+46,46,border,The rug had a wide blue border.,The borders of the garden.,border,borders,True,1.0,True,True,0.4227929400181482,False,False,0.5522246254830786,False,False
+47,47,maneuver,He made a great maneuver.,Parallel parking can be a difficult maneuver.,maneuver,maneuver,True,1.0,True,True,0.7729282628747258,True,True,0.7294168076583958,True,True
+48,48,look,A look of triumph.,His look was fixed on her eyes.,look,look,False,1.0,True,False,0.5663597940455944,False,True,0.6385615614383531,True,False
+49,49,excite,Excite the neurons.,The fireworks which opened the festivities excited anyone present.,Excite,excited,False,1.0,True,False,0.3808735984708754,False,True,0.4284198860097561,False,True
+50,50,landing,The plane made a smooth landing.,His landing on his feet was catlike.,landing,landing,True,1.0,True,True,0.39067017811550403,False,False,0.589589960761251,True,True
+51,51,strand,A strand of pearls.,He tried to pick up the strands of his former life.,strand,strands,False,1.0,True,False,0.670178149627264,True,False,0.49509774542498075,False,True
+52,52,shot,He trained at putting the shot.,"The shot flew twenty metres, and nearly landed on the judge's foot.",shot,shot,True,1.0,True,True,0.6143550558933355,False,False,0.7940245986849442,True,True
+53,53,spread,The invaders spread their language all over the country.,A big oil spot spread across the water.,spread,spread,False,1.0,True,False,0.554410691863509,False,True,0.578689725413948,False,True
+54,54,custody,He was mistreated while in police custody.,He is in the custody of police.,custody,custody,True,1.0,True,True,0.8947444769545975,True,True,0.8443415843424217,True,True
+55,55,clime,Plants from a cold clime travel best in winter.,"After working hard all of his life, Max retired to warmer climes in Florida.",clime,climes,True,1.0,True,True,0.6340848878505367,False,False,0.6704846346161241,True,True
+56,56,clap,The children began to clap in time with the music.,The big bird clapped its wings.,clap,clapped,False,1.0,True,False,0.5346955508633723,False,True,0.6445831353022556,True,False
+57,57,deliberation,It was the deliberation of his act that was insulting.,The deliberations of the jury.,deliberation,deliberations,False,1.0,True,False,0.8889881503524667,True,False,0.6940005711159045,True,False
+58,58,corner,He tripled to the rightfield corner.,The southeastern corner of the Mediterranean.,corner,corner,True,1.0,True,True,0.3816554568435903,False,False,0.4393455837064177,False,False
+59,59,misdirect,Misdirect the letter.,The pedestrian misdirected the out-of-town driver.,Misdirect,misdirected,False,1.0,True,False,0.6397813914099778,False,True,0.778481401489414,True,False
+60,60,say,What does the law say?,The clock says noon.,say,says,False,1.0,True,False,0.5050036521527561,False,True,0.5045799816977137,False,True
+61,61,configure,Configure a plane for a combat mission.,Configure my new computer.,Configure,Configure,True,1.0,True,True,0.4501359033414662,False,False,0.8558031443318936,True,True
+62,62,pay,He wasted his pay on drink.,Many employers have rules designed to keep employees from comparing their pays.,pay,pays,True,1.0,True,True,0.548383879981446,False,False,0.6168323457071907,True,True
+63,63,tap,Tap a keg of beer.,Tap a maple tree for its syrup.,Tap,Tap,True,1.0,True,True,0.4806112333160597,False,False,0.8087223517082935,True,True
+64,64,sexualize,Some languages sexualize all nouns and do not have a neuter gender.,The god was sexualized and married to another god.,sexualize,sexualized,True,1.0,True,True,0.36622113517259564,False,False,0.7274000555284315,True,True
+65,65,board,The board has seven members.,He got out the board and set up the pieces.,board,board,False,1.0,True,False,0.8151303914825158,True,False,0.4788146238008603,False,True
+66,66,update,I need to update my records to take account of the most recent transaction.,We updated the kitchen in the old house.,update,updated,True,1.0,True,True,0.732389586633003,True,True,0.6277393216992916,True,True
+67,67,reinstatement,Her reinstatement to her former office followed quickly.,Many people are unhappy with the sacking of the chief constable and demand his immediate reinstatement.,reinstatement,reinstatement,False,1.0,True,False,0.6461765017470352,False,True,0.7444060854176827,True,False
+68,68,falsity,The belief that the world is flat is a falsity.,Argument could not determine its truth or falsity.,falsity,falsity,True,1.0,True,True,0.5078227853626381,False,False,0.7494118289699263,True,True
+69,69,escalation,Higher wages caused an escalation of prices.,There was a gradual escalation of hostilities.,escalation,escalation,True,1.0,True,True,0.6128660979097973,False,False,0.7915879006581565,True,True
+70,70,sophistication,He practiced the art of sophistication upon reason.,Understanding affine transformations requires considerable mathematical sophistication.,sophistication,sophistication,False,1.0,True,False,0.44985606094919045,False,True,0.6861504220104662,True,False
+71,71,bridge,Her glasses left marks on the bridge of her nose.,Rugby players often break the bridge of their noses.,bridge,bridge,True,1.0,True,True,0.8819768626633095,True,True,0.7857029073835473,True,True
+72,72,watch,Put a little baking soda in some vinegar and watch what happens.,The world is watching Sarajevo.,watch,watching,False,1.0,True,False,0.4797052784438498,False,True,0.5190651123846873,False,True
+73,73,grind,Grind lenses for glasses and cameras.,Grind an axe.,Grind,Grind,True,1.0,True,True,0.24596557863484106,False,False,0.771309902584637,True,True
+74,74,avail,It will avail them to dispose of their booty.,He availed himself of the available resources.,avail,availed,False,1.0,True,False,0.6711519616592749,True,False,0.5386195585152489,False,True
+75,75,excuse,That thing is a poor excuse for a gingerbread man. Hasn't anyone taught you how to bake?,He's a sorry excuse of a doctor.,excuse,excuse,True,1.0,True,True,0.8720319889215755,True,True,0.7082509017832898,True,True
+76,76,denizen,The bald eagle is a denizen of the northern part of the state.,The giant squid is one of many denizens of the deep.,denizen,denizens,False,1.0,True,False,0.8666841202219144,True,False,0.7690799774734941,True,False
+77,77,need,I need him to be nice.,I needed him to go.,need,needed,True,1.0,True,True,0.9999999999999996,True,True,0.6824631121688333,True,True
+78,78,wine,She ordered some wine for the meal.,Wine is stronger than beer.,wine,Wine,True,1.0,True,True,0.5194184615222641,False,False,0.6956325148379717,True,True
+79,79,plan,Plan an attack.,He plans to be in graduate school next year.,Plan,plans,False,1.0,True,False,0.5864687868552741,False,True,0.33017843158353327,False,True
+80,80,bite,Gunny invariably tried to bite her.,"As soon as you bite that sandwich, you'll know how good it is.",bite,bite,True,1.0,True,True,0.6270274150427096,False,False,0.565033789316234,False,False
+81,81,sense,Particle detectors sense ionization.,She immediately sensed her disdain.,sense,sensed,False,1.0,True,False,-0.054035814916393816,False,True,0.4959974830916828,False,True
+82,82,explanation,The explanation was very simple.,The explanation was long and drawn-out.,explanation,explanation,True,1.0,True,True,0.911911708090286,True,True,0.8964989721444643,True,True
+83,83,slip,Slip into something comfortable.,My grades are slipping.,Slip,slipping,False,1.0,True,False,0.38519794440545474,False,True,0.4241876732383845,False,True
+84,84,relief,He has been on relief for many years.,Was the relief supposed to be protection from future harm or compensation for past injury?,relief,relief,False,1.0,True,False,0.7446556415285246,True,False,0.6100760866465328,True,False
+85,85,authority,She lost all her respect and authority after turning up drunk to the meeting.,This book is the final authority on the life of Milton.,authority,authority,False,1.0,True,False,0.678963734088565,True,False,0.4283776493115069,False,True
+86,86,forge,We decided to forge ahead with our plans even though our biggest underwriter backed out.,He forged ahead.,forge,forged,True,1.0,True,True,0.807703835093103,True,True,0.6371953013283591,True,True
+87,87,cross,A mule is a cross between a horse and a donkey.,That is his cross to bear.,cross,cross,False,1.0,True,False,0.6945306257666963,True,False,0.38622513086797555,False,True
+88,88,shower,The game was interrupted by a brief shower.,A little shower of rose petals.,shower,shower,False,1.0,True,False,0.6544925786787925,True,False,0.4754702868424899,False,True
+89,89,crisis,They went bankrupt during the economic crisis.,After the crisis the patient either dies or gets better.,crisis,crisis,False,1.0,True,False,0.6869342297354641,True,False,0.6577000787448757,True,False
+90,90,diet,The diet of the Giant Panda consists mainly of bamboo.,He's been reading a steady diet of nonfiction for the last several years.,diet,diet,False,1.0,True,False,0.6357710111812148,False,True,0.5157644898636123,False,True
+91,91,recrudescence,A recrudescence of racism.,A recrudescence of the symptoms.,recrudescence,recrudescence,True,1.0,True,True,0.8317315349204015,True,True,0.8750728996595571,True,True
+92,92,leave,Leave your child the nurse's care.,He left the decision to his deputy.,Leave,left,True,1.0,True,True,0.47895322067415125,False,False,0.5659405865173989,False,False
+93,93,incorporate,Incorporate this document with those pertaining to the same case.,The company was incorporated in 1980.,Incorporate,incorporated,False,1.0,True,False,0.5232757662179786,False,True,0.4005897326050397,False,True
+94,94,promulgation,The promulgation was written in English.,His promulgation of the policy proved to be premature.,promulgation,promulgation,False,1.0,True,False,0.7534692645807256,True,False,0.7601821073114444,True,False
+95,95,hostility,He could not conceal his hostility.,He could no longer contain his hostility.,hostility,hostility,False,1.0,True,False,0.7002128052330688,True,False,0.9544489329484064,True,False
+96,96,bottom,They started at the bottom of the hill.,They did much of their overseas trade in foreign bottoms.,bottom,bottoms,False,1.0,True,False,0.6180583639565238,False,True,0.3412534366747707,False,True
+97,97,mate,He's my best mate.,I'm going to the pub with a few mates.,mate,mates,True,1.0,True,True,0.5255800022236565,False,False,0.5807888280503672,False,False
+98,98,distribute,The publisher wants to distribute the book in Asia.,The function distributes the values evenly.,distribute,distributes,False,1.0,True,False,0.6734728205889519,True,False,0.45211983833328684,False,True
+99,99,remover,Rust remover.,Paint remover.,remover,remover,True,1.0,True,True,0.3522265344157602,False,False,0.9579303707305364,True,True
+100,100,forwarding,The forwarding of resumes to the personnel department.,The forwarding of mail to a new address is done automatically.,forwarding,forwarding,True,1.0,True,True,0.7883396482143658,True,True,0.7466679461546015,True,True
+101,101,worship,They worship in the traditional manner.,Many Hindus worship Shiva.,worship,worship,False,1.0,True,False,0.3533172713715464,False,True,0.7583816597269061,True,False
+102,102,play,They gave full play to the artist's talent.,It was all done in play.,play,play,False,1.0,True,False,0.6654541603603013,True,False,0.6061285129664716,True,False
+103,103,flush,Flush the meadows.,The sky flushed with rosy splendor.,Flush,flushed,False,1.0,True,False,0.4411899848907857,False,True,0.515980579012382,False,True
+104,104,probation,Probation is part of the sentencing process.,"You'll be on probation for first six months. After that, if you work out, they'll hire you permanently.",Probation,probation,False,1.0,True,False,0.5796949156547244,False,True,0.6752937029756694,True,False
+105,105,military,Their military is the largest in the region.,He spent six years in the military.,military,military,True,1.0,True,True,0.8419189682317137,True,True,0.738050176396212,True,True
+106,106,consult,They had to consult before arriving at a decision.,Consult your local broker.,consult,Consult,True,1.0,True,True,0.5034418766309418,False,False,0.5998156526027534,True,True
+107,107,education,A girl's education was less important than a boy's.,Education is a preparation for life.,education,Education,True,1.0,True,True,0.8433856635581671,True,True,0.7755050403123738,True,True
+108,108,liberty,At liberty to choose whatever occupation one wishes.,Liberty to think or feel or do just as one pleases.,liberty,Liberty,True,1.0,True,True,0.7941907624659349,True,True,0.790997200584195,True,True
+109,109,date,Scientists often can not date precisely archeological or prehistorical findings.,To date the building of the pyramids.,date,date,True,1.0,True,True,0.6099571863829816,False,False,0.7299392953277605,True,True
+110,110,vary,Prices vary.,His moods vary depending on the weather.,vary,vary,True,1.0,True,True,0.2836271560856607,False,False,0.8017011084384636,True,True
+111,111,breeze,The breeze rustled the papers on her desk.,The breeze was cooled by the lake.,breeze,breeze,True,1.0,True,True,0.5884484199330103,False,False,0.8074548330523813,True,True
+112,112,subsidy,A subsidy for research in artificial intelligence.,Manufacturing firms are supported by government subsidies in some countries.,subsidy,subsidies,True,1.0,True,True,0.6748872730452659,True,True,0.7015677031962833,True,True
+113,113,wrong,Injustice is a heinous wrong.,He feels that you are in the wrong.,wrong,wrong,True,1.0,True,True,0.3806753831568111,False,False,0.6160631652247716,True,True
+114,114,literature,One aspect of Waterloo has not yet been treated in the literature.,The technical literature.,literature,literature,True,1.0,True,True,0.6852740384956189,True,True,0.5910507322921731,True,True
+115,115,banish,Banish bad thoughts.,Banish gloom.,Banish,Banish,True,1.0,True,True,0.22387419348585855,False,False,0.8823867652661481,True,True
+116,116,carve,Carve one's name into the bark.,That chisel carved the statue.,Carve,carved,True,1.0,True,True,0.3970117610160742,False,False,0.5431092602561051,False,False
+117,117,caller,-- Who's the caller?,There were so many callers that he finally disconnected the telephone.,caller,callers,True,1.0,True,True,0.6311700093339444,False,False,0.7009646480410182,True,True
+118,118,drag,Time seems to drag when you're waiting for a bus.,The speech dragged on for two hours.,drag,dragged,False,1.0,True,False,0.6921432959929066,True,False,0.5657087417075128,False,True
+119,119,breakdown,"After so much stress, he suffered a breakdown and simply gave up.",His warning came after the breakdown of talks in London.,breakdown,breakdown,False,1.0,True,False,0.6806261262650664,True,False,0.5574197003788706,False,True
+120,120,lecture,Did you ever lecture at Harvard?,She lectured to the class about her travels.,lecture,lectured,True,1.0,True,True,0.692561230677686,True,True,0.6138198019170045,True,True
+121,121,circumference,A danger to all races over the whole circumference of the globe.,He had walked the full circumference of his land.,circumference,circumference,True,1.0,True,True,0.8734255381303032,True,True,0.8597221308272109,True,True
+122,122,choke,Choke a carburetor.,This neckband is choking the cat.,Choke,choking,False,1.0,True,False,0.3112252581225986,False,True,0.6315113593507016,True,False
+123,123,calibrate,Calibrate a gun.,He calibrated the thermometer for the Celsius scale.,Calibrate,calibrated,False,1.0,True,False,0.4584566638817772,False,True,0.6984561737590856,True,False
+124,124,fail,Did I fail the test?,She studied hard but failed nevertheless.,fail,failed,True,1.0,True,True,0.7220033819548287,True,True,0.5112915277915703,False,False
+125,125,push,You need to push quite hard to get this door open.,Nora pushed through the crowd.,push,pushed,True,1.0,True,True,0.45832827175936053,False,False,0.4450623530569028,False,False
+126,126,drop,It was a miracle that he survived the drop from that height.,"That was a long drop, but fortunately I didn't break any bones.",drop,drop,False,1.0,True,False,0.7492962234482974,True,False,0.7633099155568033,True,False
+127,127,char,"""Among other native delicacies, they give you fresh char."".","""I had to scrub the kitchen today, because the char couldn't come"".",char,char,False,1.0,True,False,0.6577273124090383,True,False,0.7799971784837603,True,False
+128,128,connection,The bus was late so he missed his connection at Penn Station and had to wait six hours for the next train.,The plane was late and he missed his connection in Atlanta.,connection,connection,True,1.0,True,True,0.7821166115807667,True,True,0.9114233004120575,True,True
+129,129,urgency,They departed hurriedly because of some great urgency in their affairs.,"I'll be there, barring any urgencies.",urgency,urgencies,True,1.0,True,True,0.47084357870857185,False,False,0.40996311368004984,False,False
+130,130,contact,I am trying to contact my sister.,He never contacted his children after he emigrated to Australia.,contact,contacted,True,1.0,True,True,0.7543231136336741,True,True,0.6473239943080636,True,True
+131,131,experience,A surprising experience.,Experience is the best teacher.,experience,Experience,False,1.0,True,False,0.6078272453950654,False,True,0.593378470246129,True,False
+132,132,segment,Segment a compound word.,Segment an orange.,Segment,Segment,True,1.0,True,True,0.4610327268279872,False,False,0.8720442089702376,True,True
+133,133,parade,"The floats and horses in the parade were impressive, but the marching bands were really amazing.",She made a parade of her sorrows.,parade,parade,False,1.0,True,False,0.743219112722563,True,False,0.5435889984745906,False,True
+134,134,power,He needed a lot of power to hit the ball out of the stadium.,The mysterious presence of an evil power.,power,power,False,1.0,True,False,0.4523327017216696,False,True,0.5630377927010364,False,True
+135,135,affiliation,A valuable financial affiliation.,Welcomed the affiliation of the research center with the university.,affiliation,affiliation,False,1.0,True,False,0.4201237161005887,False,True,0.6303047440705644,True,False
+136,136,allowance,My weekly allowance of two eggs.,Travel allowance.,allowance,allowance,True,1.0,True,True,0.3961576496132919,False,False,0.6161117554313803,True,True
+137,137,branch,We opened a new branch in London.,Our main branch is downtown.,branch,branch,True,1.0,True,True,0.6187511436790548,False,False,0.8113862533154731,True,True
+138,138,delay,Instant replay caused too long a delay.,The delay before the echo of a sound.,delay,delay,False,1.0,True,False,0.620724116180888,False,True,0.7476960456448724,True,False
+139,139,addition,The addition of a leap day every four years.,The addition of a bathroom was a major improvement.,addition,addition,False,1.0,True,False,0.9999999999999993,True,False,0.6412512259026721,True,False
+140,140,liberate,To liberate the mind from prejudice.,To liberate gases.,liberate,liberate,True,1.0,True,True,0.574672742935322,False,False,0.7892676458758056,True,True
+141,141,bell,Bell cows.,Who will bell the cat?,Bell,bell,True,1.0,True,True,0.22077552104613107,False,False,0.624389981704457,True,True
+142,142,disable,Disable this command on your computer.,He was disabled in a car accident.,Disable,disabled,False,1.0,True,False,0.6205629011960417,False,True,0.3408405050935656,False,True
+143,143,listen,Please listen carefully as I explain.,I like to listen to music.,listen,listen,True,1.0,True,True,0.6058785165978798,False,False,0.5140475105739519,False,False
+144,144,stop,Stop a car.,Stop the thief.,Stop,Stop,True,1.0,True,True,0.5352556583313272,False,False,0.7092886698329138,True,True
+145,145,figure,Elections figure prominently in every government program.,How do the elections figure in the current pattern of internal politics?,figure,figure,True,1.0,True,True,0.8466534699248917,True,True,0.6852797071587138,True,True
+146,146,marriage,A marriage of ideas.,The marriage of music and dance.,marriage,marriage,True,1.0,True,True,0.7570911996227178,True,True,0.7409667920202365,True,True
+147,147,dimple,The accident created a dimple in the hood of the car.,There are approximately 336 dimples on a golf ball.,dimple,dimples,True,1.0,True,True,0.6513211758959533,True,True,0.7621653331885353,True,True
+148,148,trailer,The trailer for that movie makes it seem like it would be fun.,"At the end of the day, we put the snowmobiles back on the trailer.",trailer,trailer,False,1.0,True,False,0.8374062629960629,True,False,0.5395650372099013,False,True
+149,149,intention,The intention of this legislation is to boost the economy.,Good intentions are not enough.,intention,intentions,True,1.0,True,True,0.684223369664859,True,True,0.4088804450751431,False,False
+150,150,mandate,Mandate a colony.,The new director of the school board mandated regular tests.,Mandate,mandated,False,1.0,True,False,0.3702226896982533,False,True,0.5702607643261862,False,True
+151,151,pull,It was a long pull but we made it.,He was sidelined with a hamstring pull.,pull,pull,False,1.0,True,False,0.5454224539055871,False,True,0.5722324874371141,False,True
+152,152,glaze,Glaze the bread with eggwhite.,The potter glazed the dishes.,Glaze,glazed,True,1.0,True,True,0.6761784340153107,True,True,0.6931974684391768,True,True
+153,153,sight,He was a familiar sight on the television.,They went to Paris to see the sights.,sight,sights,True,1.0,True,True,0.7642683109814862,True,True,0.5144114687878316,False,False
+154,154,keep,Can I keep my old stuffed animals?,She kept her maiden name after she married.,keep,kept,True,1.0,True,True,0.5859931950817729,False,False,0.5123568282956888,False,False
+155,155,plenty,There was plenty of food for everyone.,It must have cost plenty.,plenty,plenty,False,1.0,True,False,0.6479636981657666,False,True,0.5924248534174829,True,False
+156,156,oppression,The tyrant's oppression of the people.,The oppression of the poor by the aristocracy was one cause of the French Revolution.,oppression,oppression,True,1.0,True,True,0.9999999999999997,True,True,0.7975500281875545,True,True
+157,157,strain,Don't strain your mind too much.,The rope strained when the weight was attached.,strain,strained,False,1.0,True,False,0.5036097516018235,False,True,0.5526994863536722,False,True
+158,158,sensation,The news caused a sensation.,A sensation of touch.,sensation,sensation,False,1.0,True,False,0.7230856567110975,True,False,0.5073785801512251,False,True
+159,159,step,Always a step behind.,Keep in step with the fashions.,step,step,True,1.0,True,True,0.7717084246818171,True,True,0.38387659762202925,False,False
+160,160,shoot,Shoot cloth.,Shoot a star.,Shoot,Shoot,False,1.0,True,False,0.08442001494793354,False,True,0.7953488328753492,True,False
+161,161,hook,Hook a fish.,"He hooked a snake accidentally, and was so scared he dropped his rod into the water.",Hook,hooked,True,1.0,True,True,0.7360148550463148,True,True,0.6634760201356357,True,True
+162,162,homogenization,The homogenization of cream.,The network's homogenization of political news.,homogenization,homogenization,True,1.0,True,True,0.7351823014329392,True,True,0.6931818146061522,True,True
+163,163,building,The entire building complained about the noise.,The building of the bridge will be completed in a couple of weeks.,building,building,False,1.0,True,False,0.8262021665438065,True,False,0.4973792823382421,False,True
+164,164,gown,The relations between town and gown are always sensitive.,"In the perennial town versus gown battles, townies win some violent battles, but the collegians are winning the war.",gown,gown,True,1.0,True,True,0.482201587297123,False,False,0.7931826790084145,True,True
+165,165,delight,The new car is a delight.,His delight to see her was obvious to all.,delight,delight,False,1.0,True,False,0.5691655791877795,False,True,0.5769962055912152,False,True
+166,166,solemnize,"The couple chose to solemnize their relationship in a secular ceremony, instead of having a wedding.",The King solemnized this day of morning.,solemnize,solemnized,False,1.0,True,False,0.6389096741685928,False,True,0.7000812114368022,True,False
+167,167,scallop,Scallop the hem of the dress.,Scallop the meat.,Scallop,Scallop,False,1.0,True,False,0.3937678387246358,False,True,0.864035152082048,True,False
+168,168,success,His success in the marathon was unexpected.,The election was a remarkable success for the Whigs.,success,success,False,1.0,True,False,0.7945675778049172,True,False,0.6418132517324191,True,False
+169,169,refresher,The nap was a welcome refresher.,He stopped at the bar for a quick refresher.,refresher,refresher,True,1.0,True,True,0.7824374723641065,True,True,0.7291906765296571,True,True
+170,170,block,Block the signals emitted by this station.,The thick curtain blocked the action on the stage.,Block,blocked,False,1.0,True,False,0.5313270147191183,False,True,0.6059104333622995,True,False
+171,171,writing,Writing was a form of therapy for him.,The idea occurs with increasing frequency in Hemingway's writings.,Writing,writings,False,1.0,True,False,0.5842002962784195,False,True,0.5634636959384127,False,True
+172,172,studio,His studio was cramped when he began as an artist.,You don't need a studio to make a passport photograph.,studio,studio,True,1.0,True,True,0.5052380981897833,False,False,0.708789074664057,True,True
+173,173,harass,Harass the enemy.,This man harasses his female co-workers.,Harass,harasses,False,1.0,True,False,0.5653867467682353,False,True,0.60760509925096,True,False
+174,174,cost,The average cost of a new house is twice as much as t was 20 years ago.,The total cost of the new complex was an estimated $1.5 million.,cost,cost,True,1.0,True,True,0.8806116971395082,True,True,0.8407648523143472,True,True
+175,175,dip,Dip the brush into the paint.,She dipped her knee.,Dip,dipped,False,1.0,True,False,0.3735609994939367,False,True,0.4902538485212242,False,True
+176,176,fuel,"Fuel aircraft, ships, and cars.",Fuel the debate on creationism.,Fuel,Fuel,False,1.0,True,False,0.17712332902053865,False,True,0.5698710751268822,False,True
+177,177,frame,A lace frame.,His starved flesh hung loosely on his once imposing frame.,frame,frame,False,1.0,True,False,0.2819185895837678,False,True,0.5545839503855127,False,True
+178,178,segregate,Experiments show clearly that genes segregate.,Many towns segregated into new counties.,segregate,segregated,True,1.0,True,True,0.43330294746022957,False,False,0.34893001903660864,False,False
+179,179,sound,The main body of the sound ran parallel to the coast.,He strained to hear the faint sounds.,sound,sounds,False,1.0,True,False,0.5429380837627644,False,True,0.489712712758747,False,True
+180,180,pronunciation,That is the correct pronunciation.,The pronunciation of Chinese is difficult for foreigners.,pronunciation,pronunciation,True,1.0,True,True,0.6518721655637508,True,True,0.8271618547564847,True,True
+181,181,utter,Utter counterfeit currency.,He uttered strange sounds that nobody could understand.,Utter,uttered,False,1.0,True,False,0.07486878575266254,False,True,0.488335116957923,False,True
+182,182,joy,A joy to behold.,The joys and demands of parenthood.,joy,joys,False,1.0,True,False,0.4908234970255932,False,True,0.6164298826077033,True,False
+183,183,dinner,Guests should never be late to a dinner party.,On Sundays they had a large dinner when they returned from church.,dinner,dinner,False,1.0,True,False,0.7646509231943275,True,False,0.7514546532993976,True,False
+184,184,mess,I mess with the wardroom officers.,The afternoon breeze messed up my hair.,mess,messed,False,1.0,True,False,0.6813231831771224,True,False,0.48567818116765515,False,True
+185,185,reverence,The French treat food with gentle reverence.,The Chinese reverence for the dead.,reverence,reverence,True,1.0,True,True,0.4369039839823684,False,False,0.7053840425995854,True,True
+186,186,load,Load a car.,Load the truck with hay.,Load,Load,True,1.0,True,True,0.756315414477753,True,True,0.859075778167804,True,True
+187,187,floss,She flossed her teeth.,The hygienist flossed my teeth.,flossed,flossed,True,1.0,True,True,0.7539359912862854,True,True,0.8197683418985142,True,True
+188,188,resolution,Printing at higher resolution will cause a reduction in performance.,They never did achieve a final resolution of their differences.,resolution,resolution,False,1.0,True,False,0.6445367301066023,False,True,0.407576471683746,False,True
+189,189,gauntlet,Threw down the gauntlet.,Took up the gauntlet.,gauntlet,gauntlet,True,1.0,True,True,0.9061408993329931,True,True,0.9413077712448792,True,True
+190,190,board,Room and board.,He nailed boards across the windows.,board,boards,False,1.0,True,False,0.6289994735769007,False,True,0.43285198097814753,False,True
+191,191,eliminate,Let's eliminate the course on Akkadian hieroglyphics.,This possibility can be eliminated from our consideration.,eliminate,eliminated,False,1.0,True,False,0.6479103700320168,False,True,0.7210696668238238,True,False
+192,192,stab,He took a stab at forecasting.,She felt a stab of excitement.,stab,stab,False,1.0,True,False,0.6103254699093759,False,True,0.5533855180848933,False,True
+193,193,kick,The kick must be synchronized with the arm movements.,A sidecar is a smooth drink but it has a powerful kick.,kick,kick,False,1.0,True,False,0.5366776657529474,False,True,0.7416493857714387,True,False
+194,194,professionalization,The professionalization of warfare.,The professionalization of American sports.,professionalization,professionalization,True,1.0,True,True,0.8005861812691868,True,True,0.867927056520667,True,True
+195,195,rush,The linebackers were ready to stop a rush.,Come back after the rush.,rush,rush,False,1.0,True,False,0.6642614016936577,True,False,0.6867631315472809,True,False
+196,196,tipper,A generous tipper.,The Americans are among the most generous tippers in the world.,tipper,tippers,True,1.0,True,True,0.7412969976526401,True,True,0.7005441361286823,True,True
+197,197,seem,I seem to be misunderstood by everyone.,There seems no reason to go ahead with the project now.,seem,seems,False,1.0,True,False,0.7149963756363066,True,False,0.6138186983663223,True,False
+198,198,bull,To bull railroad bonds.,He bulled his way in.,bull,bulled,False,1.0,True,False,0.4567585015036622,False,True,0.38850213397739725,False,True
+199,199,horse,A clothes horse.,500 horse led the attack.,horse,horse,False,1.0,True,False,0.40323078088791,False,True,0.6264166172167381,True,False
+200,200,section,The history of this work is discussed in the next section.,A graduate student taught sections for the professor's lecture course.,section,sections,False,1.0,True,False,0.68010765348043,True,False,0.4787623477692502,False,True
+201,201,shake,Shake the salt out of the salt shaker.,His hands shook.,Shake,shook,False,1.0,True,False,0.364245149094639,False,True,0.4175983879671298,False,True
+202,202,button,"The politician wore a bright yellow button with the slogan ""Vote Smart"" emblazoned on it.",They passed out campaign buttons for their candidate.,button,buttons,True,1.0,True,True,0.5866714821531851,False,False,0.616419280491668,True,True
+203,203,arousal,To influence the arousal of brain and behavior.,The purpose of art is the arousal of emotions.,arousal,arousal,True,1.0,True,True,0.820229907118613,True,True,0.8043535333712545,True,True
+204,204,pick,To pick rags.,Don't always pick on your little brother.,pick,pick,False,1.0,True,False,0.3956029366469012,False,True,0.42052244073570294,False,True
+205,205,reline,Reline the paper.,The old fur coat must be relined.,Reline,relined,False,1.0,True,False,0.4959755832424821,False,True,0.6521001990854544,True,False
+206,206,vote,I vote that we all go home.,She voted for going to the Chinese restaurant.,vote,voted,True,1.0,True,True,0.7935527019634602,True,True,0.584426097552526,True,True
+207,207,burn,Burn a CD.,My eyes are burning.,Burn,burning,False,1.0,True,False,0.3058341247016534,False,True,0.4356526247030852,False,True
+208,208,agency,The superintendence and agency of Providence in the natural world. -- Woodward.,The Central Intelligence Agency.,agency,Agency,False,1.0,True,False,0.3041994417719864,False,True,0.4125857958658573,False,True
+209,209,nude,They swam in the nude.,The marketing rule 'nude sells' spread from verbal to visual mainstream media in the 20th century.,nude,nude,False,1.0,True,False,0.45384346230484274,False,True,0.6104153462998863,True,False
+210,210,cup,He put the cup back in the saucer.,The handle of the cup was missing.,cup,cup,True,1.0,True,True,0.7974586805805424,True,True,0.8715154321545671,True,True
+211,211,largeness,The might have repercussions of unimaginable largeness.,A man distinguished by the largeness and scope of his views.,largeness,largeness,False,1.0,True,False,0.43878193943674554,False,True,0.6882123093875524,True,False
+212,212,capacity,Limited runway capacity.,He should be retained in his present capacity at a higher salary.,capacity,capacity,False,1.0,True,False,0.36267450234656023,False,True,0.350588128715652,False,True
+213,213,inject,Inject heroin.,He injected new life into the performance.,Inject,injected,False,1.0,True,False,0.14081418183388225,False,True,0.41991882326099966,False,True
+214,214,advantage,The enemy had the advantage of a more elevated position.,The experience gave him the advantage over me.,advantage,advantage,True,1.0,True,True,0.7755221351142346,True,True,0.7041738289210868,True,True
+215,215,story,The book tells the story of two roommates.,Disney's stories entertain adults as well as children.,story,stories,True,1.0,True,True,0.2494478509973687,False,False,0.5604285532750943,False,False
+216,216,reappearance,The reappearance of Halley's comet.,His reappearance as Hamlet has been long awaited.,reappearance,reappearance,False,1.0,True,False,0.5813036956318804,False,True,0.7489216211816889,True,False
+217,217,characterize,You can characterize his behavior as that of an egotist.,This poem can be characterized as a lament for a dead lover.,characterize,characterized,True,1.0,True,True,0.7830151782592123,True,True,0.6724673078166609,True,True
+218,218,club,Each club played six home games with teams in its own division.,He played the drums at a jazz club.,club,club,False,1.0,True,False,0.48400106006867427,False,True,0.4342501184016865,False,True
+219,219,square,The carpenter who built this room must have lost his square.,64 is the square of 8.,square,square,False,1.0,True,False,0.5533190694551962,False,True,0.598068479769087,True,False
+220,220,dig,They set up camp next to the dig.,She takes a dig at me every chance she gets.,dig,dig,False,1.0,True,False,0.6785003939973149,True,False,0.41845776414101743,False,True
+221,221,association,Conditioning is a form of learning by association.,Many close associations with England.,association,associations,False,1.0,True,False,0.5136025055837765,False,True,0.4447163646242148,False,True
+222,222,chemistry,The chemistry of indigo.,The chemistry of iron.,chemistry,chemistry,True,1.0,True,True,0.714499030047056,True,True,0.9539862717944481,True,True
+223,223,sequence,He played the trumps in sequence.,The doctor saw a sequence of patients.,sequence,sequence,False,1.0,True,False,0.34921661977776147,False,True,0.644066744371222,True,False
+224,224,impregnation,The impregnation of wood with preservative.,"The impregnation, whatever it was, had turned the rock blue.",impregnation,impregnation,False,1.0,True,False,0.7036921781000871,True,False,0.7864600874245814,True,False
+225,225,act,"She wants to act Lady Macbeth, but she is too young for the role.",I started acting at the age of eleven in my local theatre.,act,acting,True,1.0,True,True,0.4760078609280804,False,False,0.6840987362689069,True,True
+226,226,recruit,Recruit new soldiers.,The lab director recruited an able crew of assistants.,Recruit,recruited,False,1.0,True,False,0.46501303553408546,False,True,0.619432820773218,True,False
+227,227,acquaintance,I know of the man; but have no acquaintance with him.,I have trouble remembering the names of all my acquaintances.,acquaintance,acquaintances,False,1.0,True,False,0.7464207936003845,True,False,0.5263938532940683,False,True
+228,228,bag,Bag a few pheasants.,We bagged three deer yesterday.,Bag,bagged,True,1.0,True,True,0.6068826613580778,False,False,0.6662010913861249,True,True
+229,229,last,Summer seems to last longer each year.,The bad weather lasted for three days.,last,lasted,True,1.0,True,True,0.6638776239581012,True,True,0.6395970048647182,True,True
+230,230,finalize,Let's finalize the proposal.,"As soon as we get the plane tickets, we'll finalize our reservations with the hotel.",finalize,finalize,True,1.0,True,True,0.42856876255995324,False,False,0.8129270039178014,True,True
+231,231,admit,Admit someone to the profession.,She was admitted to the New Jersey Bar.,Admit,admitted,True,1.0,True,True,0.755639613203566,True,True,0.4368650128103603,False,False
+232,232,office,An executive or judical office.,During his first year in office.,office,office,False,1.0,True,False,0.06960698553254306,False,True,0.4845502368605836,False,True
+233,233,view,They look the same in outward view.,The most desirable feature of the park are the beautiful views.,view,views,False,1.0,True,False,0.37476245742237657,False,True,0.5279058474923521,False,True
+234,234,tool,"He was a tool, no more than a pawn to her.",I don't have the right tools to start fiddling around with the engine.,tool,tools,False,1.0,True,False,0.7203460149073715,True,False,0.47097484977751525,False,True
+235,235,heartbeat,The policeman waited for a heartbeat in vain.,He alone gives me such heartbeats.,heartbeat,heartbeats,True,1.0,True,True,0.5510746339382719,False,False,0.5533827673249895,False,False
+236,236,renovate,This will renovate my spirits.,They renovated the ceiling of the Sistine Chapel.,renovate,renovated,False,1.0,True,False,0.6503595296829842,False,True,0.5557660838653932,False,True
+237,237,branch,A branch of Congress.,We have branches in all major suburbs.,branch,branches,True,1.0,True,True,0.631376101881552,False,False,0.526743171256181,False,False
+238,238,tree,Her dog likes to tree squirrels.,This lot should be treed so that the house will be shaded in summer.,tree,treed,False,1.0,True,False,0.49228917145645906,False,True,0.5707359968448464,False,True
+239,239,curd,Bean curd.,Lemon curd.,curd,curd,True,1.0,True,True,0.3402185003751002,False,False,0.9474663571616905,True,True
+240,240,hell,War is hell.,The hell of battle.,hell,hell,False,1.0,True,False,0.7250031693470811,True,False,0.4914010670604291,False,True
+241,241,tradecraft,The CIA chief of station accepted responsibility for his agents' failures of tradecraft.,Instructional designers are trained in something that might be called tradecraft.,tradecraft,tradecraft,True,1.0,True,True,0.4031335964572403,False,False,0.7326527060289715,True,True
+242,242,believe,We didn't believe his stories from the War.,I believed his report.,believe,believed,True,1.0,True,True,0.8284331004789365,True,True,0.7445110849703948,True,True
+243,243,crop,The annual crop of students brings many new ideas.,The latest crop of fashions is about to hit the stores.,crop,crop,False,1.0,True,False,0.732810960860696,True,False,0.7466552892765767,True,False
+244,244,glow,A glow of regret.,The glow of new love.,glow,glow,True,1.0,True,True,0.7109773981438324,True,True,0.830167692704309,True,True
+245,245,wrangle,Wrangle horses.,"The bar keeper threw them out, but they continued to wrangle on down the street.",Wrangle,wrangle,False,1.0,True,False,0.22670300989031114,False,True,0.5950819232128766,True,False
+246,246,foundation,He lacks the foundation necessary for advanced study.,"The Wikimedia Foundation, Inc. is the parent organization of the Wiktionary collaborative project.",foundation,Foundation,False,1.0,True,False,0.4752827607790737,False,True,0.47401601024034473,False,True
+247,247,render,Render the brick walls in the den.,The face of the child is rendered with much tenderness in this painting.,Render,rendered,False,1.0,True,False,0.4966146381414416,False,True,0.5178411383891649,False,True
+248,248,date,His date never stopped talking.,The date for pleading.,date,date,False,1.0,True,False,0.551931828070364,False,True,0.47984307166303264,False,True
+249,249,occurrence,A disease of frequent occurrence.,The occurrence (or presence) of life on other planets.,occurrence,occurrence,True,1.0,True,True,0.6439086557415095,False,False,0.6103485508235438,True,True
+250,250,indent,Indent the documents.,Indent the paragraphs of a letter.,Indent,Indent,False,1.0,True,False,0.5732265723397433,False,True,0.9157713101295426,True,False
+251,251,wake,There's no weeping at an Irish wake.,The motorboat's wake capsized the canoe.,wake,wake,False,1.0,True,False,0.39275420135721395,False,True,0.5067518674987423,False,True
+252,252,ash,The woods planted in ash will see a different mix of species.,The ash trees are dying off.,ash,ash,True,1.0,True,True,0.7511930214532089,True,True,0.7629860205327202,True,True
+253,253,preponderance,The preponderance of good over evil.,The preponderance of wealth and power.,preponderance,preponderance,True,1.0,True,True,0.8507667313209983,True,True,0.938272903569412,True,True
+254,254,gig,They played a gig in New Jersey.,Our guitar player had another gig so we had to get a sub.,gig,gig,True,1.0,True,True,0.6953575329070868,True,True,0.624468781746912,True,True
+255,255,forbid,I forbid you to call me late at night.,The rules forbid it.,forbid,forbid,True,1.0,True,True,0.6647356813158326,True,True,0.6130357354010102,True,True
+256,256,cognate,"English is a cognate of Greek, German, Russian and Persian.","English and, Russian, Icelandic and Irish are all cognates.",cognate,cognates,True,1.0,True,True,0.5704837073664213,False,False,0.8703321580637,True,True
+257,257,house,He counted the house.,The house applauded.,house,house,True,1.0,True,True,0.6089226826595119,False,False,0.6387352790579669,True,True
+258,258,elapse,He allowed a month to elapse before beginning the work.,Several days elapsed before they met again.,elapse,elapsed,True,1.0,True,True,0.8587058266826779,True,True,0.7336601570162362,True,True
+259,259,license,The intolerable license with which the newspapers break ... the rules of decorum -- Edmund Burke.,When liberty becomes license dictatorship is near -- Will Durant.,license,license,True,1.0,True,True,0.5755978070082036,False,False,0.6030652674679826,True,True
+260,260,harbour,The city has an excellent natural harbour.,The neighbourhood is a well-known harbour for petty thieves.,harbour,harbour,False,1.0,True,False,0.41698064183604266,False,True,0.8413673395760108,True,False
+261,261,abuse,"All abuse, whether physical, verbal, psychological or sexual, is bad.",The child showed signs of physical abuse.,abuse,abuse,True,1.0,True,True,0.8120285946039972,True,True,0.8009377166864907,True,True
+262,262,extension,The dancer was praised for her uncanny extension.,Good extension comes from a combination of training and native ability.,extension,extension,True,1.0,True,True,0.350609729448719,False,False,0.8047298206129928,True,True
+263,263,domesticity,Making a hobby of domesticity.,A royal family living in unpretentious domesticity.,domesticity,domesticity,False,1.0,True,False,0.29341723197938735,False,True,0.8318407357826997,True,False
+264,264,strangle,The imperialist nation wanted to strangle the free trade between the two small countries.,A man in Boston has been strangling several dozen prostitutes.,strangle,strangling,False,1.0,True,False,0.5724345861639695,False,True,0.568697031788217,False,True
+265,265,bye,He had a bye in the first round.,Craig's Crew plays the bye next week.,bye,bye,True,1.0,True,True,0.7899864364546592,True,True,0.44894608724231544,False,False
+266,266,round,The round of the seasons.,The postman's rounds.,round,rounds,False,1.0,True,False,0.9649721350898334,True,False,0.5705959121914559,False,True
+267,267,distance,I could see it in the distance.,The distance from New York to Chicago.,distance,distance,False,1.0,True,False,0.8171028466021242,True,False,0.46027008689670823,False,True
+268,268,load,That's a load off my mind.,I'm worried that the load on that transformer will be too high.,load,load,False,1.0,True,False,0.7255122429845561,True,False,0.4768378240164361,False,True
+269,269,repair,One can never fully repair the suffering and losses of the Jews in the Third Reich.,She repaired her TV set.,repair,repaired,False,1.0,True,False,0.558344330626581,False,True,0.5746998432621819,False,True
+270,270,streak,A streak of wildness.,He has a stubborn streak.,streak,streak,True,1.0,True,True,0.6049526754076406,False,False,0.5740417791693396,False,False
+271,271,revenge,Indifference is the sweetest revenge.,"When I left my wife, she tried to set fire to the house in revenge.",revenge,revenge,True,1.0,True,True,0.36833628294226317,False,False,0.617976216712512,True,True
+272,272,dad,He hadn't seen his dad in years.,"Dad, happy Father's Day!",dad,Dad,True,1.0,True,True,0.3659396224886428,False,False,0.5879499053196368,True,True
+273,273,fuel,More fuel is needed during the winter months.,They developed alternative fuels for aircraft.,fuel,fuels,True,1.0,True,True,0.654943895027811,True,True,0.7188897368227745,True,True
+274,274,fondler,The woman charged that her jailer was a fondler.,Not all fondlers are sexual perverts.,fondler,fondlers,True,1.0,True,True,0.4781704975716104,False,False,0.7237351349027281,True,True
+275,275,flip,I'd flip if anyone broke my phone.,He flipped when he heard that he was accepted into Princeton University.,flip,flipped,False,1.0,True,False,0.6566799068538798,True,False,0.6413715554490035,True,False
+276,276,draw,The luck of the draw.,They anticipated a tough draw.,draw,draw,True,1.0,True,True,0.5136154508857753,False,False,0.6627974075813857,True,True
+277,277,poster,I saw a poster for it on the side of a bus.,A poster advertised the coming attractions.,poster,poster,True,1.0,True,True,0.8300402222122445,True,True,0.7634081998214253,True,True
+278,278,cuisine,The restaurant is noted for its excellent cuisine.,French cuisine is considered to be one of the world's most refined and elegant styles of cooking.,cuisine,cuisine,True,1.0,True,True,0.5340236308500594,False,False,0.7733230233955942,True,True
+279,279,tap,Tap a cask of wine.,He tapped a new barrel of beer.,Tap,tapped,True,1.0,True,True,0.4298677898701992,False,False,0.6529563554361066,True,True
+280,280,catch,I would love to have dinner but I have to catch a plane.,We caught something of his theory in the lecture.,catch,caught,False,1.0,True,False,0.7273736473106941,True,False,0.3896037059261656,False,True
+281,281,ticket,This car could be just the ticket for a small family.,Joe will be running on an anti-crime ticket.,ticket,ticket,False,1.0,True,False,0.42842925440075846,False,True,0.5552240702069962,False,True
+282,282,way,They didn't have much in the way of clothing.,We went our separate ways.,way,ways,False,1.0,True,False,0.5701002482185504,False,True,0.2441497178383673,False,True
+283,283,triangulate,Triangulate the piece of cardboard.,The land surveyor worked by triangulating the plot.,Triangulate,triangulating,False,1.0,True,False,0.6977437443655312,True,False,0.7722848534484323,True,False
+284,284,invite,Can I invite you for dinner on Sunday night?,The organizers invite submissions of papers for the conference.,invite,invite,False,1.0,True,False,0.5034054751713045,False,True,0.5487917602048341,False,True
+285,285,gesture,A political gesture.,A gesture of defiance.,gesture,gesture,True,1.0,True,True,0.721762638449473,True,True,0.8067209593116123,True,True
+286,286,average,He is about average in height.,The snowfall this month is below average.,average,average,True,1.0,True,True,0.7409846806876642,True,True,0.49740229797659535,False,False
+287,287,exalt,These paintings exalt the imagination.,The man was exalted from a humble carpenter to a minister.,exalt,exalted,False,1.0,True,False,0.4801876276493039,False,True,0.6087450743750031,True,False
+288,288,comb,Comb the wool.,Comb your hair before dinner.,Comb,Comb,True,1.0,True,True,0.4208603770205347,False,False,0.8361269762547698,True,True
+289,289,upset,Truman upset Dewey in the 1948 US presidential election.,The foreign team upset the local team.,upset,upset,True,1.0,True,True,0.219061608514538,False,False,0.6614609869652168,True,True
+290,290,convey,To convey information.,She conveyed the message to me.,convey,conveyed,True,1.0,True,True,0.6093951181144418,False,False,0.5989422278148782,True,True
+291,291,send,Send me your latest results.,Nora sent the book from Paris.,Send,sent,True,1.0,True,True,0.4415241935945152,False,False,0.5203327282332767,False,False
+292,292,death,The animal died a painful death.,He seemed more content in death than he had ever been in life.,death,death,False,1.0,True,False,0.4965542345189802,False,True,0.5291067679052951,False,True
+293,293,preparation,He left the preparation of meals to his wife.,The resolution of one dissonance is often the preparation for another dissonance.,preparation,preparation,False,1.0,True,False,0.7971383699877076,True,False,0.5563242463723037,False,True
+294,294,absorb,Absorb the costs for something.,He absorbed the knowledge or beliefs of his tribe.,Absorb,absorbed,False,1.0,True,False,0.6174127671581217,False,True,0.6247553239111636,True,False
+295,295,donate,Some of the members may donate privately.,She donates to her favorite charity every month.,donate,donates,True,1.0,True,True,0.5281710820798131,False,False,0.6903567396525802,True,True
+296,296,eccentricity,"For an ellipse, the eccentricity is the ratio of the distance from the center to a focus divided by the length of the semi-major axis.",A circle is an ellipse with zero eccentricity.,eccentricity,eccentricity,True,1.0,True,True,0.49861612519348,False,False,0.8331738439247341,True,True
+297,297,fiddle,Don't fiddle with the screws.,She always fiddles with her van on the weekend.,fiddle,fiddles,False,1.0,True,False,0.7141273868079892,True,False,0.5612217572802436,False,True
+298,298,taste,To ask at that particular time was the ultimate in bad taste.,He got a taste of life on the wild side.,taste,taste,False,1.0,True,False,0.70520379630376,True,False,0.34136839566242294,False,True
+299,299,point,Point a gun.,It's rude to point at other people.,Point,point,False,1.0,True,False,0.4178821464843281,False,True,0.5634169090498997,False,True
+300,300,nightlife,In the summer the nightlife shifts to the dance clubs.,A futile search for intelligent nightlife.,nightlife,nightlife,True,1.0,True,True,0.4333456188900194,False,False,0.7706924700191379,True,True
+301,301,stress,"Some people put the stress on the first syllable of ""controversy""; others put it on the second.",The intensity of stress is expressed in units of force divided by units of area.,stress,stress,False,1.0,True,False,0.6285264521626952,False,True,0.545879974513451,False,True
+302,302,piggyback,An amendment to piggyback the current law.,He piggybacked her child so she could see the show.,piggyback,piggybacked,False,1.0,True,False,0.5442316392513963,False,True,0.6164593178667465,True,False
+303,303,induction,He was ordered to report for induction into the army.,The induction of an anesthetic state.,induction,induction,False,1.0,True,False,0.8102460514202707,True,False,0.45337471253077694,False,True
+304,304,modify,Please modify this letter to make it more polite.,He modified his views on same-gender marriage.,modify,modified,True,1.0,True,True,0.45121158492289415,False,False,0.5142509954446584,False,False
+305,305,form,"By adding ""-ness"", you can form a noun from an adjective.",Form cylinders from the dough.,form,Form,False,1.0,True,False,0.2954310054213139,False,True,0.6449331085385468,True,False
+306,306,cost,These shoes cost $100.,The bill will cost them 500 million dollars.,cost,cost,True,1.0,True,True,0.6355790963834715,False,False,0.6786648774317345,True,True
+307,307,button,"Pat pushed the button marked ""shred"" on the blender.",The elevator was operated by push buttons.,button,buttons,True,1.0,True,True,0.5996019520318313,False,False,0.5683783596298506,False,False
+308,308,confusion,The army retreated in confusion.,A confusion of impressions.,confusion,confusion,False,1.0,True,False,0.32664294825547757,False,True,0.5736533883946365,False,True
+309,309,mess,The house was a mess.,My boss dumped a whole mess of projects on my desk today.,mess,mess,False,1.0,True,False,0.7359701645542954,True,False,0.6172123567589991,True,False
+310,310,blockage,"There was a blockage in the sewer, so we called out the plumber.",We had to call a plumber to clear out the blockage in the drainpipe.,blockage,blockage,False,1.0,True,False,0.8922023322929675,True,False,0.8680856351274321,True,False
+311,311,partnership,The action teams worked in partnership with the government.,"Effective language learning is a partnership between school, teacher and student.",partnership,partnership,True,1.0,True,True,0.7546178538736981,True,True,0.7339167877712707,True,True
+312,312,gap,Gap between income and outgo.,The exploring party went through the high gap in the mountains.,Gap,gap,False,1.0,True,False,0.536317254631756,False,True,0.5230097675733614,False,True
+313,313,touch,"Please can I have a look, if I promise not to touch?",Carrie touched his shoulder with the stick.,touch,touched,True,1.0,True,True,0.38856489485085477,False,False,0.39809530086321376,False,False
+314,314,delta,The Nile delta.,The Mississippi River delta.,delta,delta,True,1.0,True,True,0.5454416925796326,False,False,0.9189824180134655,True,True
+315,315,foot,We went there by foot because we could not afford a taxi.,There is a lot of foot traffic on this street.,foot,foot,True,1.0,True,True,0.7359262382949533,True,True,0.7328893107022083,True,True
+316,316,accumulate,He wishes to accumulate a sum of money.,Journals are accumulating in my office.,accumulate,accumulating,True,1.0,True,True,0.5227093207587462,False,False,0.4751506996336176,False,False
+317,317,metadata,Most websites contain metadata to tell the computer how to lay the words out on the screen.,A library catalog is metadata because it describes publications.,metadata,metadata,True,1.0,True,True,0.5800198686758887,False,False,0.7970304559353446,True,True
+318,318,ruin,This behavior will ruin your chances of winning the election.,The country lay ruined after the war.,ruin,ruined,False,1.0,True,False,0.586345647353083,False,True,0.5470000517258847,False,True
+319,319,daughter,"I already have a son, so I would like to have a daughter.",Her daughter cared for her in her old age.,daughter,daughter,True,1.0,True,True,0.5795135129878637,False,False,0.6753475028357476,True,True
+320,320,accession,Accession to such demands would set a dangerous precedent.,The librarian shelved the new accessions.,Accession,accessions,False,1.0,True,False,0.6296823829220423,False,True,0.544146365748475,False,True
+321,321,loose,Let loose mines.,Loose terrible plagues upon humanity.,loose,Loose,True,1.0,True,True,0.1640145794282316,False,False,0.6019636612654952,True,True
+322,322,wash,This silly excuse won't wash in traffic court.,The cat washes several times a day.,wash,washes,False,1.0,True,False,0.5073059815759012,False,True,0.4192650139923676,False,True
+323,323,mark,He left an indelible mark on the American theater.,It was in London that he made his mark.,mark,mark,True,1.0,True,True,0.5947709136405561,False,False,0.6798252140945407,True,True
+324,324,analyze,Analyze your real motives.,The inspector analyzed the building's soundness.,Analyze,analyzed,True,1.0,True,True,0.4045032175244429,False,False,0.5843817028907775,True,True
+325,325,chew,The steak was tough to chew as it had been cooked too long.,Chew your food and don't swallow it!,chew,Chew,True,1.0,True,True,0.5348488139713492,False,False,0.5830884844670035,True,True
+326,326,pocket,Lydia put the change in her left pocket.,Lydia pocketed the change.,pocket,pocketed,True,1.0,True,True,0.5422566784300036,False,False,0.5618513627485326,False,False
+327,327,section,There are three synagogues in the Jewish section.,Sections from the left ventricle showed diseased tissue.,section,Sections,False,1.0,True,False,0.6583120488063623,True,False,0.41070503139225584,False,True
+328,328,group,There is a group of houses behind the hill.,A group of people gathered in front of the Parliament to demonstrate against the Prime Minister's proposals.,group,group,True,1.0,True,True,0.8928325099473109,True,True,0.6001808609119902,True,True
+329,329,process,Process iron.,They processed into the dining room.,Process,processed,False,1.0,True,False,0.2410141486953208,False,True,0.41444675481114934,False,True
+330,330,inject,Inject hydrogen into the balloon.,Now lie back while we inject you with the anesthetic.,Inject,inject,False,1.0,True,False,0.3746358581137229,False,True,0.5525330938008772,False,True
+331,331,sultriness,The sultriness of her look was unmistakable.,The sultriness of lust was in the air.,sultriness,sultriness,True,1.0,True,True,0.8048473564809564,True,True,0.8257617043594193,True,True
+332,332,percolate,Percolate coffee.,I'll percolate some coffee.,Percolate,percolate,True,1.0,True,True,0.8319290941443757,True,True,0.7547344713948847,True,True
+333,333,clutch,To clutch power.,She clutched her purse.,clutch,clutched,True,1.0,True,True,0.37182384775678146,False,False,0.40173342840240145,False,False
+334,334,mire,To mire a horse or wagon.,Our people should not be mired in the past.,mire,mired,False,1.0,True,False,0.6907079753716863,True,False,0.5221295233159645,False,True
+335,335,instruction,Students receive instruction in the arts and sciences.,Instruction will be provided on how to handle difficult customers.,instruction,Instruction,True,1.0,True,True,0.6273366638198478,False,False,0.7048804312943407,True,True
+336,336,afflict,Afflict with the plague.,She was afflicted by the death of her parents.,Afflict,afflicted,False,1.0,True,False,0.7644803171556912,True,False,0.6192165705785552,True,False
+337,337,dish,They served me a dish of rice.,We gave them a set of dishes for a wedding present.,dish,dishes,False,1.0,True,False,0.8013757666801585,True,False,0.6859419700614677,True,False
+338,338,opinion,"In my opinion, white chocolate is better than milk chocolate.",I would like to know your opinions on the new systems.,opinion,opinions,True,1.0,True,True,0.7315653199217003,True,True,0.4622870120556027,False,False
+339,339,peak,The peak of perfection.,The view from the peak was magnificent.,peak,peak,False,1.0,True,False,0.7039418494948756,True,False,0.6120486102414189,True,False
+340,340,kinship,Anthropology's kinship with the humanities.,Felt a deep kinship with the other students.,kinship,kinship,True,1.0,True,True,0.8721777206016289,True,True,0.6627999134917174,True,True
+341,341,defense,They died in the defense of Stalingrad.,They were developed for the defense program.,defense,defense,True,1.0,True,True,0.6651256641856841,True,True,0.5218701385338513,False,False
+342,342,middle,"In the middle of the marathon, David collapsed from fatigue.",Rain during the middle of April.,middle,middle,False,1.0,True,False,0.9056266199667914,True,False,0.5197210173185379,False,True
+343,343,moderate,To moderate a synod.,John moderated the discussion.,moderate,moderated,True,1.0,True,True,0.5392076260213642,False,False,0.6594972616988535,True,True
+344,344,flick,Flick a piece of paper across the table.,He flicked his Bic.,Flick,flicked,False,1.0,True,False,0.38871495474898743,False,True,0.5444511722272479,False,True
+345,345,nowhere,He came out of nowhere.,They went on a cruise to nowhere.,nowhere,nowhere,True,1.0,True,True,0.47034950106483026,False,False,0.5884400804516439,True,True
+346,346,buzz,The buzz of excitement was so great that a formal denial was issued.,The buzz of a bumble bee.,buzz,buzz,False,1.0,True,False,0.8173854034324821,True,False,0.6706219357842679,True,False
+347,347,adoxography,"Elizabethan schoolboys were taught adoxography, the art of eruditely praising worthless things.",Adoxography is particularly useful to lawyers.,adoxography,Adoxography,True,1.0,True,True,0.5516988934385055,False,False,0.6847667176542993,True,True
+348,348,excite,There are drugs designed to excite certain nerves in our body.,Excite the audience.,excite,Excite,True,1.0,True,True,0.5109423532495408,False,False,0.6449384766959007,True,True
+349,349,preempt,Discussion of the emergency situation will preempt the lecture by the professor.,Live broadcast of the presidential debate preempts the regular news hour.,preempt,preempts,True,1.0,True,True,0.7005378840223649,True,True,0.7757105009754772,True,True
+350,350,winterize,Winterize cars.,Winterize your houses.,Winterize,Winterize,True,1.0,True,True,0.40678744830466007,False,False,0.8040981256663227,True,True
+351,351,conceive,She can not conceive.,Assisted procreation can help those trying to conceive.,conceive,conceive,True,1.0,True,True,0.681876433365243,True,True,0.8745371724986394,True,True
+352,352,militia,Their troops were untrained militia.,Congress shall have power to provide for calling forth the militia -- United States Constitution.,militia,militia,True,1.0,True,True,0.19427981580972495,False,False,0.7010668297903451,True,True
+353,353,stream,He felt a stream of air.,The hose ejected a stream of water.,stream,stream,True,1.0,True,True,0.77663636653766,True,True,0.7437995707128825,True,True
+354,354,amuse,I watch these movies because they amuse me.,The clown amused the children.,amuse,amused,True,1.0,True,True,0.6092669603507154,False,False,0.5378509185330006,False,False
+355,355,militarize,Militarize the Civil Service.,Militarize Germany again after the war.,Militarize,Militarize,False,1.0,True,False,0.3837082419505049,False,True,0.8724365710913268,True,False
+356,356,tear,He took the manuscript in both hands and gave it a mighty tear.,There were big tears rolling down Lisa's cheeks.,tear,tears,False,1.0,True,False,0.4809903080514637,False,True,0.6284285756979953,True,False
+357,357,snatch,Martin's snatch at the bridle failed and the horse raced away.,Overheard snatches of their conversation.,snatch,snatches,False,1.0,True,False,0.5725505934224419,False,True,0.42123884314382376,False,True
+358,358,activity,Catalytic activity.,They avoided all recreational activity.,activity,activity,False,1.0,True,False,0.045409517684555735,False,True,0.5176625828716889,False,True
+359,359,aptness,The aptness of men to follow example.,The aptness of iron to rust.,aptness,aptness,True,1.0,True,True,0.7943162732036287,True,True,0.8283106665020954,True,True
+360,360,toast,That toaster can make wonderful toasts.,I ate a piece of toast for breakfast.,toasts,toast,True,1.0,True,True,0.6211332965318287,False,False,0.5478023949318589,False,False
+361,361,construction,The engineer marvelled at his construction.,Construction is underway on the new bridge.,construction,Construction,False,1.0,True,False,0.3506096490205504,False,True,0.5469142492818032,False,True
+362,362,exchange,They had a bitter exchange.,An exchange of cattle for grain.,exchange,exchange,False,1.0,True,False,0.4080116738378767,False,True,0.5285354270593051,False,True
+363,363,safety,He ran to safety.,The reciprocal of safety is risk.,safety,safety,False,1.0,True,False,0.349175535921068,False,True,0.4749227362685924,False,True
+364,364,hold,Please hold a table at Maxim's.,Hold a table for us at 7:00.,hold,Hold,True,1.0,True,True,0.8490234124756006,True,True,0.71463449703915,True,True
+365,365,criticize,"Those who criticize others often are not perfect, either.",The paper criticized the new movie.,criticize,criticized,False,1.0,True,False,0.5632270206053642,False,True,0.6094360609560356,True,False
+366,366,fiefdom,The duke's fiefdom had been greatly expanded as a reward for his dutiful military service on behalf of the king.,"Most of our company's computers are standardized, but the IT director allows the employees in his own little fiefdom to specify their own machines.",fiefdom,fiefdom,False,1.0,True,False,0.6399494780084213,False,True,0.6394334922647438,True,False
+367,367,whimsy,Whimsy can be humorous to someone with time to enjoy it.,He had a whimsy about flying to the moon.,Whimsy,whimsy,True,1.0,True,True,0.5778346518690968,False,False,0.6824832781886917,True,True
+368,368,shadiness,There's too much shadiness to take good photographs.,The shadiness of their transactions.,shadiness,shadiness,False,1.0,True,False,0.6841880098410983,True,False,0.7405330416667119,True,False
+369,369,hitter,A hard hitter.,Blacksmiths are good hitters.,hitter,hitters,True,1.0,True,True,0.6237036713749033,False,False,0.7111305630261602,True,True
+370,370,toss,I'll toss you for it.,Steve tossed John the ball.,toss,tossed,True,1.0,True,True,0.5172863246691708,False,False,0.4623676755159272,False,False
+371,371,build,Build up confidence.,They had to build up their fortress to protect against attack.,Build,build,True,1.0,True,True,0.7114229730253925,True,True,0.6520950078766677,True,True
+372,372,fold,Fold up the newspaper.,Tony folded the flaps open.,Fold,folded,True,1.0,True,True,0.5181814762361351,False,False,0.587252696957707,True,True
+373,373,system,That language has a complex system for indicating gender.,They have to operate under a system they oppose.,system,system,True,1.0,True,True,0.7134455729166781,True,True,0.5934610771250299,True,True
+374,374,finish,My horse was several lengths behind at the finish.,The winner is the team with the most points at the finish.,finish,finish,True,1.0,True,True,0.9999999999999996,True,True,0.6371181971009063,True,True
+375,375,shuffle,"You shuffle, I'll deal.",Shuffle the cards.,shuffle,Shuffle,True,1.0,True,True,0.5112498566185267,False,False,0.6104635274309209,True,True
+376,376,operation,The plane's operation in high winds.,The power of its engine determines its operation.,operation,operation,True,1.0,True,True,0.5116697315230229,False,False,0.7211572900049223,True,True
+377,377,abridge,The new law might abridge our freedom of expression.,He had his rights abridged by the crooked sheriff.,abridge,abridged,True,1.0,True,True,0.7372962304818355,True,True,0.7301101289403731,True,True
+378,378,wish,He got his wish.,My best wishes.,wish,wishes,False,1.0,True,False,0.7586246521097824,True,False,0.5940353319793148,True,False
+379,379,attack,He published an unexpected attack on my work.,An attack of diarrhea.,attack,attack,False,1.0,True,False,0.6412428023978037,False,True,0.5666736956709251,False,True
+380,380,month,He was given a month to pay the bill.,We went on holiday for two months.,month,months,True,1.0,True,True,0.6937418828946093,True,True,0.7106666636118286,True,True
+381,381,gnash,To gnash the air in fury.,To gnash a carpet.,gnash,gnash,True,1.0,True,True,0.6937040134151305,True,True,0.8276236189934615,True,True
+382,382,combust,We combust coal and other fossil fuels.,The professor combusted when the student didn't know the answer to a very elementary question.,combust,combusted,False,1.0,True,False,0.547259921564601,False,True,0.592788341864798,True,False
+383,383,cooperation,Economic cooperation.,They agreed on a policy of cooperation.,cooperation,cooperation,True,1.0,True,True,0.5975539570137909,False,False,0.7552786496975658,True,True
+384,384,portmanteau,'Brunch' is a well-known portmanteau.,'Motel' is a portmanteau word made by combining 'motor' and 'hotel'.,portmanteau,portmanteau,True,1.0,True,True,0.7011802397012135,True,True,0.9044687972253621,True,True
+385,385,brush,Brush aside the objections.,Brush the dust from the jacket.,Brush,Brush,True,1.0,True,True,0.6165131541508372,False,False,0.699546032786746,True,True
+386,386,association,You can not be convicted of criminal guilt by association.,He joined the Modern Language Association.,association,Association,False,1.0,True,False,0.15426359173040077,False,True,0.46301485009956,False,True
+387,387,identity,"A right identity, x * I = x for any x in the structure.",You can lose your identity when you join the army.,identity,identity,False,1.0,True,False,0.7190789035331989,True,False,0.4425982681829939,False,True
+388,388,barrage,A barrage of questions.,They laid down a barrage in front of the advancing troops.,barrage,barrage,False,1.0,True,False,0.7215258917262279,True,False,0.49603771136164115,False,True
+389,389,attend,I rarely attend services at my church.,She attends class regularly.,attend,attends,True,1.0,True,True,0.6622169448424947,True,True,0.7763026787689967,True,True
+390,390,log,They kept a log of all transmission by the radio station.,An email log.,log,log,True,1.0,True,True,0.4057617893406133,False,False,0.7408067039732761,True,True
+391,391,afford,We can't afford to send our children to college.,Can you afford this car?,afford,afford,True,1.0,True,True,0.7472317956456803,True,True,0.6798943138700865,True,True
+392,392,erase,The files will erase quickly.,The chalkboard erased easily.,erase,erased,True,1.0,True,True,0.5154471548392068,False,False,0.7707882908773678,True,True
+393,393,agency,She has free agency.,Central Intelligence Agency.,agency,Agency,False,1.0,True,False,0.3411586901866597,False,True,0.3367285784708136,False,True
+394,394,cocoon,She loves to stay at home and cocoon.,Families cocoon around the T.V. set most evenings.,cocoon,cocoon,True,1.0,True,True,0.6616995012128509,True,True,0.7095434524156919,True,True
+395,395,rehearsal,A rehearsal will be held the day before the wedding.,He missed too many rehearsals.,rehearsal,rehearsals,True,1.0,True,True,0.6104859382738067,False,False,0.7105558179894891,True,True
+396,396,affect,Will the new rules affect me?,The medicine affects my heart rate.,affect,affects,False,1.0,True,False,0.6030898789992786,False,True,0.590662814260797,True,False
+397,397,sign,Please sign on the dotted line.,Please sign here.,sign,sign,True,1.0,True,True,0.799586216706467,True,True,0.7934359073760805,True,True
+398,398,string,A string of islands.,The strings played superlatively well.,string,strings,False,1.0,True,False,0.3775751565168528,False,True,0.4061721698600179,False,True
+399,399,upstage,She only wore that dress to upstage everyone.,"When the dog entered the stage, he upstaged the actress.",upstage,upstaged,True,1.0,True,True,0.5434837817539617,False,False,0.6762978392576678,True,True
+400,400,wateriness,The wateriness of his blood.,The haziness and wateriness of his disquisitions.,wateriness,wateriness,True,1.0,True,True,0.830113787970219,True,True,0.8302513021377748,True,True
+401,401,drawing,The drawing of water from the well.,He did complicated pen-and-ink drawings like medieval miniatures.,drawing,drawings,False,1.0,True,False,0.562520271486309,False,True,0.5701427412491081,False,True
+402,402,mixture,He drank a mixture of beer and lemonade.,The mixture of sulphuric acid and water produces heat.,mixture,mixture,False,1.0,True,False,0.537015781055929,False,True,0.6567880479249509,True,False
+403,403,detention,His detention was politically motivated.,The detention of tardy pupils.,detention,detention,False,1.0,True,False,0.45835480639334475,False,True,0.7108719727833444,True,False
+404,404,collapse,The collapse of the old star under its own gravity.,The roof is in danger of collapse.,collapse,collapse,True,1.0,True,True,0.733754992793849,True,True,0.6577230225293558,True,True
+405,405,handle,Don't handle the merchandise.,"About his altar, handling holy things -- John Milton.",handle,handling,True,1.0,True,True,0.43321089616351277,False,False,0.6058544774444016,True,True
+406,406,state,State your name.,State your opinion.,State,State,True,1.0,True,True,0.7120030197965713,True,True,0.7938149822625307,True,True
+407,407,ease,Ease the pain in your legs.,The pain eased overnight.,Ease,eased,False,1.0,True,False,0.8550021200294062,True,False,0.5475331224580776,False,True
+408,408,influence,He was a bad influence on the children.,Used her parents' influence to get the job.,influence,influence,False,1.0,True,False,0.676958321827597,True,False,0.6222593386510437,True,False
+409,409,compress,The force required to compress a spring varies linearly with the displacement.,She compressed her lips.,compress,compressed,True,1.0,True,True,0.427325823695779,False,False,0.35110520817785,False,False
+410,410,herald,Rouge Dragon is a herald at the College of Arms.,The chieftain had a herald who announced his arrival with a trumpet.,herald,herald,True,1.0,True,True,0.7240763439801093,True,True,0.6603574092099922,True,True
+411,411,appreciate,I appreciate your efforts.,The yen appreciated again!,appreciate,appreciated,False,1.0,True,False,0.4801213589026444,False,True,0.331559604588522,False,True
+412,412,return,Return her love.,Return a compliment.,Return,Return,True,1.0,True,True,0.35778921591101454,False,False,0.7845227455797273,True,True
+413,413,prepare,Prepare for war.,We prepared a fish for dinner.,Prepare,prepared,False,1.0,True,False,0.517692408749348,False,True,0.4402660133611015,False,True
+414,414,hit,Hit the bottle.,He tries to hit on women in bars.,Hit,hit,False,1.0,True,False,0.45724881133314177,False,True,0.4502464087564204,False,True
+415,415,want,Want the strength to go on living.,Flood victims wanting food and shelter.,Want,wanting,True,1.0,True,True,0.44776216262758284,False,False,0.6277142946521324,True,True
+416,416,holiday,Today is a Wiccan holiday!,No mail is delivered on federal holidays.,holiday,holidays,True,1.0,True,True,0.19955347583203767,False,False,0.5396018444247592,False,False
+417,417,ball,The ball at the base of the thumb.,He stood on the balls of his feet.,ball,balls,True,1.0,True,True,0.8290995317732949,True,True,0.18140842443007882,False,False
+418,418,portfolio,He remembered her because she was carrying a large portfolio.,He holds the portfolio for foreign affairs.,portfolio,portfolio,False,1.0,True,False,0.5975224167663116,False,True,0.40749934794552245,False,True
+419,419,chore,"Washing dishes is a chore, but we can not just stop eating.",The farmer's morning chores.,chore,chores,True,1.0,True,True,0.41692144251579943,False,False,0.3957860344024782,False,False
+420,420,collapse,Collapse the music stand.,The school system is collapsing.,Collapse,collapsing,False,1.0,True,False,0.5200743826148849,False,True,0.6458858401746934,True,False
+421,421,middle,I woke up in the middle of the night.,"A whole is that which has beginning, middle, and end -- Aristotle.",middle,middle,True,1.0,True,True,0.7363993164697623,True,True,0.3069920978432448,False,False
+422,422,activity,The level of activity declines with age.,His sphere of activity.,activity,activity,False,1.0,True,False,0.5154237522864419,False,True,0.6971360897523802,True,False
+423,423,street,Be careful crossing the street.,The whole street protested the absence of lights.,street,street,False,1.0,True,False,0.6824014315374125,True,False,0.7940013631684875,True,False
+424,424,footprint,The computer had a desktop footprint of 10 by 16 inches.,The footprints of an earlier civilization.,footprint,footprints,False,1.0,True,False,0.726246184728437,True,False,0.40268211047923674,False,True
+425,425,seize,Birds of prey often seize small mammals.,The invaders seized the land and property of the inhabitants.,seize,seized,False,1.0,True,False,0.42097032574944704,False,True,0.6555278074961618,True,False
+426,426,profession,A profession of disagreement.,My father was a barrister by profession.,profession,profession,False,1.0,True,False,0.24714001882735598,False,True,0.43275399762055156,False,True
+427,427,growth,A growth of hair.,The growth of culture.,growth,growth,False,1.0,True,False,0.6734844308956917,True,False,0.7146618864198749,True,False
+428,428,transplant,These delicate plants do not transplant easily.,Transplant the young rice plants.,transplant,Transplant,False,1.0,True,False,0.5194423775799075,False,True,0.6966308083035738,True,False
+429,429,demon,She's a demon at math.,He worked like a demon to finish the job on time.,demon,demon,True,1.0,True,True,0.6997825010663327,True,True,0.8074538596665318,True,True
+430,430,mainstream,His thinking was in the American mainstream.,"His ideas were well outside the mainstream, but he presented them intelligently, and we were impressed if not convinced.",mainstream,mainstream,True,1.0,True,True,0.7040917675320624,True,True,0.8167821327737276,True,True
+431,431,precaution,He put an ice pack on the injury as a precaution.,To take precautions against risks of accident.,precaution,precautions,True,1.0,True,True,0.6017600702551152,False,False,0.48258850914177603,False,False
+432,432,meeting,There was no meeting of minds.,The meeting elected a chairperson.,meeting,meeting,False,1.0,True,False,0.67312648388361,True,False,0.5380233858599199,False,True
+433,433,right,Take a right at the corner.,Film rights.,right,rights,False,1.0,True,False,0.35508922896452233,False,True,0.2659860036523099,False,True
+434,434,reflect,"People do that sort of thing every day, without ever stopping to reflect on the consequences.",The teacher's ability reflects well on the school.,reflect,reflects,False,1.0,True,False,0.8030465565276007,True,False,0.49487723240519477,False,True
+435,435,submerge,Submerge your head completely.,The submarine submerged in the water.,Submerge,submerged,False,1.0,True,False,0.4481159126184012,False,True,0.42948273757756356,False,True
+436,436,scrub,Surgeons must scrub prior to an operation.,She scrubbed his back.,scrub,scrubbed,False,1.0,True,False,0.568595720531811,False,True,0.5561918972026089,False,True
+437,437,promise,I promise you my best effort.,I promised somebody my time.,promise,promised,True,1.0,True,True,0.9722716532013075,True,True,0.6328493360183102,True,True
+438,438,mechanism,A mechanism of social control.,Mechanisms of communication.,mechanism,Mechanisms,True,1.0,True,True,0.6837162221620481,True,True,0.8115332437436762,True,True
+439,439,undo,Undo the shoelace.,A single mistake undid the President and he had to resign.,Undo,undid,False,1.0,True,False,0.32221940034470353,False,True,0.33587805686081396,False,True
+440,440,spade,She led a low spade.,Spades were trumps.,spade,Spades,True,1.0,True,True,0.2220523668978052,False,False,0.5180656911928672,False,False
+441,441,fuzz,He tried to clear his head of the whisky fuzz.,Peach fuzz.,fuzz,fuzz,False,1.0,True,False,0.10531659432340562,False,True,0.6542808075074503,True,False
+442,442,probity,In a world where financial probity may not be widespread.,He enjoys an exaggerated reputation for probity.,probity,probity,True,1.0,True,True,0.5905542363950962,False,False,0.7247565141515628,True,True
+443,443,protest,The senator rose to register his protest.,They finished the game under protest to the league president.,protest,protest,True,1.0,True,True,0.5597349266707219,False,False,0.6706732031060658,True,True
+444,444,shock,To shock rye.,Shock grain.,shock,Shock,True,1.0,True,True,0.3635582209862089,False,False,0.608008925391754,True,True
+445,445,sign,Sign an intersection.,This road has been signed.,Sign,signed,True,1.0,True,True,0.3351037756153263,False,False,0.5499579529772839,False,False
+446,446,embodiment,The embodiment of hope.,A circle was the embodiment of his concept of life.,embodiment,embodiment,False,1.0,True,False,0.8535234046326722,True,False,0.816526896865651,True,False
+447,447,exile,He lived in exile.,She lived as an exile.,exile,exile,False,1.0,True,False,0.4904610010454528,False,True,0.8093262976768474,True,False
+448,448,glimpse,From the window he could catch a glimpse of the lake.,He caught only a glimpse of the professor's meaning.,glimpse,glimpse,False,1.0,True,False,0.9344791480142749,True,False,0.7243787319142978,True,False
+449,449,abatement,The abatement of a nuisance is the suppression thereof.,Laws enforcing noise abatement.,abatement,abatement,True,1.0,True,True,0.24870616096721074,False,False,0.7328927370549794,True,True
+450,450,near,They are nearing the coast.,The ship nears the land.,nearing,nears,True,1.0,True,True,0.7576794072816396,True,True,0.6914129740695429,True,True
+451,451,aim,She wanted to aim a pun.,He aimed his fists towards his opponent's face.,aim,aimed,False,1.0,True,False,0.4136265944020726,False,True,0.5887238656321244,True,False
+452,452,surface,It was not what it appeared to be on the surface.,The cloth had a pattern of red dots on a white surface.,surface,surface,False,1.0,True,False,0.5658326461528098,False,True,0.4977628924056124,False,True
+453,453,boot,Boot your computer.,"When arriving at the office, first thing I do is booting my machine.",Boot,booting,True,1.0,True,True,0.7337180787097667,True,True,0.6255627993613156,True,True
+454,454,gem,He had the gem set in a ring for his wife.,She's an absolute gem.,gem,gem,False,1.0,True,False,0.5351304943882103,False,True,0.5220323770828782,False,True
+455,455,help,There's no help for it.,I need some help with my homework.,help,help,False,1.0,True,False,0.7886413656103353,True,False,0.47570052011942476,False,True
+456,456,toilet,He made his morning toilet and went to breakfast.,Pensions are in the toilet.,toilet,toilet,False,1.0,True,False,0.6876985229507133,True,False,0.6471219049453378,True,False
+457,457,kill,Kill the engine.,He killed the ball.,Kill,killed,False,1.0,True,False,0.5187936982833886,False,True,0.6640634894453485,True,False
+458,458,longevity,Had unusual longevity in the company.,Her longevity as a star.,longevity,longevity,True,1.0,True,True,0.7455838713120726,True,True,0.7849427450812317,True,True
+459,459,remove,Remove a wrapper.,The President removed many postmasters.,Remove,removed,False,1.0,True,False,0.17908537287067233,False,True,0.5463796953555954,False,True
+460,460,strip,He welded together some pieces of strip.,She did a strip right in front of everyone.,strip,strip,False,1.0,True,False,0.5285095678436897,False,True,0.5404189246902185,False,True
+461,461,force,A force out was recorded on the scorecard.,A public force is necessary to give security to the rights of citizens.,force,force,False,1.0,True,False,0.7780696009689358,True,False,0.3908342300000106,False,True
+462,462,manipulation,His manipulation of his friends was scandalous.,He found that the new manager was known for his Machiavellian manipulations in his last two positions.,manipulation,manipulations,True,1.0,True,True,0.9036381694009833,True,True,0.6951795964412419,True,True
+463,463,piano,Most of the works by Frédéric Chopin are for the piano.,"He can play ""Happy Birthday"" on the piano.",piano,piano,True,1.0,True,True,0.8343997164887681,True,True,0.7733214561924039,True,True
+464,464,operation,They organized a rescue operation.,Consolidate the companies various operations.,operation,operations,True,1.0,True,True,0.3300327439532286,False,False,0.4897269339485877,False,False
+465,465,preserve,Preserve the peace in the family.,To preserve silence.,Preserve,preserve,True,1.0,True,True,0.49196586217918875,False,False,0.7192670591831487,True,True
+466,466,peradventure,This proves beyond peradventure that he is innocent.,Proved beyond peradventure. -- South.,peradventure,peradventure,True,1.0,True,True,0.742278474752904,True,True,0.8485646018728974,True,True
+467,467,patronage,The restaurant had an upper class patronage.,Even before noon there was a considerable patronage.,patronage,patronage,False,1.0,True,False,0.32529034404617496,False,True,0.806682860542799,True,False
+468,468,circulate,Circulate a rumor.,This letter is being circulated among the faculty.,Circulate,circulated,False,1.0,True,False,0.5179350856553353,False,True,0.48233523599815403,False,True
+469,469,muscle,The senators used their muscle to get the party leader to resign.,Muscle consists largely of actin and myosin filaments.,muscle,Muscle,False,1.0,True,False,0.28798460713853585,False,True,0.43505205851198464,False,True
+470,470,direct,"Direct your anger towards others, not towards yourself.",He directed all his energies into his dissertation.,Direct,directed,False,1.0,True,False,0.5460886197589592,False,True,0.5657802204720769,False,True
+471,471,plant,Plant bugs in the dissident's apartment.,Plant a spy in Moscow.,Plant,Plant,True,1.0,True,True,0.34872155321058973,False,False,0.7765536406641804,True,True
+472,472,conclusion,The conclusion of the peace treaty.,The conclusion of a business deal.,conclusion,conclusion,True,1.0,True,True,0.9255926769878335,True,True,0.822088277748441,True,True
+473,473,snap,The infielder's snap and throw was a single motion.,Children can manage snaps better than buttons.,snap,snaps,False,1.0,True,False,0.6309345119374282,False,True,0.5040816913452428,False,True
+474,474,terror,He used terror to make them confess.,He was the terror of the neighborhood.,terror,terror,False,1.0,True,False,0.6722058963087931,True,False,0.6895694090286525,True,False
+475,475,continent,Pioneers had to cross the continent on foot.,There are seven continents.,continent,continents,True,1.0,True,True,0.5491511894728237,False,False,0.6380164638667695,True,True
+476,476,motivation,We did not understand his motivation.,His motivation was at a high level.,motivation,motivation,False,1.0,True,False,0.6875164642510573,True,False,0.8655055896091159,True,False
+477,477,beat,In the old days a policeman walked a beat and knew all his people by name.,A beat of the heart.,beat,beat,False,1.0,True,False,0.702574011013119,True,False,0.5470269795671314,False,True
+478,478,catch,The catch was only 10 fish.,He shared his catch with the others.,catch,catch,False,1.0,True,False,0.7704236461473356,True,False,0.5577049484929234,False,True
+479,479,post,Post a warning at the dump.,The newspaper posted him in Timbuktu.,Post,posted,False,1.0,True,False,0.5551715945938196,False,True,0.5025150796222989,False,True
+480,480,dollar,He worships the almighty dollar.,The dollar coin has never been popular in the United States.,dollar,dollar,False,1.0,True,False,0.4929305583301992,False,True,0.701914280113248,True,False
+481,481,breast,He beat his breast in anger.,The robin has a red breast.,breast,breast,True,1.0,True,True,0.47808880854261904,False,False,0.5568392686261887,False,False
+482,482,relieve,This shall not relieve either Party of any obligations.,The thief relieved me of $100.,relieve,relieved,False,1.0,True,False,0.5593321963797298,False,True,0.5290895348450307,False,True
+483,483,conserve,Conserve your energy for the ascent to the summit.,Mom always conserved the strawberries we grew in the backyard.,Conserve,conserved,False,1.0,True,False,0.4697184622997132,False,True,0.5055538137415677,False,True
+484,484,closure,They regretted the closure of the day care center.,He needed to grieve before he could achieve a sense of closure.,closure,closure,False,1.0,True,False,0.7328498052024417,True,False,0.5479282044655083,False,True
+485,485,engrave,Engrave a letter.,Engrave a pen.,Engrave,Engrave,False,1.0,True,False,0.694537364409575,True,False,0.9250562914312092,True,False
+486,486,vision,The runners emerged from the trees into his clear vision.,He had a vision of the Virgin Mary.,vision,vision,False,1.0,True,False,0.6841689236096308,True,False,0.5251424240932938,False,True
+487,487,scraping,All that bowing and scraping did not impress him.,They collected blood scrapings for analysis.,scraping,scrapings,False,1.0,True,False,0.4997398151985179,False,True,0.5833369900891088,True,False
+488,488,brother,I would like to thank the brother who just spoke.,None of his brothers would betray him.,brother,brothers,True,1.0,True,True,0.6821429891711862,True,True,0.624564048515079,True,True
+489,489,whitewash,Let's not whitewash the crimes of Stalin.,"In his sermon, the minister didn't try to whitewash over the sins of his church.",whitewash,whitewash,False,1.0,True,False,0.7363325698732546,True,False,0.7988955029723916,True,False
+490,490,deal,A deal of trouble.,He made a deal with the devil.,deal,deal,False,1.0,True,False,0.8432836773837932,True,False,0.46023579945446974,False,True
+491,491,develop,Children must develop a sense of right and wrong.,We have developed a new theory of evolution.,develop,developed,False,1.0,True,False,0.824916321340403,True,False,0.5921765978328537,True,False
+492,492,dexterity,She twirled the knife through her fingers with impressive dexterity.,Playing computer games can improve your manual dexterity.,dexterity,dexterity,True,1.0,True,True,0.269327025554842,False,False,0.6611691973097692,True,True
+493,493,potluck,Here's a good potluck of beans and stew.,Having arrived unannounced we had to take potluck.,potluck,potluck,True,1.0,True,True,0.5660053840211166,False,False,0.6924019008711982,True,True
+494,494,apology,It was an apology for a meal.,The Apology of Socrates.,apology,Apology,False,1.0,True,False,0.545961831718772,False,True,0.6244986893721133,True,False
+495,495,straggle,A straggle of followers.,A straggle of outbuildings.,straggle,straggle,True,1.0,True,True,0.706019687987355,True,True,0.8321455091636318,True,True
+496,496,shot,The nurse gave him a flu shot.,He tried to get unposed shots of his friends.,shot,shots,False,1.0,True,False,0.4721579125729996,False,True,0.544248915870019,False,True
+497,497,command,To command an army or a ship.,Command the military forces.,command,Command,True,1.0,True,True,0.7582592279320655,True,True,0.7814110217118629,True,True
+498,498,refrigerate,Please refrigerate your uncooked meats at or below 40 Fahrenheit.,Refrigerate this medicine.,refrigerate,Refrigerate,True,1.0,True,True,0.2618990329504889,False,False,0.8828741950518392,True,True
+499,499,care,He handled the vase with care.,Care should be taken when holding babies.,care,Care,False,1.0,True,False,0.2520899978760333,False,True,0.612148061811875,True,False
+500,500,twist,Don't twist my words.,Twist the dough into a braid.,twist,Twist,False,1.0,True,False,0.3104209539972631,False,True,0.5419993831937878,False,True
+501,501,setting,A place setting of sterling flatware.,He changed the setting on the thermostat.,setting,setting,False,1.0,True,False,0.7012710056545761,True,False,0.5257134010923558,False,True
+502,502,spread,The infection spread.,Optimism spread among the population.,spread,spread,True,1.0,True,True,0.5518822653186823,False,False,0.73635762101864,True,True
+503,503,sleep,We sleep five people in each room.,This tent sleeps six people.,sleep,sleeps,True,1.0,True,True,0.8725976700272007,True,True,0.7400797551566817,True,True
+504,504,prohibition,They were restrained by a prohibition in their charter.,In 1920 the 18th amendment to the Constitution established prohibition in the US.,prohibition,prohibition,False,1.0,True,False,0.7209670042750742,True,False,0.7047820058965211,True,False
+505,505,stay,Wear gloves so your hands stay warm.,"Stay with me, please.",stay,Stay,True,1.0,True,True,0.6604881727345725,True,True,0.44977046145576965,False,False
+506,506,treatment,His treatment of the race question is badly biased.,His treatment of space borrows from Italian architecture.,treatment,treatment,False,1.0,True,False,0.8654890223273943,True,False,0.6926382573856875,True,False
+507,507,break,Make a break for it.,He finally got his big break.,break,break,False,1.0,True,False,0.6693490378960536,True,False,0.4283992117332309,False,True
+508,508,life,Real life.,It was a heavy play and the actors tried in vain to give life to it.,life,life,False,1.0,True,False,0.42744032216028904,False,True,0.4323388733105978,False,True
+509,509,minute,"Wait a minute, I'm not ready yet!",It only takes a minute.,minute,minute,True,1.0,True,True,0.7640161399349406,True,True,0.5511461840387923,False,False
+510,510,exhibition,There was an art exhibition on in the town hall.,A boat exhibition.,exhibition,exhibition,True,1.0,True,True,0.5085751642405486,False,False,0.820624843189843,True,True
+511,511,scrap,The unhappy couple got into a terrible scrap.,That car isn't good for anything but scrap.,scrap,scrap,False,1.0,True,False,0.545935348454623,False,True,0.69178469128331,True,False
+512,512,destroy,Hooligans destroy unprovoked.,The fire destroyed the house.,destroy,destroyed,True,1.0,True,True,-0.006271106492694219,False,False,0.533980761625177,False,False
+513,513,cleat,Cleat running shoes for better traction.,Cleat a line.,Cleat,Cleat,False,1.0,True,False,0.4630901884376248,False,True,0.7160607005867927,True,False
+514,514,pinnacle,Pinnacle a pediment.,He did not want to be pinnacled.,Pinnacle,pinnacled,False,1.0,True,False,0.22114025245942306,False,True,0.47110746628330913,False,True
+515,515,heritage,The world's heritage of knowledge.,A heritage of freedom.,heritage,heritage,False,1.0,True,False,0.7575050667344924,True,False,0.8012701252821469,True,False
+516,516,wail,Wail in self-pity.,She wailed with pain.,Wail,wailed,False,1.0,True,False,0.5456702426263478,False,True,0.666721013332656,True,False
+517,517,knuckleball,Even the pitcher doesn't know where his knuckleball is going.,Boston Red Sox pitcher Tim Wakefield is best known for his use of the knuckleball.,knuckleball,knuckleball,True,1.0,True,True,0.7037423598501011,True,True,0.8552681517200424,True,True
+518,518,book,I am reading a good book on economics.,He was frustrated because he couldn't find anything about dinosaurs in the book.,book,book,True,1.0,True,True,0.644771726277636,False,False,0.725957675375056,True,True
+519,519,roll,The roll of a ball.,Look at the roll of the waves.,roll,roll,True,1.0,True,True,0.8938256622702716,True,True,0.8008955144738309,True,True
+520,520,piece,The children acted out a comic piece to amuse the guests.,He sacrificed a piece to get a strategic advantage.,piece,piece,False,1.0,True,False,0.691660945284562,True,False,0.5799398500736017,False,True
+521,521,share,Our children share a love of music.,The two countries share a long border.,share,share,True,1.0,True,True,0.7124083418379704,True,True,0.7780805717116894,True,True
+522,522,bondage,He sought release from his bondage to Satan.,A self freed from the bondage of time.,bondage,bondage,True,1.0,True,True,0.7619317094816428,True,True,0.7724960645937258,True,True
+523,523,pierce,To pierce a mystery.,The path pierced the jungle.,pierce,pierced,False,1.0,True,False,0.5777434944866247,False,True,0.5087986734566338,False,True
+524,524,grip,In Britain they call a bobby pin a grip.,They kept a firm grip on the two top priorities.,grip,grip,False,1.0,True,False,0.5859583104318626,False,True,0.5239425104097899,False,True
+525,525,shape,Geometry is the mathematical science of shape.,He could barely make out their shapes.,shape,shapes,False,1.0,True,False,0.43631586989147586,False,True,0.46489760307785216,False,True
+526,526,twilight,I could just make out her face in the twilight.,He loved the twilight.,twilight,twilight,False,1.0,True,False,0.6797791564594069,True,False,0.7501305788632232,True,False
+527,527,sugar,Sugar your tea.,John heavily sugars his coffee.,Sugar,sugars,True,1.0,True,True,0.5668528526328054,False,False,0.4635387724204416,False,False
+528,528,role,My neighbor was the lead role in last year's village play.,Play its role.,role,role,False,1.0,True,False,0.7178463376463271,True,False,0.5022894035943835,False,True
+529,529,proliferate,We must not proliferate nuclear arms.,The flowers proliferated rapidly all spring.,proliferate,proliferated,True,1.0,True,True,0.5680368508256389,False,False,0.5841015604177309,True,True
+530,530,trip,A pedestrian was able to trip the burglar as he was running away.,The questions on the test tripped him up.,trip,tripped,True,1.0,True,True,0.7499609843432643,True,True,0.45442574239982675,False,False
+531,531,cloister,Cloister the garden.,She cloistered herself in the office.,Cloister,cloistered,False,1.0,True,False,0.4749521652940477,False,True,0.6477588968217853,True,False
+532,532,expect,I expect to receive wages.,We were expecting a visit from our relatives.,expect,expecting,True,1.0,True,True,0.7481696674983429,True,True,0.6669574629713055,True,True
+533,533,flowage,Rock fracture and rock flowage are different types of geological deformation.,Many campsites were located near the flowage.,flowage,flowage,False,1.0,True,False,0.5381230461659732,False,True,0.5659410868338522,False,True
+534,534,follow,We must follow closely the economic development is Cuba.,It follows that your assertion is false.,follow,follows,False,1.0,True,False,0.7844149686036729,True,False,0.518257822616148,False,True
+535,535,property,He is a man of property.,That hat is my property.,property,property,True,1.0,True,True,0.6597414031930696,True,True,0.6764942122030115,True,True
+536,536,noise,"He knew that it was trash day, when the garbage collectors made all the noise.",They heard indistinct noises of people talking.,noise,noises,False,1.0,True,False,0.6593279890067364,True,False,0.5898275273928226,True,False
+537,537,policy,You should have read the small print on your policy.,It was a policy of retribution.,policy,policy,False,1.0,True,False,0.47670195957970246,False,True,0.6314008788329932,True,False
+538,538,pull,A zipper pull.,He grabbed the pull and opened the drawer.,pull,pull,True,1.0,True,True,0.33838996636314933,False,False,0.5672850732170441,False,False
+539,539,affair,It is none of your affair.,He used a hook-shaped affair with a long handle to unlock the car.,affair,affair,True,1.0,True,True,0.5316205110612809,False,False,0.29011165479462186,False,False
+540,540,pressure,He used pressure to stop the bleeding.,The sensitivity of his skin to pressure and temperature was normal.,pressure,pressure,False,1.0,True,False,0.6431731018268811,False,True,0.6848308728424736,True,False
+541,541,reality,The reality of his situation slowly dawned on him.,The reality of the crash scene on TV dawned upon him only when he saw the victim was no actor but his friend.,reality,reality,True,1.0,True,True,0.9124183595981132,True,True,0.829480009927137,True,True
+542,542,party,The party of the first part.,He planned a party to celebrate Bastille Day.,party,party,False,1.0,True,False,0.6142481259308833,False,True,0.5518788598702552,False,True
+543,543,result,Result in tragedy.,This measure will result in good or in evil.,Result,result,True,1.0,True,True,0.5918072522489474,False,False,0.6701311472233898,True,True
+544,544,peg,Let's peg the rug to the floor.,Peg a tent.,peg,Peg,True,1.0,True,True,0.3850339486242055,False,False,0.6181877339344573,True,True
+545,545,assumption,The Nazi assumption of power in 1934.,He acquired all the company's assets for ten million dollars and the assumption of the company's debts.,assumption,assumption,True,1.0,True,True,0.8178622019235409,True,True,0.5319811107419463,False,False
+546,546,fight,A fight broke out at the hockey game.,There were fights in the streets.,fight,fights,True,1.0,True,True,0.69574168681336,True,True,0.7993626671169797,True,True
+547,547,hook,Hook the ball.,His opponent hooked him badly.,Hook,hooked,False,1.0,True,False,0.5615445392216714,False,True,0.6502790720645729,True,False
+548,548,flood,Flood the market with tennis shoes.,The swollen river flooded the village.,Flood,flooded,False,1.0,True,False,0.46320210492866787,False,True,0.6141843232585836,True,False
+549,549,intellect,He has a keen intellect.,Some of the world's leading intellects were meeting there.,intellect,intellects,False,1.0,True,False,0.4399736815289697,False,True,0.5884543598187058,True,False
+550,550,word,We had a word or two about it.,"There was then a long discussion of whether to capitalize words like ""east"".",word,words,True,1.0,True,True,0.6142522938307723,False,False,0.3317660579261172,False,False
+551,551,restraint,The room was simply decorated with great restraint.,The car did not have proper restraints fitted.,restraint,restraints,False,1.0,True,False,0.49602779873178715,False,True,0.5328613109014141,False,True
+552,552,go,It's my go.,I'll give it a go.,go,go,False,1.0,True,False,0.45234224550652824,False,True,0.5088174048572252,False,True
+553,553,crush,To crush grapes.,The car crushed the toy.,crush,crushed,False,1.0,True,False,0.3431974601083469,False,True,0.6592994763754663,True,False
+554,554,cushion,To cushion a blow.,Cushion the blow.,cushion,Cushion,True,1.0,True,True,0.8236812775577573,True,True,0.848260627153253,True,True
+555,555,scavenge,Hyenas scavenge.,She scavenged the garbage cans for food.,scavenge,scavenged,False,1.0,True,False,-0.07799646368874066,False,True,0.6720224139413229,True,False
+556,556,recreation,For recreation he wrote poetry and solved crossword puzzles.,Drug abuse is often regarded as a form of recreation.,recreation,recreation,True,1.0,True,True,0.5153613232368318,False,False,0.7143984075791818,True,True
+557,557,question,His claim to the property has come under question.,He obeyed without question.,question,question,True,1.0,True,True,0.4289322647079232,False,False,0.42741975491074424,False,False
+558,558,swear,I swear by my grandmother's recipes.,Before God I swear I am innocent.,swear,swear,False,1.0,True,False,0.8224909008717322,True,False,0.660775596406145,True,False
+559,559,gargle,Gargle with this liquid.,Every morning he gargled a little cheap Scotch.,Gargle,gargled,True,1.0,True,True,0.7236708235870384,True,True,0.6261027047173807,True,True
+560,560,heel,Heel a golf ball.,Heel that dance.,Heel,Heel,False,1.0,True,False,0.4172022752569614,False,True,0.7266529015500169,True,False
+561,561,fuss,Don't fuss too much over the grandchildren -- they are quite big now.,She fusses over her husband.,fuss,fusses,False,1.0,True,False,0.6008757668752579,False,True,0.574577441455561,False,True
+562,562,nut,He was driving his car like a nut.,I kicked him in the nuts.,nut,nuts,False,1.0,True,False,0.6217061515919462,False,True,0.2979510281982523,False,True
+563,563,work,He was indebted to the pioneering work of John Dewey.,The work of an active imagination.,work,work,True,1.0,True,True,0.804638952282877,True,True,0.468712916832217,False,False
+564,564,sense,A keen musical sense.,A good sense of timing.,sense,sense,True,1.0,True,True,0.40688926618944843,False,False,0.6879088719251149,True,True
+565,565,wish,It was his last wish.,They should respect the wishes of the people.,wish,wishes,True,1.0,True,True,0.6402228550738335,False,False,0.5402985812994444,False,False
+566,566,attitude,The airliner had to land with a nose-up attitude after the incident.,The actor struck just the right attitude.,attitude,attitude,False,1.0,True,False,0.7558039758488874,True,False,0.6323265483910514,True,False
+567,567,steam,Just steam the vegetables.,Her indifference to his amorous advances really steamed the young man.,steam,steamed,False,1.0,True,False,0.6257903843408011,False,True,0.4640760974521245,False,True
+568,568,dissipation,The dissipation of the mist.,Mindless dissipation of natural resources.,dissipation,dissipation,False,1.0,True,False,0.5728357335583891,False,True,0.8146306787045827,True,False
+569,569,path,The path of virtue.,Our paths in life led us apart.,path,paths,True,1.0,True,True,0.6761280945481607,True,True,0.6734813635221896,True,True
+570,570,drought,When England defeated Pakistan it ended a ten-year drought.,Farmers most affected by the drought hope that there may yet be sufficient rain early in the growing season.,drought,drought,False,1.0,True,False,0.5745134285160776,False,True,0.5085971305827653,False,True
+571,571,move,It's your move! Roll the dice!,"If you roll a six, you can make two moves.",move,moves,True,1.0,True,True,0.5650903684170346,False,False,0.6280392337266969,True,True
+572,572,officer,He is an officer of the court.,The club elected its officers for the coming year.,officer,officers,True,1.0,True,True,0.8074442917177441,True,True,0.49910338745519317,False,False
+573,573,deed,He signed the deed.,I inherited the deed to the house.,deed,deed,True,1.0,True,True,0.689612037529155,True,True,0.7866924084065006,True,True
+574,574,transfer,The transfer of the music from record to tape suppressed much of the background noise.,The best student was a transfer from LSU.,transfer,transfer,False,1.0,True,False,0.6148845068263592,False,True,0.48860003791522905,False,True
+575,575,fatigue,Growing fatigue was apparent from the decline in the execution of their athletic skills.,He was hospitalized for extreme fatigue.,fatigue,fatigue,True,1.0,True,True,0.5273248614998214,False,False,0.8095370309862566,True,True
+576,576,belabor,Belabor the obvious.,She was belabored by her fellow students.,Belabor,belabored,False,1.0,True,False,0.5384628972664054,False,True,0.5431502016948451,False,True
+577,577,torrent,The houses were swept away in the torrent.,They endured a torrent of inquiries.,torrent,torrent,True,1.0,True,True,0.6026544090774633,False,False,0.564581530896973,False,False
+578,578,work,The symphony was hailed as an ingenious work.,Erosion is the work of wind or water over time.,work,work,True,1.0,True,True,0.36356479535416775,False,False,0.5237728602337148,False,False
+579,579,member,Canada is a member of the United Nations.,The library was a member of the interlibrary loan association.,member,member,True,1.0,True,True,0.9525776982045008,True,True,0.7473516460903444,True,True
+580,580,rise,They asked for a 10% rise in rates.,The rising of the Holy Ghost.,rise,rising,False,1.0,True,False,0.6502524936475235,False,True,0.5199062002245128,False,True
+581,581,recognition,Territorial disputes were resolved in Guatemala's recognition of Belize in 1991.,The partners were delighted with the recognition of their work.,recognition,recognition,False,1.0,True,False,0.6702175351611429,True,False,0.5453998809752724,False,True
+582,582,decussate,The fibers decussate.,This nerve decussates the other.,decussate,decussates,True,1.0,True,True,0.6734061833510222,True,True,0.7822410414993386,True,True
+583,583,succession,A succession of failures.,A succession of stalls offering soft drinks.,succession,succession,True,1.0,True,True,0.7441530702936582,True,True,0.6890346738986467,True,True
+584,584,go,How did your interview go?,"She was going that way anyway, so she offered to show him where it was.",go,going,True,1.0,True,True,0.59796914193693,False,False,0.34751157415068223,False,False
+585,585,spin,The campaign put a favorable spin on the story.,The skaters demonstrated their spins.,spin,spins,False,1.0,True,False,0.4922658627810344,False,True,0.44330521144338575,False,True
+586,586,body,The body of the car was badly rusted.,Administrative body.,body,body,False,1.0,True,False,0.278941611594591,False,True,0.45290762667955553,False,True
+587,587,sort,She served a creamy sort of dessert thing.,She wore a sort of magenta dress.,sort,sort,True,1.0,True,True,0.589224722662052,False,False,0.7354357818891711,True,True
+588,588,love,I love French food.,I loved to write.,love,loved,True,1.0,True,True,0.6564530522474278,True,True,0.766282750331234,True,True
+589,589,grunt,He went from grunt to chairman in six years.,Infantrymen in Vietnam were called grunts.,grunt,grunts,True,1.0,True,True,0.5593348451645486,False,False,0.6373551442274857,True,True
+590,590,crash,"You can crash here, though it's not very comfortable.",The terrorists crashed the plane into the palace.,crash,crashed,False,1.0,True,False,0.5869925387366469,False,True,0.4607877158177303,False,True
+591,591,create,Create a poem.,Create one a peer.,Create,Create,False,1.0,True,False,0.715009933159498,True,False,0.7660548634200216,True,False
+592,592,distribution,Worldwide in distribution.,The distribution of nerve fibers.,distribution,distribution,True,1.0,True,True,0.4785663076616875,False,False,0.5375755692776266,False,False
+593,593,canon,The neoclassical canon.,Canons of polite society.,canon,Canons,True,1.0,True,True,0.34572303751255784,False,False,0.505248753276216,False,False
+594,594,wait,She used to wait down at the Dew Drop Inn.,Wait here until your car arrives.,wait,Wait,False,1.0,True,False,0.6629507005597276,True,False,0.4788430076268353,False,True
+595,595,switch,Switch to a different brand of beer.,I want to switch this red dress for a green one.,Switch,switch,False,1.0,True,False,0.807523532658036,True,False,0.5716516244225378,False,True
+596,596,mince,A mince of mushrooms.,Mince tastes really good fried in a pan with some chopped onion and tomato.,mince,Mince,True,1.0,True,True,0.3157669234733092,False,False,0.6805565309593289,True,True
+597,597,replicate,"On entering a host cell, a virus will start to replicate.",Replicate the cell.,replicate,Replicate,True,1.0,True,True,0.4684539340989122,False,False,0.7235102723386437,True,True
+598,598,show,A show of impatience.,A good show of looking interested.,show,show,True,1.0,True,True,0.7632113316001006,True,True,0.7036841601860457,True,True
+599,599,map,Map the genes.,Map the surface of Venus.,Map,Map,False,1.0,True,False,0.5214874612329258,False,True,0.8791641844977575,True,False
+600,600,bracket,Please bracket this remark.,Bracket bookshelves.,bracket,Bracket,False,1.0,True,False,-0.048588611276489925,False,True,0.5265382750950095,False,True
+601,601,applaud,I applaud your efforts.,"Although we don't like your methods, we applaud your motives.",applaud,applaud,True,1.0,True,True,0.7839952375892744,True,True,0.8738547123725264,True,True
+602,602,plume,A plume of smoke.,Grass with large plumes.,plume,plumes,True,1.0,True,True,0.6085398565420888,False,False,0.585479561700994,True,True
+603,603,blend,'Smog' is a blend of 'smoke' and 'fog'.,Their music has been described as a blend of jazz and heavy metal.,blend,blend,True,1.0,True,True,0.7870713695497441,True,True,0.8190717515441478,True,True
+604,604,bull,He was a bull of a man.,He made a bad bull of the assignment.,bull,bull,False,1.0,True,False,0.888565651092295,True,False,0.6759598071890863,True,False
+605,605,spend,Spend money.,He spends far more on gambling than he does on living proper.,Spend,spends,True,1.0,True,True,0.5330810817986726,False,False,0.4463560816560344,False,False
+606,606,usage,English usage.,A usage borrowed from French.,usage,usage,True,1.0,True,True,0.3779838884284118,False,False,0.7762997334958162,True,True
+607,607,installation,He gave a speech as part of his installation into the hall of fame.,The telephone installation took only a few minutes.,installation,installation,False,1.0,True,False,0.7837809622840348,True,False,0.5041790904474452,False,True
+608,608,pound,The locks pound the water of the canal.,Pound the roots with a heavy flat stone.,pound,Pound,False,1.0,True,False,0.6203421200678164,False,True,0.6433796692439313,True,False
+609,609,donate,Donate money to the orphanage.,I donated blood to the Red Cross for the victims of the earthquake.,Donate,donated,True,1.0,True,True,0.7197814335845178,True,True,0.7026247421333035,True,True
+610,610,hew,Hew out a path in the rock.,One of the most widely used typefaces in the world was hewn by the English printer and typographer John Baskerville.,Hew,hewn,True,1.0,True,True,0.6921046622959751,True,True,0.46524302519448013,False,False
+611,611,breed,Google represents a new breed of entrepreneurs.,A breed of tulip.,breed,breed,False,1.0,True,False,0.6827178578928934,True,False,0.6573503956363769,True,False
+612,612,risk,I can not risk smoking.,Why risk your life?,risk,risk,True,1.0,True,True,0.6674161485234362,True,True,0.6415520022021802,True,True
+613,613,sit,When does the court of law sit?,In what city is the circuit court sitting for this session.,sit,sitting,True,1.0,True,True,0.5931144871943799,False,False,0.7262922834470504,True,True
+614,614,review,Let's review your situation.,"Before I tackle the question directly, I must briefly review historical approaches to the problem.",review,review,True,1.0,True,True,0.5253767986638856,False,False,0.7814488850960734,True,True
+615,615,jockey,He's a truck jockey.,A disc jockey.,jockey,jockey,True,1.0,True,True,0.6260259914463993,False,False,0.6796092361356246,True,True
+616,616,body,The whole body filed out of the auditorium.,The student body.,body,body,True,1.0,True,True,0.6623366562245849,True,True,0.6178477303250353,True,True
+617,617,stabilize,The country will stabilize after the next election ends.,The economy stabilized.,stabilize,stabilized,True,1.0,True,True,0.7459523243890404,True,True,0.7164247638272596,True,True
+618,618,lead,A good lead for a job.,"Joe is a great addition to our sales team, he has numerous leads in the paper industry.",lead,leads,True,1.0,True,True,0.6624787488686354,True,True,0.5876496200681868,True,True
+619,619,base,He told the painter that he wanted a yellow base with just a hint of green.,Bases include oxides and hydroxides of metals and ammonia.,base,Bases,False,1.0,True,False,0.18383179730672997,False,True,0.45552802581021107,False,True
+620,620,inadequacy,Juvenile offenses often reflect an inadequacy in the parents.,The inadequacy of unemployment benefits.,inadequacy,inadequacy,False,1.0,True,False,0.7518388710684348,True,False,0.8493493826921499,True,False
+621,621,upgrade,The power plant received a new upgrade.,"With my phone company, I get a free upgrade every twelve months if I keep topping up 10 pounds a month.",upgrade,upgrade,True,1.0,True,True,0.7203390648721786,True,True,0.6693084397800497,True,True
+622,622,criticism,The senator received severe criticism from his opponent.,The politician received a lot of public criticism for his controversial stance on the issue.,criticism,criticism,False,1.0,True,False,0.7332303857544037,True,False,0.9023638174417289,True,False
+623,623,bastion,The last bastion of communism.,A bastion against corruption.,bastion,bastion,True,1.0,True,True,0.6464538650282334,False,False,0.7625633740689958,True,True
+624,624,pity,It's a pity he couldn't do it.,The blind are too often objects of pity.,pity,pity,False,1.0,True,False,0.42090912140417547,False,True,0.5303452089974332,False,True
+625,625,embellish,"To embellish a story, the truth.",The old book cover was embellished with golden letters.,embellish,embellished,True,1.0,True,True,0.6640871226135707,True,True,0.6030922669792853,True,True
+626,626,tilt,The court's tilt toward conservative rulings.,The tower had a pronounced tilt.,tilt,tilt,False,1.0,True,False,0.3802647536809001,False,True,0.6320304125291859,True,False
+627,627,facility,The assembly plant is an enormous facility.,Educational facilities.,facility,facilities,False,1.0,True,False,0.2757794073643703,False,True,0.5378468292337759,False,True
+628,628,hour,We live an hour from the airport.,It was their finest hour.,hour,hour,False,1.0,True,False,0.4891847814073419,False,True,0.4982556251917461,False,True
+629,629,capital,The drug capital of Columbia.,The crime capital of Italy.,capital,capital,True,1.0,True,True,0.7419717121744631,True,True,0.9023652010464609,True,True
+630,630,fire,Clinton directed his fire at the Republican Party.,There was a fire at the school last night and the whole place burned down.,fire,fire,False,1.0,True,False,0.8320475236816819,True,False,0.4896938163344818,False,True
+631,631,torture,In every war there are acts of torture that cause the world to shudder.,"Using large dogs to attack bound, hand-cuffed prisoners is clearly torture.",torture,torture,True,1.0,True,True,0.636634113421259,False,False,0.7585833252365515,True,True
+632,632,passage,The outward passage took 10 days.,She struggled to play the difficult passages.,passage,passages,False,1.0,True,False,0.6083540970234832,False,True,0.5749824665083652,False,True
+633,633,rise,Rise to the occasion.,Her spirits rose when she heard the good news.,Rise,rose,False,1.0,True,False,0.5677907764465994,False,True,0.44624302278994205,False,True
+634,634,chisel,Chisel the marble.,Who's chiseling on the side?,Chisel,chiseling,False,1.0,True,False,0.602626512217148,False,True,0.6414589074425238,True,False
+635,635,bane,The bane of my existence.,The bane of my life.,bane,bane,True,1.0,True,True,0.9999999999999997,True,True,0.9661256648715766,True,True
+636,636,hang,Let's hang this cute animal in the nursery.,Hang wallpaper.,hang,Hang,True,1.0,True,True,0.14938300241132307,False,False,0.5686438154275623,False,False
+637,637,breed,He experimented on a particular breed of white rats.,A breed of animal.,breed,breed,True,1.0,True,True,0.8212718699408138,True,True,0.7340135500687135,True,True

@@ -1,0 +1,77 @@
+{
+  "bert_candidates": [
+    {
+      "holdout_accuracy": 0.714548802946593,
+      "holdout_macro_f1": 0.714524597726101,
+      "holdout_roc_auc": 0.7780524946667616,
+      "imputation_median": 0.5082525572666127,
+      "name": "layer_12",
+      "threshold": 0.5080749919070255,
+      "tune_accuracy": 0.6789497927222478,
+      "tune_macro_f1": 0.6789497246055791
+    },
+    {
+      "holdout_accuracy": 0.7246777163904236,
+      "holdout_macro_f1": 0.7246718801801978,
+      "holdout_roc_auc": 0.7828312119084684,
+      "imputation_median": 0.5785990206845661,
+      "name": "mean_last_four",
+      "threshold": 0.5813439477406375,
+      "tune_accuracy": 0.6890833717181023,
+      "tune_macro_f1": 0.6890643061928066
+    }
+  ],
+  "holdout_examples": 1086,
+  "holdout_indices_hash": "d4bea548c1a482e0bf421c235aaded8af7d577d420c6646d2aba2c3495b10d5d",
+  "protocol": "train-only candidate selection; validation labels unopened for selection",
+  "seed": 2026,
+  "selected_bert_representation": "mean_last_four",
+  "selected_static_context": "glove_context_2",
+  "selection_hash": "debfd61b068f22ea1a737f238bd90ea4fb8bf44f675907e428949b559a0bb309",
+  "static_context_candidates": [
+    {
+      "holdout_accuracy": 0.6003683241252302,
+      "holdout_macro_f1": 0.5960721668214992,
+      "holdout_roc_auc": 0.6171650573683478,
+      "imputation_median": 0.6051056495659877,
+      "name": "glove_context_2",
+      "threshold": 0.6506019827297578,
+      "tune_accuracy": 0.5886688162137264,
+      "tune_macro_f1": 0.5840407226227258
+    },
+    {
+      "holdout_accuracy": 0.5939226519337016,
+      "holdout_macro_f1": 0.592800899887514,
+      "holdout_roc_auc": 0.635949248598435,
+      "imputation_median": 0.6789261650586798,
+      "name": "glove_context_5",
+      "threshold": 0.6639430058800022,
+      "tune_accuracy": 0.5888991248272686,
+      "tune_macro_f1": 0.5882900864936793
+    },
+    {
+      "holdout_accuracy": 0.5883977900552486,
+      "holdout_macro_f1": 0.586318149551713,
+      "holdout_roc_auc": 0.6382962126376551,
+      "imputation_median": 0.6933627223304327,
+      "name": "glove_context_10",
+      "threshold": 0.6701908953109391,
+      "tune_accuracy": 0.5930446798710272,
+      "tune_macro_f1": 0.5917019260801056
+    },
+    {
+      "holdout_accuracy": 0.5865561694290976,
+      "holdout_macro_f1": 0.5844672240463515,
+      "holdout_roc_auc": 0.639958080237681,
+      "imputation_median": 0.6938623357130536,
+      "name": "glove_context_sentence",
+      "threshold": 0.6701908953109391,
+      "tune_accuracy": 0.5944265315522801,
+      "tune_macro_f1": 0.5929557675834715
+    }
+  ],
+  "tie_break": "macro_f1, accuracy, roc_auc, declared simplicity order",
+  "train_examples": 5428,
+  "tune_examples": 4342,
+  "tune_indices_hash": "3f2ce9fa2a6291c3fe38290a38ad08306dd95758bb087fb2ec7dbd334c9bcbc4"
+}

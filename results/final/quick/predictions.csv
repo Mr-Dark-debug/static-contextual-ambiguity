@@ -1,0 +1,65 @@
+row,idx,word,sentence1,sentence2,target1,target2,label,glove_target_score,glove_target_prediction,glove_target_correct,glove_context_5_score,glove_context_5_prediction,glove_context_5_correct,bert_layer_12_score,bert_layer_12_prediction,bert_layer_12_correct
+0,19,obstacle,Lack of imagination is an obstacle to one's advancement.,The poverty of a district is an obstacle to good education.,obstacle,obstacle,True,1.0,True,True,0.8487564585673398,True,True,0.9135730359137801,True,True
+1,25,lay,To lay a tax on land.,Lay a responsibility on someone.,lay,Lay,True,1.0,True,True,0.7978415814473188,True,True,0.47789435449649176,False,False
+2,37,squeaker,Which hinge is the squeaker?,Those sneakers are squeakers.,squeaker,squeakers,True,1.0,True,True,0.48866231317524317,False,False,0.742110791535122,True,True
+3,48,look,A look of triumph.,His look was fixed on her eyes.,look,look,False,1.0,True,False,0.6062038837170497,False,True,0.5776441741379458,True,False
+4,83,slip,Slip into something comfortable.,My grades are slipping.,Slip,slipping,False,1.0,True,False,0.5717559270787407,False,True,0.2328929670579414,False,True
+5,88,shower,The game was interrupted by a brief shower.,A little shower of rose petals.,shower,shower,False,1.0,True,False,0.5950366001597878,False,True,0.43412027752669896,False,True
+6,93,incorporate,Incorporate this document with those pertaining to the same case.,The company was incorporated in 1980.,Incorporate,incorporated,False,1.0,True,False,0.6011096924908441,False,True,0.20405286108853593,False,True
+7,110,vary,Prices vary.,His moods vary depending on the weather.,vary,vary,True,1.0,True,True,0.3737983736113732,False,False,0.7149201816094058,True,True
+8,149,intention,The intention of this legislation is to boost the economy.,Good intentions are not enough.,intention,intentions,True,1.0,True,True,0.736647499284797,True,True,0.3709812279625805,False,False
+9,150,mandate,Mandate a colony.,The new director of the school board mandated regular tests.,Mandate,mandated,False,1.0,True,False,0.4558365159559282,False,True,0.4080745949330416,False,True
+10,167,scallop,Scallop the hem of the dress.,Scallop the meat.,Scallop,Scallop,False,1.0,True,False,0.5900782765400822,False,True,0.770249143712716,True,False
+11,188,resolution,Printing at higher resolution will cause a reduction in performance.,They never did achieve a final resolution of their differences.,resolution,resolution,False,1.0,True,False,0.7813025512018696,True,False,0.38726401445427155,False,True
+12,190,board,Room and board.,He nailed boards across the windows.,board,boards,False,1.0,True,False,0.6615943609675196,False,True,0.446186650188483,False,True
+13,193,kick,The kick must be synchronized with the arm movements.,A sidecar is a smooth drink but it has a powerful kick.,kick,kick,False,1.0,True,False,0.7445232971049318,True,False,0.685990863579053,True,False
+14,202,button,"The politician wore a bright yellow button with the slogan ""Vote Smart"" emblazoned on it.",They passed out campaign buttons for their candidate.,button,buttons,True,1.0,True,True,0.7135537859725583,True,True,0.6137956516744012,True,True
+15,218,club,Each club played six home games with teams in its own division.,He played the drums at a jazz club.,club,club,False,1.0,True,False,0.6694425451923036,False,True,0.3857818266011469,False,True
+16,223,sequence,He played the trumps in sequence.,The doctor saw a sequence of patients.,sequence,sequence,False,1.0,True,False,0.6787973389056158,False,True,0.5337854032662133,False,True
+17,239,curd,Bean curd.,Lemon curd.,curd,curd,True,1.0,True,True,0.3402185003751002,False,False,0.9295370525472222,True,True
+18,241,tradecraft,The CIA chief of station accepted responsibility for his agents' failures of tradecraft.,Instructional designers are trained in something that might be called tradecraft.,tradecraft,tradecraft,True,1.0,True,True,0.6567726837621579,False,False,0.6270187654065412,True,True
+19,256,cognate,"English is a cognate of Greek, German, Russian and Persian.","English and, Russian, Icelandic and Irish are all cognates.",cognate,cognates,True,1.0,True,True,0.7167110093057371,True,True,0.8630433093889567,True,True
+20,276,draw,The luck of the draw.,They anticipated a tough draw.,draw,draw,True,1.0,True,True,0.6358551683599538,False,False,0.64240789939656,True,True
+21,279,tap,Tap a cask of wine.,He tapped a new barrel of beer.,Tap,tapped,True,1.0,True,True,0.716384440171416,True,True,0.4841083888749146,False,False
+22,281,ticket,This car could be just the ticket for a small family.,Joe will be running on an anti-crime ticket.,ticket,ticket,False,1.0,True,False,0.7193632956267173,True,False,0.5150556124787592,False,True
+23,283,triangulate,Triangulate the piece of cardboard.,The land surveyor worked by triangulating the plot.,Triangulate,triangulating,False,1.0,True,False,0.6374071697761652,False,True,0.6672204796859512,True,False
+24,294,absorb,Absorb the costs for something.,He absorbed the knowledge or beliefs of his tribe.,Absorb,absorbed,False,1.0,True,False,0.7315701906503045,True,False,0.27020162847934104,False,True
+25,299,point,Point a gun.,It's rude to point at other people.,Point,point,False,1.0,True,False,0.43968473877873065,False,True,0.2434207282644923,False,True
+26,300,nightlife,In the summer the nightlife shifts to the dance clubs.,A futile search for intelligent nightlife.,nightlife,nightlife,True,1.0,True,True,0.5490261273393974,False,False,0.751885500999638,True,True
+27,307,button,"Pat pushed the button marked ""shred"" on the blender.",The elevator was operated by push buttons.,button,buttons,True,1.0,True,True,0.5652409160813715,False,False,0.46953894208958535,False,False
+28,317,metadata,Most websites contain metadata to tell the computer how to lay the words out on the screen.,A library catalog is metadata because it describes publications.,metadata,metadata,True,1.0,True,True,0.7486102260805017,True,True,0.7071372533211103,True,True
+29,326,pocket,Lydia put the change in her left pocket.,Lydia pocketed the change.,pocket,pocketed,True,1.0,True,True,0.7804634516133879,True,True,0.6310538301212312,True,True
+30,336,afflict,Afflict with the plague.,She was afflicted by the death of her parents.,Afflict,afflicted,False,1.0,True,False,0.6849518029642524,False,True,0.3114198525644274,False,True
+31,337,dish,They served me a dish of rice.,We gave them a set of dishes for a wedding present.,dish,dishes,False,1.0,True,False,0.8560128557144506,True,False,0.6474129276068903,True,False
+32,339,peak,The peak of perfection.,The view from the peak was magnificent.,peak,peak,False,1.0,True,False,0.7570350724343394,True,False,0.5709844510601321,True,False
+33,377,abridge,The new law might abridge our freedom of expression.,He had his rights abridged by the crooked sheriff.,abridge,abridged,True,1.0,True,True,0.7393463046447961,True,True,0.6912234438532765,True,True
+34,386,association,You can not be convicted of criminal guilt by association.,He joined the Modern Language Association.,association,Association,False,1.0,True,False,0.4648088627606418,False,True,0.3568664301244091,False,True
+35,393,agency,She has free agency.,Central Intelligence Agency.,agency,Agency,False,1.0,True,False,0.33447544917208577,False,True,0.37191938781610895,False,True
+36,395,rehearsal,A rehearsal will be held the day before the wedding.,He missed too many rehearsals.,rehearsal,rehearsals,True,1.0,True,True,0.6698615235779166,False,False,0.6399231151090978,True,True
+37,399,upstage,She only wore that dress to upstage everyone.,"When the dog entered the stage, he upstaged the actress.",upstage,upstaged,True,1.0,True,True,0.6827156565070278,False,False,0.6366161184154304,True,True
+38,401,drawing,The drawing of water from the well.,He did complicated pen-and-ink drawings like medieval miniatures.,drawing,drawings,False,1.0,True,False,0.5758595284496828,False,True,0.4986568465645588,False,True
+39,410,herald,Rouge Dragon is a herald at the College of Arms.,The chieftain had a herald who announced his arrival with a trumpet.,herald,herald,True,1.0,True,True,0.7580403501677964,True,True,0.5597953041667666,False,False
+40,422,activity,The level of activity declines with age.,His sphere of activity.,activity,activity,False,1.0,True,False,0.650680719925423,False,True,0.6400768449369358,True,False
+41,440,spade,She led a low spade.,Spades were trumps.,spade,Spades,True,1.0,True,True,0.3112741829006575,False,False,0.4274468786029939,False,False
+42,443,protest,The senator rose to register his protest.,They finished the game under protest to the league president.,protest,protest,True,1.0,True,True,0.6916116625584278,False,False,0.6300867014333208,True,True
+43,452,surface,It was not what it appeared to be on the surface.,The cloth had a pattern of red dots on a white surface.,surface,surface,False,1.0,True,False,0.6845542098192944,False,True,0.45844195375215985,False,True
+44,459,remove,Remove a wrapper.,The President removed many postmasters.,Remove,removed,False,1.0,True,False,0.17908537287067233,False,True,0.3626109747137605,False,True
+45,467,patronage,The restaurant had an upper class patronage.,Even before noon there was a considerable patronage.,patronage,patronage,False,1.0,True,False,0.6502947509745683,False,True,0.7218114422507304,True,False
+46,475,continent,Pioneers had to cross the continent on foot.,There are seven continents.,continent,continents,True,1.0,True,True,0.6627761481358427,False,False,0.6247818514329517,True,True
+47,486,vision,The runners emerged from the trees into his clear vision.,He had a vision of the Virgin Mary.,vision,vision,False,1.0,True,False,0.7339768026888407,True,False,0.5098581205382469,False,True
+48,489,whitewash,Let's not whitewash the crimes of Stalin.,"In his sermon, the minister didn't try to whitewash over the sins of his church.",whitewash,whitewash,False,1.0,True,False,0.799454368295186,True,False,0.7726754380714844,True,False
+49,521,share,Our children share a love of music.,The two countries share a long border.,share,share,True,1.0,True,True,0.7086459163032499,True,True,0.7342268023554819,True,True
+50,535,property,He is a man of property.,That hat is my property.,property,property,True,1.0,True,True,0.8077828979490659,True,True,0.6427345232164159,True,True
+51,546,fight,A fight broke out at the hockey game.,There were fights in the streets.,fight,fights,True,1.0,True,True,0.7618636409820181,True,True,0.7354101310930401,True,True
+52,549,intellect,He has a keen intellect.,Some of the world's leading intellects were meeting there.,intellect,intellects,False,1.0,True,False,0.6823870334336637,False,True,0.5149966047134382,False,True
+53,555,scavenge,Hyenas scavenge.,She scavenged the garbage cans for food.,scavenge,scavenged,False,1.0,True,False,-0.04721291872443018,False,True,0.6623221356094002,True,False
+54,556,recreation,For recreation he wrote poetry and solved crossword puzzles.,Drug abuse is often regarded as a form of recreation.,recreation,recreation,True,1.0,True,True,0.6664908112982169,False,False,0.6471976683487043,True,True
+55,568,dissipation,The dissipation of the mist.,Mindless dissipation of natural resources.,dissipation,dissipation,False,1.0,True,False,0.4873787234015059,False,True,0.7633257008110835,True,False
+56,570,drought,When England defeated Pakistan it ended a ten-year drought.,Farmers most affected by the drought hope that there may yet be sufficient rain early in the growing season.,drought,drought,False,1.0,True,False,0.7689923114099129,True,False,0.4491525452915295,False,True
+57,571,move,It's your move! Roll the dice!,"If you roll a six, you can make two moves.",move,moves,True,1.0,True,True,0.6204381659678898,False,False,0.5872653820023435,True,True
+58,573,deed,He signed the deed.,I inherited the deed to the house.,deed,deed,True,1.0,True,True,0.7611416407184805,True,True,0.7470160015386944,True,True
+59,574,transfer,The transfer of the music from record to tape suppressed much of the background noise.,The best student was a transfer from LSU.,transfer,transfer,False,1.0,True,False,0.8197540011158322,True,False,0.4625372050178237,False,True
+60,575,fatigue,Growing fatigue was apparent from the decline in the execution of their athletic skills.,He was hospitalized for extreme fatigue.,fatigue,fatigue,True,1.0,True,True,0.698249533263252,True,True,0.7548097552618823,True,True
+61,582,decussate,The fibers decussate.,This nerve decussates the other.,decussate,decussates,True,1.0,True,True,0.6734061833510222,False,False,0.7358899397394658,True,True
+62,612,risk,I can not risk smoking.,Why risk your life?,risk,risk,True,1.0,True,True,0.7546318796589694,True,True,0.6403817400804934,True,True
+63,617,stabilize,The country will stabilize after the next election ends.,The economy stabilized.,stabilize,stabilized,True,1.0,True,True,0.7280997842632195,True,True,0.6478791423390802,True,True
